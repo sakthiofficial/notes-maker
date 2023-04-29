@@ -136,7 +136,7 @@ export function checkUserNameErrors(userName) {
   return "";
 }
 
-function Home({ lpImg, lpImgXs, lpImgSize, pageProps }) {
+function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
   const [openContactDialog, setOpenContactDialog] = useState(false);
@@ -307,27 +307,30 @@ function Home({ lpImg, lpImgXs, lpImgSize, pageProps }) {
                 style={{ cursor: "pointer" }}
                 sizes="100vw"
               />
-              <Grid
-                sx={{
-                  height: "50vh",
-                  position: "relative",
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <Image
-                  fill
-                  onClick={() =>
-                    setEnquiryPopupProps({
-                      ...enquiryPopupProps,
-                      isOpen: true,
-                    })
-                  }
-                  src={lpImgXs}
-                  alt="landingPage"
-                  style={{ cursor: "pointer" }}
-                  sizes="100vw"
-                />
-              </Grid>
+            </Grid>
+            <Grid
+              sx={{
+                width: "100%",
+                position: "relative",
+                display: { xs: "block", md: "none" },
+              }}
+              style={{
+                aspectRatio: lpImgXsSize.width / lpImgXsSize.height,
+              }}
+            >
+              <Image
+                fill
+                onClick={() =>
+                  setEnquiryPopupProps({
+                    ...enquiryPopupProps,
+                    isOpen: true,
+                  })
+                }
+                src={lpImgXs}
+                alt="landingPage"
+                style={{ cursor: "pointer" }}
+                sizes="100vw"
+              />
             </Grid>
             <Grid
               container
@@ -660,7 +663,7 @@ Home.propTypes = {
   lpImg: PropTypes.string.isRequired,
   lpImgXs: PropTypes.string.isRequired,
   lpImgSize: PropTypes.object.isRequired,
-  // lpImgXsSize: PropTypes.object.isRequired,
+  lpImgXsSize: PropTypes.object.isRequired,
   pageProps: PropTypes.object,
 };
 Home.defaultProps = {
@@ -1025,30 +1028,32 @@ function Enquiry({
               +91 8750183040
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Button
-              onClick={() =>
-                setEnquiryPopupProps({
-                  ...enquiryPopupProps,
-                  heading: "Download Brochure",
-                  isOpen: true,
-                  bgColor: "#444543",
-                })
-              }
-              sx={{
-                // height: "40px",
-                borderRadius: "20px",
-                background: "#0072BE",
-                textTransform: "capitalize",
-                color: "#ffffff",
-                fontWeight: "bold",
-                fontSize: "14px",
-              }}
-              variant="contained"
-            >
-              Download Brochure
-            </Button>
-          </Grid>
+          {!pageProps?.noForm && (
+            <Grid item xs={12}>
+              <Button
+                onClick={() =>
+                  setEnquiryPopupProps({
+                    ...enquiryPopupProps,
+                    heading: "Download Brochure",
+                    isOpen: true,
+                    bgColor: "#444543",
+                  })
+                }
+                sx={{
+                  // height: "40px",
+                  borderRadius: "20px",
+                  background: "#0072BE",
+                  textTransform: "capitalize",
+                  color: "#ffffff",
+                  fontWeight: "bold",
+                  fontSize: "14px",
+                }}
+                variant="contained"
+              >
+                Download Brochure
+              </Button>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </Grid>
@@ -1138,19 +1143,16 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       sx={{
-        height: "100vh",
         ".MuiDialog-paper": {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           borderRadius: "5px",
-          background: "black",
-          maxWidth: { xs: "md", sm: "sm", md: "lg" },
-          height: { xs: "55%", sm: "40%", md: "70%" },
-          width: { xs: "100%", sm: "60%", md: "100%" },
+          maxWidth: "md",
           "::-webkit-scrollbar": {
             display: "none",
           },
+          background: enquiryPopupProps.bgColor || "#444543",
         },
       }}
     >
@@ -1175,7 +1177,6 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
           justifyContent="center"
           alignContent="flex-start"
           sx={{
-            background: enquiryPopupProps.bgColor || "#444543",
             height: "100%",
           }}
         >
@@ -1379,12 +1380,12 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
           container
           item
           xs={7}
-          width="100%"
           justifyContent="center"
           sx={{
             background: "pink",
             position: "relative",
             display: { xs: "none", md: "flex" },
+            padding: "280px 0",
           }}
         >
           <Image
@@ -1392,7 +1393,6 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
             style={{
               objectFit: "fill",
             }}
-            unoptimized={true}
             src={enquiryPopupProps.img}
             alt="location"
           />
@@ -1959,10 +1959,6 @@ function Downloads({ enquiryPopupProps, setEnquiryPopupProps, planList }) {
               }}
             >
               <Image
-                style={{
-                  height: "100%",
-                  width: "auto",
-                }}
                 src={item.iconImg || ""}
                 alt={`${item.name}_img${index}`}
                 sizes="100vw"
