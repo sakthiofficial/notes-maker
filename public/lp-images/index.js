@@ -183,4 +183,4 @@ const run = async () => {
   await browser.close();
 };
 
-run();
+// run();
