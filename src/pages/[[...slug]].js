@@ -2386,8 +2386,8 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
           alignItems: "center",
           borderRadius: "5px",
           background: "none",
-          maxWidth: { xs: "xl", sm: "xl", md: "xl" },
-          height: { xs: "50%", sm: "40%", md: "70%" },
+          maxWidth: "xl",
+          height: { xs: "30%", sm: "40%", md: "70%" },
           width: { xs: "100%", sm: "100%", md: "100%" },
           "::-webkit-scrollbar": {
             display: "none",
@@ -2407,13 +2407,15 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
       >
         <Grid
           item
-          xs={2}
-          sm={1}
+          xs={1}
           md={2}
-          display="flex"
           justifyContent="flex-start"
           alignItems="center"
-          sx={{ background: "#545454", height: "100%" }}
+          sx={{
+            background: "#545454",
+            height: "100%",
+            display: { xs: "none", sm: "flex" },
+          }}
         >
           <Button
             onClick={() => sliderRef?.current?.slidePrev()}
@@ -2431,11 +2433,13 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
         <Grid
           container
           item
-          xs={8}
-          sm={9}
+          xs={12}
+          sm={10}
           md={8}
-          height="90%"
-          sx={{ padding: "0 20px" }}
+          sx={{
+            padding: { xs: "0", sm: "0 20px" },
+            height: { xs: "100%", sm: "90%" },
+          }}
         >
           <Swiper
             slidesPerView={1}
@@ -2457,11 +2461,47 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
                   style={{
                     width: "100%",
                     height: "100%",
-                    border: "2px solid #000000",
+                    border: "0.5px solid #000000",
                     position: "relative",
                   }}
                 >
                   <Image fill unoptimized={true} src={item} alt="location" />
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Button
+                      onClick={() => sliderRef?.current?.slidePrev()}
+                      disabled={currentExpIdx === 0}
+                      sx={{
+                        background: "none !important",
+                        color: currentExpIdx === 0 ? "grey" : "#ffffff",
+                        boxShadow: "none !important",
+                      }}
+                      variant="contained"
+                    >
+                      <ArrowLeftIcon sx={{ fontSize: "70px" }} />
+                    </Button>
+                    <Button
+                      onClick={() => sliderRef?.current?.slideNext()}
+                      disabled={currentExpIdx === 8}
+                      style={{
+                        background: "none",
+                        color: currentExpIdx === 8 ? "grey" : "#ffffff",
+                        boxShadow: "none",
+                      }}
+                      variant="contained"
+                    >
+                      <ArrowRightIcon sx={{ fontSize: "70px" }} />
+                    </Button>
+                  </Grid>
                 </Grid>
               </SwiperSlide>
             ))}
@@ -2469,13 +2509,15 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
         </Grid>
         <Grid
           item
-          xs={2}
-          sm={1}
+          xs={1}
           md={2}
-          display="flex"
           justifyContent="flex-end"
           alignItems="center"
-          sx={{ background: "#545454", height: "100%" }}
+          sx={{
+            background: "#545454",
+            height: "100%",
+            display: { xs: "none", sm: "flex" },
+          }}
         >
           <Button
             onClick={() => sliderRef?.current?.slideNext()}
@@ -2494,8 +2536,6 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
     </Dialog>
   );
 };
-
-//////////////////////////////////////////////////////////////////////////////////////////
 
 export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), "public", "lp-images");

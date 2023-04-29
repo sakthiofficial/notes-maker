@@ -40,7 +40,7 @@ const processPageUrl = async (pageUrl) => {
   const folder = url.parse(pageUrl).pathname.substring(1);
   if (!fs.existsSync(folder)) {
     console.log("Creating: ", folder);
-    fs.mkdirSync(folder, { recursive: true });
+    fs.mkdirSync(folder, { recursive: true }, (err) => {});
   } else {
     console.log("Skipping: ", folder);
   }
