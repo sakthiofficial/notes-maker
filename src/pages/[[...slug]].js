@@ -282,9 +282,11 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
                 sx={{
                   width: "100%",
                   overflow: "hidden",
-                  height: lpImgSize.height,
                   position: "relative",
                   display: { xs: "none", md: "block" },
+                }}
+                style={{
+                  aspectRatio: lpImgSize.width / lpImgSize.height,
                 }}
               >
                 <Image
@@ -295,10 +297,10 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
                     })
                   }
                   fill
-                  unoptimized={true}
                   src={lpImg}
                   alt="landingPage"
                   style={{ cursor: "pointer" }}
+                  sizes="100vw"
                 />
               </Box>
               <Box
@@ -327,6 +329,7 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
             </Grid>
             <Grid
               container
+              item
               xs={12}
               sx={{
                 background: "#3c4039",
@@ -1389,8 +1392,7 @@ const ProjectHighlights = () => {
         display: "flex",
         justifyContent: "center",
         background: "#f3f3f3",
-        padding: "20px 0",
-        margin: "50px 0",
+        padding: "30px 0 50px",
       }}
     >
       <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }}>
@@ -1520,18 +1522,20 @@ const ProjectHighlights = () => {
 
 const Amenities = ({ openEnquiry, setOpenEnquiry }) => {
   return (
+    <>
     <Grid
       container
       item
       xs={12}
-      style={{ display: "flex", justifyContent: "center" }}
+      style={{ display: "flex", justifyContent: "center", padding: '0 15px' }}
     >
-      <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }}>
+      <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }} >
         <Typography
           component="h1"
           sx={{
             textAlign: "center",
-            padding: "10px 0",
+            padding: "0 0 16px",
+            margin: "30px 0 0 0",
             fontSize: "32px",
             width: { xs: "100%", sm: "60%", md: "32%" },
             borderBottom: "2px solid #3c3c3c",
@@ -1548,7 +1552,7 @@ const Amenities = ({ openEnquiry, setOpenEnquiry }) => {
           component="h2"
           style={{
             textAlign: "center",
-            padding: "10px 0",
+            margin: "20px 0 10px",
             fontSize: "18px",
             color: "#595959",
           }}
@@ -1577,6 +1581,8 @@ const Amenities = ({ openEnquiry, setOpenEnquiry }) => {
           alt="aminities_img"
         />
       </Grid>
+      </Grid>
+      <Grid container item xs={12}>
       <Grid
         item
         xs={12}
@@ -1651,6 +1657,7 @@ const Amenities = ({ openEnquiry, setOpenEnquiry }) => {
         </Grid>
       </Grid>
     </Grid>
+    </>
   );
 };
 Amenities.propTypes = {
@@ -1667,7 +1674,6 @@ const Gallery = ({ setOpenImgSlider }) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        marginBottom: "50px",
       }}
     >
       <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }}>
@@ -1708,7 +1714,7 @@ const Gallery = ({ setOpenImgSlider }) => {
             key={index}
             xs={12}
             md={4}
-            sx={{ padding: "15px", height: "300px" }}
+            sx={{ padding: "0 15px", margin: "40px 0 0", height: "300px" }}
           >
             <Box
               sx={{
@@ -1751,16 +1757,17 @@ const Location = () => {
       container
       item
       xs={12}
-      style={{ display: "flex", justifyContent: "center" }}
+      style={{ display: "flex", justifyContent: "center", margin: '40px 0 0' }}
     >
       <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }}>
         <Typography
           component="h1"
           sx={{
             textAlign: "center",
-            padding: "10px 0",
+            padding: "0 0 16px",
             fontSize: "32px",
             width: { xs: "100%", sm: "60%", md: "32%" },
+            margin: "30px 0 0",
             borderBottom: "2px solid #3c3c3c",
             fontWeight: "bolder",
             letterSpacing: "6px",
@@ -1787,32 +1794,41 @@ const Location = () => {
         container
         item
         xs={12}
-        style={{ margin: "20px 15px", width: "100%", position: "relative" }}
+        style={{ margin: "20px 15px 0", width: "100%", position: "relative" }}
       >
-        <Box
+        <Grid
+        container
+        item
+        xs={12}
           sx={{
             overflow: "hidden",
-            height: "700px",
             display: { xs: "none", md: "block" },
           }}
         >
-          <Image fill unoptimized={true} src={location} alt="location" />
-        </Box>
-        <Box
+          <Image src={location} alt="location" style={{
+            width: '100%',
+            height: 'auto'
+          }} />
+        </Grid>
+        <Grid
+        container item
+        xs={12}
           sx={{
             overflow: "hidden",
-            height: { xs: "500px", sm: "700px" },
             display: { xs: "block", md: "none" },
           }}
         >
-          <Image fill unoptimized={true} src={locationXs} alt="locationXs" />
-        </Box>
+          <Image src={locationXs} alt="locationXs" style={{
+            width: '100%',
+            height: 'auto'
+          }} sizes="100vw" />
+        </Grid>
       </Grid>
       <Grid
         container
         item
         xs={12}
-        style={{ margin: "20px 15px", width: "100%", position: "relative" }}
+        style={{ margin: "30px 15px", width: "100%", position: "relative" }}
       >
         <Box
           sx={{
