@@ -1111,7 +1111,7 @@ const EnquiryPopup = ({ openEnquiry, setOpenEnquiry }) => {
           borderRadius: "5px",
           background: "black",
           maxWidth: { xs: "md", sm: "sm", md: "lg" },
-          height: { xs: "50%", sm: "40%", md: "70%" },
+          height: { xs: "55%", sm: "40%", md: "70%" },
           width: { xs: "100%", sm: "60%", md: "100%" },
           "::-webkit-scrollbar": {
             display: "none",
@@ -1730,6 +1730,7 @@ const Gallery = ({ setOpenImgSlider }) => {
                   fill
                   style={{
                     objectFit: "cover",
+                    cursor: "pointer",
                   }}
                   unoptimized={true}
                   src={item}
@@ -2290,7 +2291,10 @@ const ConfirmContactDialog = ({
       </DialogTitle>
       <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
         <Button
-          onClick={handleClose}
+          onClick={() => {
+            handleClose();
+            window.location.href = "tel:";
+          }}
           sx={{
             background: "#ecf0f1",
             padding: "8px 15px",
@@ -2473,7 +2477,7 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
                       position: "absolute",
                       width: "100%",
                       height: "100%",
-                      display: "flex",
+                      display: { xs: "flex", sm: "none" },
                       justifyContent: "space-between",
                     }}
                   >
