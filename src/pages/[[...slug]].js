@@ -1,12 +1,11 @@
 import Head from "next/head";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import PropTypes from "prop-types";
@@ -16,6 +15,7 @@ import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import path from "path";
 import read from "fs-readdir-recursive";
+import fs from "fs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import sizeOf from "image-size";
 import CallRoundedIcon from "@mui/icons-material/CallRounded";
@@ -28,6 +28,7 @@ import locationImg from "../../public/images/location_1.jpg";
 import locationXsImg from "../../public/images/location_mobile.jpg";
 import locationAdvantagesImg from "../../public/images/location_advantages.jpg";
 import downloadBrochureImg from "../../public/images/download-brochure.png";
+import floorPlan from "../../public/images/floor_plan.jpg";
 import masterPlanImg from "../../public/images/master-plan.png";
 import floorPlanImg from "../../public/images/floor-plan.png";
 import mapImg from "../../public/images/map.jpg";
@@ -135,35 +136,41 @@ export function checkUserNameErrors(userName) {
   return "";
 }
 
-const planList = [
-  {
-    img: downloadBrochureImg,
-    name: "Download Brochure",
-    bgColor: "#444543",
-  },
-  {
-    img: masterPlanImg,
-    name: "Download Master Plan",
-    bgColor: "#4caf50",
-  },
-  {
-    img: floorPlanImg,
-    name: "Download Floor Plan",
-    bgColor: "#ac8283",
-  },
-];
-
-function Home({ lpImg, lpImgXs, lpImgSize }) {
+function Home({ lpImg, lpImgXs, lpImgSize, pageProps }) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
   const [openContactDialog, setOpenContactDialog] = useState(false);
   const [openConfirmContact, setOpenConfirmContact] = useState(false);
   const [openCancelContact, setOpenCancelContact] = useState(false);
+  const planList = useMemo(
+    () => [
+      {
+        iconImg: downloadBrochureImg,
+        popupImg: lpImgXs,
+        name: "Download Brochure",
+        bgColor: "#444543",
+      },
+      {
+        iconImg: masterPlanImg,
+        popupImg: lpImgXs,
+        name: "Download Master Plan",
+        bgColor: "#4caf50",
+      },
+      {
+        iconImg: floorPlanImg,
+        popupImg: floorPlan,
+        name: "Download Floor Plan",
+        bgColor: "#ac8283",
+      },
+    ],
+    [lpImgXs]
+  );
 
-  const [openEnquiry, setOpenEnquiry] = useState({
+  const [enquiryPopupProps, setEnquiryPopupProps] = useState({
     isOpen: false,
     heading: "Enquire Now",
     bgColor: "#444543",
+    img: lpImgXs,
   });
 
   const [addFormData, { isLoading }] = useAddFormDataMutation();
@@ -290,8 +297,8 @@ function Home({ lpImg, lpImgXs, lpImgSize }) {
               <Image
                 fill
                 onClick={() =>
-                  setOpenEnquiry({
-                    ...openEnquiry,
+                  setEnquiryPopupProps({
+                    ...enquiryPopupProps,
                     isOpen: true,
                   })
                 }
@@ -310,8 +317,8 @@ function Home({ lpImg, lpImgXs, lpImgSize }) {
                 <Image
                   fill
                   onClick={() =>
-                    setOpenEnquiry({
-                      ...openEnquiry,
+                    setEnquiryPopupProps({
+                      ...enquiryPopupProps,
                       isOpen: true,
                     })
                   }
@@ -540,15 +547,18 @@ function Home({ lpImg, lpImgXs, lpImgSize }) {
           </Grid>
           <ProjectHighlights />
           <Amenities
-            openEnquiry={openEnquiry}
-            setOpenEnquiry={setOpenEnquiry}
+            enquiryPopupProps={enquiryPopupProps}
+            setEnquiryPopupProps={setEnquiryPopupProps}
           />
           <Gallery setOpenImgSlider={setOpenImgSlider} />
           <Location />
-          <Downloads
-            openEnquiry={openEnquiry}
-            setOpenEnquiry={setOpenEnquiry}
-          />
+          {!pageProps?.noForm && (
+            <Downloads
+              planList={planList}
+              enquiryPopupProps={enquiryPopupProps}
+              setEnquiryPopupProps={setEnquiryPopupProps}
+            />
+          )}
           <Contact setOpenContactDialog={setOpenContactDialog} />
           <Footer />
         </Grid>
@@ -586,8 +596,8 @@ function Home({ lpImg, lpImgXs, lpImgSize }) {
           </Button>
           <Button
             onClick={() =>
-              setOpenEnquiry({
-                ...openEnquiry,
+              setEnquiryPopupProps({
+                ...enquiryPopupProps,
                 isOpen: true,
               })
             }
@@ -618,13 +628,14 @@ function Home({ lpImg, lpImgXs, lpImgSize }) {
         />
         <Enquiry
           isVisible={isVisible}
-          openEnquiry={openEnquiry}
-          setOpenEnquiry={setOpenEnquiry}
+          enquiryPopupProps={enquiryPopupProps}
+          setEnquiryPopupProps={setEnquiryPopupProps}
           setOpenContactDialog={setOpenContactDialog}
+          pageProps={pageProps}
         />
         <EnquiryPopup
-          openEnquiry={openEnquiry}
-          setOpenEnquiry={setOpenEnquiry}
+          enquiryPopupProps={enquiryPopupProps}
+          setEnquiryPopupProps={setEnquiryPopupProps}
         />
         <ContactDialog
           openContactDialog={openContactDialog}
@@ -650,15 +661,20 @@ Home.propTypes = {
   lpImgXs: PropTypes.string.isRequired,
   lpImgSize: PropTypes.object.isRequired,
   // lpImgXsSize: PropTypes.object.isRequired,
+  pageProps: PropTypes.object,
+};
+Home.defaultProps = {
+  pageProps: {},
 };
 
 export default Home;
 
 function Enquiry({
   isVisible,
-  openEnquiry,
-  setOpenEnquiry,
+  enquiryPopupProps,
+  setEnquiryPopupProps,
   setOpenContactDialog,
+  pageProps,
 }) {
   const [addFormData, { isLoading }] = useAddFormDataMutation();
   const { enqueueSnackbar } = useSnackbar();
@@ -722,12 +738,16 @@ function Enquiry({
   };
   return (
     <Grid
+      id="checkme"
       container
       item
       xs={4}
       sx={{
         height: "100%",
-        background: "#b13e5d",
+        backgroundColor:
+          pageProps?.styleInfo?.sidebar?.backgroundColor || "#b13e5d",
+        backgroundImage:
+          pageProps?.styleInfo?.sidebar?.backgroundImage || "none",
         position: "fixed",
         right: 0,
         display: { xs: "none", sm: "flex" },
@@ -749,185 +769,194 @@ function Enquiry({
           Enquire Now
         </Typography>
       </Grid>
-      <Grid
-        container
-        item
-        xs={11}
-        md={9}
-        style={{ background: "#762e2e", borderRadius: "5px", padding: "20px" }}
-      >
-        <Grid item xs={12}>
-          <InputLabel
-            style={{
-              padding: "10px 0",
-              fontSize: "12px",
-              fontWeight: "bold",
-              color: "#ffffff",
-            }}
-            htmlFor="outlined-basic1"
-          >
-            Name*
-          </InputLabel>
-        </Grid>
-        <TextField
-          type="text"
-          id="outlined-basic1"
-          value={userData.userName}
-          error={!!errorMsgs.userName}
-          helperText={errorMsgs?.userName || ""}
-          onBlur={() => {
-            setIsDirty((d) => ({
-              ...d,
-              userName: true,
-            }));
-          }}
-          onChange={(e) => {
-            setUserData({
-              ...userData,
-              userName: e.target.value || "",
-            });
-          }}
-          sx={{
-            width: "100%",
+      {!pageProps?.noForm && (
+        <Grid
+          container
+          item
+          xs={11}
+          md={9}
+          style={{
+            backgroundColor:
+              pageProps?.styleInfo?.sidebarForm?.backgroundColor || "#762e2e",
+            backgroundImage:
+              pageProps?.styleInfo?.sidebarForm?.backgroundImage || "none",
             borderRadius: "5px",
-            "& .MuiOutlinedInput-root .MuiInputBase-input": {
-              background: "#ffffff",
-              padding: "8px",
-              borderRadius: "5px",
-            },
-            "& .MuiFormHelperText-root": {
-              fontSize: "12px",
-            },
+            padding: "20px",
           }}
-          InputProps={{
-            sx: {
-              height: "40px",
-            },
-          }}
-          variant="outlined"
-        />
-        <Grid item xs={12}>
-          <InputLabel
-            style={{
-              padding: "10px 0",
-              fontSize: "12px",
-              fontWeight: "bold",
-              color: "#ffffff",
+        >
+          <Grid item xs={12}>
+            <InputLabel
+              style={{
+                padding: "10px 0",
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#ffffff",
+              }}
+              htmlFor="outlined-basic1"
+            >
+              Name*
+            </InputLabel>
+          </Grid>
+          <TextField
+            type="text"
+            id="outlined-basic1"
+            value={userData.userName}
+            error={!!errorMsgs.userName}
+            helperText={errorMsgs?.userName || ""}
+            onBlur={() => {
+              setIsDirty((d) => ({
+                ...d,
+                userName: true,
+              }));
             }}
-            htmlFor="outlined-basic2"
-          >
-            Phone Number*
-          </InputLabel>
-        </Grid>
-        <TextField
-          type="number"
-          id="outlined-basic2"
-          value={userData.phoneNo}
-          error={!!errorMsgs.phoneNo}
-          helperText={errorMsgs?.phoneNo || ""}
-          onBlur={() => {
-            setIsDirty((d) => ({
-              ...d,
-              phoneNo: true,
-            }));
-          }}
-          onChange={(e) => {
-            setUserData({
-              ...userData,
-              phoneNo: e.target.value || "",
-            });
-          }}
-          sx={{
-            width: "100%",
-            borderRadius: "5px",
-            "& .MuiOutlinedInput-root .MuiInputBase-input": {
-              background: "#ffffff",
-              padding: "8px",
-              borderRadius: "5px",
-            },
-            "& .MuiFormHelperText-root": {
-              fontSize: "12px",
-            },
-          }}
-          InputProps={{
-            sx: {
-              height: "40px",
-            },
-          }}
-          variant="outlined"
-        />
-        <Grid item xs={12}>
-          <InputLabel
-            style={{
-              padding: "10px 0",
-              fontSize: "12px",
-              fontWeight: "bold",
-              color: "#ffffff",
+            onChange={(e) => {
+              setUserData({
+                ...userData,
+                userName: e.target.value || "",
+              });
             }}
-            htmlFor="outlined-basic3"
-          >
-            Email*
-          </InputLabel>
-        </Grid>
-        <TextField
-          type="email"
-          id="outlined-basic3"
-          value={userData.email}
-          error={!!errorMsgs.email}
-          helperText={errorMsgs?.email || ""}
-          onBlur={() => {
-            setIsDirty((d) => ({
-              ...d,
-              email: true,
-            }));
-          }}
-          onChange={(e) => {
-            setUserData({
-              ...userData,
-              email: e.target.value || "",
-            });
-          }}
-          sx={{
-            width: "100%",
-            borderRadius: "5px",
-            "& .MuiOutlinedInput-root .MuiInputBase-input": {
-              background: "#ffffff",
-              padding: "8px",
-              borderRadius: "5px",
-            },
-            "& .MuiFormHelperText-root": {
-              fontSize: "12px",
-            },
-          }}
-          InputProps={{
-            sx: {
-              height: "40px",
-            },
-          }}
-          variant="outlined"
-        />
-        <Grid item xs={12} style={{ paddingTop: "30px" }}>
-          <LoadingButton
-            onClick={() => submitForm()}
-            loading={isLoading}
             sx={{
               width: "100%",
-              height: "50px",
-              background: "#FBB70F",
-              textTransform: "capitalize",
-              color: "#000000",
-              fontWeight: "bold",
-              fontSize: "14px",
-              ":hover": {
-                background: "#FBB70F",
+              borderRadius: "5px",
+              "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                background: "#ffffff",
+                padding: "8px",
+                borderRadius: "5px",
+              },
+              "& .MuiFormHelperText-root": {
+                fontSize: "12px",
               },
             }}
-            variant="contained"
-          >
-            Submit
-          </LoadingButton>
+            InputProps={{
+              sx: {
+                height: "40px",
+              },
+            }}
+            variant="outlined"
+          />
+          <Grid item xs={12}>
+            <InputLabel
+              style={{
+                padding: "10px 0",
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#ffffff",
+              }}
+              htmlFor="outlined-basic2"
+            >
+              Phone Number*
+            </InputLabel>
+          </Grid>
+          <TextField
+            type="number"
+            id="outlined-basic2"
+            value={userData.phoneNo}
+            error={!!errorMsgs.phoneNo}
+            helperText={errorMsgs?.phoneNo || ""}
+            onBlur={() => {
+              setIsDirty((d) => ({
+                ...d,
+                phoneNo: true,
+              }));
+            }}
+            onChange={(e) => {
+              setUserData({
+                ...userData,
+                phoneNo: e.target.value || "",
+              });
+            }}
+            sx={{
+              width: "100%",
+              borderRadius: "5px",
+              "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                background: "#ffffff",
+                padding: "8px",
+                borderRadius: "5px",
+              },
+              "& .MuiFormHelperText-root": {
+                fontSize: "12px",
+              },
+            }}
+            InputProps={{
+              sx: {
+                height: "40px",
+              },
+            }}
+            variant="outlined"
+          />
+          <Grid item xs={12}>
+            <InputLabel
+              style={{
+                padding: "10px 0",
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#ffffff",
+              }}
+              htmlFor="outlined-basic3"
+            >
+              Email*
+            </InputLabel>
+          </Grid>
+          <TextField
+            type="email"
+            id="outlined-basic3"
+            value={userData.email}
+            error={!!errorMsgs.email}
+            helperText={errorMsgs?.email || ""}
+            onBlur={() => {
+              setIsDirty((d) => ({
+                ...d,
+                email: true,
+              }));
+            }}
+            onChange={(e) => {
+              setUserData({
+                ...userData,
+                email: e.target.value || "",
+              });
+            }}
+            sx={{
+              width: "100%",
+              borderRadius: "5px",
+              "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                background: "#ffffff",
+                padding: "8px",
+                borderRadius: "5px",
+              },
+              "& .MuiFormHelperText-root": {
+                fontSize: "12px",
+              },
+            }}
+            InputProps={{
+              sx: {
+                height: "40px",
+              },
+            }}
+            variant="outlined"
+          />
+          <Grid item xs={12} style={{ paddingTop: "30px" }}>
+            <LoadingButton
+              onClick={() => submitForm()}
+              loading={isLoading}
+              sx={{
+                width: "100%",
+                height: "50px",
+                background: "#FBB70F",
+                textTransform: "capitalize",
+                color: "#000000",
+                fontWeight: "bold",
+                fontSize: "14px",
+                ":hover": {
+                  background: "#FBB70F",
+                },
+              }}
+              variant="contained"
+            >
+              Submit
+            </LoadingButton>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
       <Grid
         container
         item
@@ -999,8 +1028,8 @@ function Enquiry({
           <Grid item xs={12}>
             <Button
               onClick={() =>
-                setOpenEnquiry({
-                  ...openEnquiry,
+                setEnquiryPopupProps({
+                  ...enquiryPopupProps,
                   heading: "Download Brochure",
                   isOpen: true,
                   bgColor: "#444543",
@@ -1027,15 +1056,16 @@ function Enquiry({
 }
 Enquiry.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  openEnquiry: PropTypes.object.isRequired,
-  setOpenEnquiry: PropTypes.func.isRequired,
+  enquiryPopupProps: PropTypes.object.isRequired,
+  setEnquiryPopupProps: PropTypes.func.isRequired,
   setOpenContactDialog: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
 };
 
-function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
+function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
   const closeTab = () => {
-    setOpenEnquiry({
-      ...openEnquiry,
+    setEnquiryPopupProps({
+      ...enquiryPopupProps,
       isOpen: false,
     });
   };
@@ -1103,7 +1133,7 @@ function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
 
   return (
     <Dialog
-      open={openEnquiry.isOpen}
+      open={enquiryPopupProps.isOpen}
       onClose={closeTab}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
@@ -1144,7 +1174,10 @@ function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
           display="flex"
           justifyContent="center"
           alignContent="flex-start"
-          sx={{ background: openEnquiry.bgColor || "#444543", height: "100%" }}
+          sx={{
+            background: enquiryPopupProps.bgColor || "#444543",
+            height: "100%",
+          }}
         >
           <Grid item xs={12}>
             <Typography
@@ -1157,7 +1190,7 @@ function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
                 color: "#ffffff",
               }}
             >
-              {openEnquiry.heading || "Enquire Now"}
+              {enquiryPopupProps.heading || "Enquire Now"}
             </Typography>
           </Grid>
           <Grid
@@ -1356,11 +1389,11 @@ function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
         >
           <Image
             fill
-            // style={{
-            //   objectFit: "cover",
-            // }}
+            style={{
+              objectFit: "fill",
+            }}
             unoptimized={true}
-            src="https://www.urbanrisetheworldofjoy.com/lp-dsc/v1/images/mb.jpg"
+            src={enquiryPopupProps.img}
             alt="location"
           />
         </Grid>
@@ -1380,8 +1413,8 @@ function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
   );
 }
 EnquiryPopup.propTypes = {
-  openEnquiry: PropTypes.object.isRequired,
-  setOpenEnquiry: PropTypes.func.isRequired,
+  enquiryPopupProps: PropTypes.object.isRequired,
+  setEnquiryPopupProps: PropTypes.func.isRequired,
 };
 
 function ProjectHighlights() {
@@ -1522,7 +1555,7 @@ function ProjectHighlights() {
   );
 }
 
-function Amenities({ openEnquiry, setOpenEnquiry }) {
+function Amenities({ enquiryPopupProps, setEnquiryPopupProps }) {
   return (
     <>
       <Grid
@@ -1638,8 +1671,8 @@ function Amenities({ openEnquiry, setOpenEnquiry }) {
             >
               <Button
                 onClick={() =>
-                  setOpenEnquiry({
-                    ...openEnquiry,
+                  setEnquiryPopupProps({
+                    ...enquiryPopupProps,
                     heading: "Book a Site Visit",
                     isOpen: true,
                   })
@@ -1665,8 +1698,8 @@ function Amenities({ openEnquiry, setOpenEnquiry }) {
   );
 }
 Amenities.propTypes = {
-  openEnquiry: PropTypes.object.isRequired,
-  setOpenEnquiry: PropTypes.func.isRequired,
+  enquiryPopupProps: PropTypes.object.isRequired,
+  setEnquiryPopupProps: PropTypes.func.isRequired,
 };
 
 function Gallery({ setOpenImgSlider }) {
@@ -1851,7 +1884,7 @@ function Location() {
   );
 }
 
-function Downloads({ openEnquiry, setOpenEnquiry }) {
+function Downloads({ enquiryPopupProps, setEnquiryPopupProps, planList }) {
   return (
     <Grid
       container
@@ -1930,26 +1963,17 @@ function Downloads({ openEnquiry, setOpenEnquiry }) {
                   height: "100%",
                   width: "auto",
                 }}
-                src={item.img || ""}
+                src={item.iconImg || ""}
                 alt={`${item.name}_img${index}`}
                 sizes="100vw"
               />
             </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              justifyContent="center"
-              style={
-                {
-                  // margin:
-                }
-              }
-            >
+            <Grid container item xs={12} justifyContent="center">
               <Button
                 onClick={() =>
-                  setOpenEnquiry({
-                    ...openEnquiry,
+                  setEnquiryPopupProps({
+                    ...enquiryPopupProps,
+                    img: item.popupImg,
                     heading: item.name || "Enquire Now",
                     bgColor: item.bgColor || "#444543",
                     isOpen: true,
@@ -1977,8 +2001,9 @@ function Downloads({ openEnquiry, setOpenEnquiry }) {
   );
 }
 Downloads.propTypes = {
-  openEnquiry: PropTypes.object.isRequired,
-  setOpenEnquiry: PropTypes.func.isRequired,
+  enquiryPopupProps: PropTypes.object.isRequired,
+  setEnquiryPopupProps: PropTypes.func.isRequired,
+  planList: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 function Contact({ setOpenContactDialog }) {
@@ -2620,14 +2645,20 @@ export async function getStaticPaths() {
   const postsDirectory = path.join(process.cwd(), "public", "lp-images");
   const filenames = read(postsDirectory);
 
-  const slugs = filenames.map((f) => f.split(path.sep).slice(0, -1)) || [];
+  const lpDirs = [
+    ...new Set(
+      filenames.map((f) => f.split(path.sep).slice(0, -1).join(path.sep))
+    ),
+  ].filter((d) => d);
+
+  const slugs = lpDirs.map((f) => f.split(path.sep));
   const paths = [
     { params: { slug: [] } },
     ...slugs.map((slug) => ({
       params: { slug },
     })),
   ];
-  // console.log("Paths: ", JSON.stringify(paths));
+  // console.log("Paths: ", JSON.stringify(paths, null, 2));
 
   return {
     paths,
@@ -2636,25 +2667,43 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async ({ params }) => {
+  let lpImg = [];
+  let lpImgXs = [];
+  let pageProps = [];
   if (Array.isArray(params.slug) && params.slug.length) {
-    params.lpImg = ["lp-images", ...params.slug, "bannerImg.jpg"];
-    params.lpImgXs = ["lp-images", ...params.slug, "bannerImg_xs.jpg"];
+    lpImg = ["lp-images", ...params.slug, "bannerImg.jpg"];
+    lpImgXs = ["lp-images", ...params.slug, "bannerImg_xs.jpg"];
+    pageProps = ["lp-images", ...params.slug, "pageProps.json"];
   } else {
-    params.lpImg = ["images", "db.jpg"];
-    params.lpImgXs = ["images", "mb.jpg"];
+    lpImg = ["images", "db.jpg"];
+    lpImgXs = ["images", "mb.jpg"];
+    pageProps = ["pageProps.json"];
   }
-  params.lpImg = `/${params.lpImg.join("/")}`;
-  params.lpImgXs = `/${params.lpImgXs.join("/")}`;
-  console.log("Params: ", params);
+  lpImg = `/${lpImg.join("/")}`;
+  lpImgXs = `/${lpImgXs.join("/")}`;
+  pageProps = `/${pageProps.join("/")}`;
 
-  const lpImgAbsPath = path.join(process.cwd(), "public", params.lpImg);
-  const imgDimensions = sizeOf(lpImgAbsPath);
+  const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
+  if (fs.existsSync(lpImgAbsPath)) {
+    const imgDimensions = sizeOf(lpImgAbsPath);
+    params.lpImgSize = imgDimensions;
+    params.lpImg = lpImg;
+  }
 
-  const lpImgXsAbsPath = path.join(process.cwd(), "public", params.lpImgXs);
-  const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+  const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+  if (fs.existsSync(lpImgXsAbsPath)) {
+    const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+    params.lpImgXsSize = imgXsDimensions;
+    params.lpImgXs = lpImgXs;
+  }
 
-  params.lpImgSize = imgDimensions;
-  params.lpImgXsSize = imgXsDimensions;
+  const pagePropsAbsPath = path.join(process.cwd(), "public", pageProps);
+  if (fs.existsSync(pagePropsAbsPath)) {
+    const pagePropsStr = fs.readFileSync(pagePropsAbsPath);
+    params.pageProps = JSON.parse(pagePropsStr);
+  }
+
+  // console.log("Params: ", JSON.stringify(params, null, 2));
 
   return {
     props: params,
