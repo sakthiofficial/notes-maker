@@ -20,42 +20,41 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import sizeOf from "image-size";
 import CallRoundedIcon from "@mui/icons-material/CallRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import { useAddFormDataMutation } from "@/reduxSlice/apiSlice";
 import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
-
-import aminities_img from "../../public/images/aminities.webp";
-import location from "../../public/images/location_1.webp";
-import locationXs from "../../public/images/location_mobile.webp";
-import location_advantages from "../../public/images/location_advantages.webp";
-import download_brochure from "../../public/images/download-brochure.png";
-import master_plan from "../../public/images/master-plan.png";
-import floor_plan from "../../public/images/floor-plan.png";
-import map from "../../public/images/map.webp";
-import alliance_logo from "../../public/images/alliance_logo.png";
-import urbanrise_logo from "../../public/images/urbanrise_logo.webp";
-import theWorldOfJoy_logo from "../../public/images/logo.webp";
-import floor_plan_bg from "../../public/images/floor_plans.webp";
-import gallery_img1 from "../../public/images/gal_1.webp";
-import gallery_img2 from "../../public/images/gal_2.webp";
-import gallery_img3 from "../../public/images/gal_3.webp";
-import gallery_img4 from "../../public/images/gal_4.webp";
-import gallery_img5 from "../../public/images/gal_5.webp";
-import gallery_img6 from "../../public/images/gal_6.webp";
-import gallery_img7 from "../../public/images/gal_7.webp";
-import gallery_img8 from "../../public/images/gal_8.webp";
-import gallery_img9 from "../../public/images/gal_9.webp";
+import { DialogContent } from "@mui/material";
+import amenitiesImg from "../../public/images/amenities.jpg";
+import locationImg from "../../public/images/location_1.jpg";
+import locationXsImg from "../../public/images/location_mobile.jpg";
+import locationAdvantagesImg from "../../public/images/location_advantages.jpg";
+import downloadBrochureImg from "../../public/images/download-brochure.png";
+import masterPlanImg from "../../public/images/master-plan.png";
+import floorPlanImg from "../../public/images/floor-plan.png";
+import mapImg from "../../public/images/map.jpg";
+import allianceLogoImg from "../../public/images/alliance_logo.png";
+import urbanriseLogoImg from "../../public/images/urbanrise_logo.png";
+import theWorldOfJoyLogoImg from "../../public/images/logo.png";
+import galleryImg1 from "../../public/images/gal_1.jpg";
+import galleryImg2 from "../../public/images/gal_2.jpg";
+import galleryImg3 from "../../public/images/gal_3.jpg";
+import galleryImg4 from "../../public/images/gal_4.jpg";
+import galleryImg5 from "../../public/images/gal_5.jpg";
+import galleryImg6 from "../../public/images/gal_6.jpg";
+import galleryImg7 from "../../public/images/gal_7.jpg";
+import galleryImg8 from "../../public/images/gal_8.jpg";
+import galleryImg9 from "../../public/images/gal_9.jpg";
+import { useAddFormDataMutation } from "../reduxSlice/apiSlice";
 
 const galleryImgList = [
-  gallery_img1,
-  gallery_img2,
-  gallery_img3,
-  gallery_img4,
-  gallery_img5,
-  gallery_img6,
-  gallery_img7,
-  gallery_img8,
-  gallery_img9,
+  galleryImg1,
+  galleryImg2,
+  galleryImg3,
+  galleryImg4,
+  galleryImg5,
+  galleryImg6,
+  galleryImg7,
+  galleryImg8,
+  galleryImg9,
 ];
 
 const EMPTY_USERDATA = {
@@ -138,23 +137,23 @@ export function checkUserNameErrors(userName) {
 
 const planList = [
   {
-    img: download_brochure,
+    img: downloadBrochureImg,
     name: "Download Brochure",
     bgColor: "#444543",
   },
   {
-    img: master_plan,
+    img: masterPlanImg,
     name: "Download Master Plan",
     bgColor: "#4caf50",
   },
   {
-    img: floor_plan,
+    img: floorPlanImg,
     name: "Download Floor Plan",
     bgColor: "#ac8283",
   },
 ];
 
-const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
+function Home({ lpImg, lpImgXs, lpImgSize }) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
   const [openContactDialog, setOpenContactDialog] = useState(false);
@@ -228,13 +227,8 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
       });
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", listenToScroll);
-    return () => window.removeEventListener("scroll", listenToScroll);
-  }, []);
-
   const listenToScroll = () => {
-    let heightToHideFrom = 200;
+    const heightToHideFrom = 200;
     const winScroll =
       document.body.scrollTop || document.documentElement.scrollTop;
 
@@ -245,13 +239,18 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", listenToScroll);
+    return () => window.removeEventListener("scroll", listenToScroll);
+  }, []);
+
   return (
     <>
       <Head>
         <title>The World Of Joy</title>
         <meta name="description" content="Generated by create next app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <Grid
         container
@@ -277,36 +276,32 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
             xs={12}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Grid item xs={12}>
-              <Box
+            <Grid
+              item
+              xs={12}
+              sx={{
+                position: "relative",
+                display: { xs: "none", md: "block" },
+              }}
+              style={{
+                aspectRatio: lpImgSize.width / lpImgSize.height,
+              }}
+            >
+              <Image
+                fill
+                onClick={() =>
+                  setOpenEnquiry({
+                    ...openEnquiry,
+                    isOpen: true,
+                  })
+                }
+                src={lpImg}
+                alt="landingPage"
+                style={{ cursor: "pointer" }}
+                sizes="100vw"
+              />
+              <Grid
                 sx={{
-                  width: "100%",
-                  overflow: "hidden",
-                  position: "relative",
-                  display: { xs: "none", md: "block" },
-                }}
-                style={{
-                  aspectRatio: lpImgSize.width / lpImgSize.height,
-                }}
-              >
-                <Image
-                  onClick={() =>
-                    setOpenEnquiry({
-                      ...openEnquiry,
-                      isOpen: true,
-                    })
-                  }
-                  fill
-                  src={lpImg}
-                  alt="landingPage"
-                  style={{ cursor: "pointer" }}
-                  sizes="100vw"
-                />
-              </Box>
-              <Box
-                sx={{
-                  width: "100%",
-                  overflow: "hidden",
                   height: "50vh",
                   position: "relative",
                   display: { xs: "block", md: "none" },
@@ -320,12 +315,12 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
                       isOpen: true,
                     })
                   }
-                  unoptimized={true}
                   src={lpImgXs}
                   alt="landingPage"
                   style={{ cursor: "pointer" }}
+                  sizes="100vw"
                 />
-              </Box>
+              </Grid>
             </Grid>
             <Grid
               container
@@ -649,16 +644,22 @@ const Home = ({ lpImg, lpImgXs, lpImgSize }) => {
       </Grid>
     </>
   );
+}
+Home.propTypes = {
+  lpImg: PropTypes.string.isRequired,
+  lpImgXs: PropTypes.string.isRequired,
+  lpImgSize: PropTypes.object.isRequired,
+  // lpImgXsSize: PropTypes.object.isRequired,
 };
 
 export default Home;
 
-const Enquiry = ({
+function Enquiry({
   isVisible,
   openEnquiry,
   setOpenEnquiry,
   setOpenContactDialog,
-}) => {
+}) {
   const [addFormData, { isLoading }] = useAddFormDataMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -722,6 +723,7 @@ const Enquiry = ({
   return (
     <Grid
       container
+      item
       xs={4}
       sx={{
         height: "100%",
@@ -938,24 +940,24 @@ const Enquiry = ({
           margin: "30px 0",
         }}
       >
-        <Grid item xs={6} md={4}>
-          <Box
+        <Grid
+          item
+          xs={6}
+          md={4}
+          style={{
+            position: "relative",
+            height: "120px",
+          }}
+        >
+          <Image
             style={{
-              overflow: "hidden",
-              position: "relative",
-              height: "120px",
+              width: "100%",
+              height: "auto",
             }}
-          >
-            <Image
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-              unoptimized={true}
-              src={theWorldOfJoy_logo}
-              alt="theWorldOfJoy_logo"
-            />
-          </Box>
+            src={theWorldOfJoyLogoImg}
+            alt="theWorldOfJoy_logo"
+            sizes="100vw"
+          />
         </Grid>
         <Grid
           container
@@ -1005,8 +1007,7 @@ const Enquiry = ({
                 })
               }
               sx={{
-                width: { xs: "100%", md: "50%" },
-                height: "40px",
+                // height: "40px",
                 borderRadius: "20px",
                 background: "#0072BE",
                 textTransform: "capitalize",
@@ -1023,14 +1024,15 @@ const Enquiry = ({
       </Grid>
     </Grid>
   );
-};
+}
 Enquiry.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   openEnquiry: PropTypes.object.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
+  setOpenContactDialog: PropTypes.func.isRequired,
 };
 
-const EnquiryPopup = ({ openEnquiry, setOpenEnquiry }) => {
+function EnquiryPopup({ openEnquiry, setOpenEnquiry }) {
   const closeTab = () => {
     setOpenEnquiry({
       ...openEnquiry,
@@ -1376,13 +1378,13 @@ const EnquiryPopup = ({ openEnquiry, setOpenEnquiry }) => {
       </Grid>
     </Dialog>
   );
-};
+}
 EnquiryPopup.propTypes = {
   openEnquiry: PropTypes.object.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
 };
 
-const ProjectHighlights = () => {
+function ProjectHighlights() {
   return (
     <Grid
       container
@@ -1518,154 +1520,156 @@ const ProjectHighlights = () => {
       </Grid>
     </Grid>
   );
-};
+}
 
-const Amenities = ({ openEnquiry, setOpenEnquiry }) => {
+function Amenities({ openEnquiry, setOpenEnquiry }) {
   return (
     <>
-    <Grid
-      container
-      item
-      xs={12}
-      style={{ display: "flex", justifyContent: "center", padding: '0 15px' }}
-    >
-      <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }} >
-        <Typography
-          component="h1"
-          sx={{
-            textAlign: "center",
-            padding: "0 0 16px",
-            margin: "30px 0 0 0",
-            fontSize: "32px",
-            width: { xs: "100%", sm: "60%", md: "32%" },
-            borderBottom: "2px solid #3c3c3c",
-            fontWeight: "bolder",
-            letterSpacing: "6px",
-            color: "#3c3c3c",
-          }}
-        >
-          AMENITIES
-        </Typography>
-      </Grid>
-      <Grid item xs={11} sm={10}>
-        <Typography
-          component="h2"
-          style={{
-            textAlign: "center",
-            margin: "20px 0 10px",
-            fontSize: "18px",
-            color: "#595959",
-          }}
-        >
-          The best in class amenities for a balanced life
-        </Typography>
-      </Grid>
       <Grid
-        item
-        xs={11}
-        sm={12}
-        sx={{
-          width: "100%",
-          height: { xs: "380px", sm: "550px", md: "700px" },
-          padding: "0 10px",
-          position: "relative",
-        }}
-      >
-        <Image
-          fill
-          // style={{
-          //   objectFit: "contain",
-          // }}
-          unoptimized={true}
-          src={aminities_img}
-          alt="aminities_img"
-        />
-      </Grid>
-      </Grid>
-      <Grid container item xs={12}>
-      <Grid
+        container
         item
         xs={12}
-        sx={{
-          position: "relative",
-          margin: "30px 0",
-          height: { xs: "300px", md: "350px" },
-          width: "100%",
-          overflow: "hidden",
-        }}
+        style={{ display: "flex", justifyContent: "center", padding: "0 15px" }}
       >
-        <Image
-          alt="animated_gif"
-          fill
-          unoptimized={true}
-          src="https://www.jubileeresidences.com/promos/google/aug-dsp-2020/images/book_site_visit.gif"
-        />
         <Grid
-          container
-          xs={12}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            top: 0,
-            right: 0,
-            background: "rgba(255, 193, 7, 0.32941176470588235)",
-            alignContent: "flex-start",
+          item
+          xs={10}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <Typography
+            component="h1"
+            sx={{
+              textAlign: "center",
+              padding: "0 0 16px",
+              margin: "30px 0 0 0",
+              fontSize: "32px",
+              width: { xs: "100%", sm: "60%", md: "32%" },
+              borderBottom: "2px solid #3c3c3c",
+              fontWeight: "bolder",
+              letterSpacing: "6px",
+              color: "#3c3c3c",
+            }}
+          >
+            AMENITIES
+          </Typography>
+        </Grid>
+        <Grid item xs={11} sm={10}>
+          <Typography
+            component="h2"
+            style={{
+              textAlign: "center",
+              margin: "20px 0 10px",
+              fontSize: "18px",
+              color: "#595959",
+            }}
+          >
+            The best in class amenities for a balanced life
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={11}
+          sm={12}
+          sx={{
+            padding: "0 10px",
           }}
         >
-          <Grid item xs={12}>
-            <Typography
-              component="h1"
-              style={{
-                textAlign: "center",
-                padding: "20px 0 10px 0",
-                fontSize: "25px",
-                fontWeight: "bold",
-              }}
-            >
-              Book a FREE Site visit
-            </Typography>
-          </Grid>
-
+          <Image
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            src={amenitiesImg}
+            alt="amenities_img"
+            sizes="100vw"
+          />
+        </Grid>
+      </Grid>
+      <Grid container item xs={12}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            position: "relative",
+            margin: "30px 0",
+            height: { xs: "300px", md: "350px" },
+            width: "100%",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            fill
+            alt="animated_gif"
+            src="https://www.jubileeresidences.com/promos/google/aug-dsp-2020/images/book_site_visit.gif"
+            sizes="100vw"
+          />
           <Grid
+            container
             item
             xs={12}
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              top: 0,
+              right: 0,
+              background: "rgba(255, 193, 7, 0.32941176470588235)",
+              alignContent: "flex-start",
+            }}
           >
-            <Button
-              onClick={() =>
-                setOpenEnquiry({
-                  ...openEnquiry,
-                  heading: "Book a Site Visit",
-                  isOpen: true,
-                })
-              }
-              variant="contained"
-              style={{
-                background: "#9BA11E",
-                borderRadius: "20px",
-                fontSize: "14px",
-                color: "#000000",
-                textTransform: "capitalize",
-                fontWeight: "bold",
-                height: "40px",
-              }}
+            <Grid item xs={12}>
+              <Typography
+                component="h1"
+                style={{
+                  textAlign: "center",
+                  padding: "20px 0 10px 0",
+                  fontSize: "25px",
+                  fontWeight: "bold",
+                }}
+              >
+                Book a FREE Site visit
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              style={{ display: "flex", justifyContent: "center" }}
             >
-              Book Now
-            </Button>
+              <Button
+                onClick={() =>
+                  setOpenEnquiry({
+                    ...openEnquiry,
+                    heading: "Book a Site Visit",
+                    isOpen: true,
+                  })
+                }
+                variant="contained"
+                style={{
+                  background: "#9BA11E",
+                  borderRadius: "20px",
+                  fontSize: "14px",
+                  color: "#000000",
+                  textTransform: "capitalize",
+                  fontWeight: "bold",
+                  height: "40px",
+                }}
+              >
+                Book Now
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
     </>
   );
-};
+}
 Amenities.propTypes = {
   openEnquiry: PropTypes.object.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
 };
 
-const Gallery = ({ setOpenImgSlider }) => {
+function Gallery({ setOpenImgSlider }) {
   return (
     <Grid
       container
@@ -1714,50 +1718,42 @@ const Gallery = ({ setOpenImgSlider }) => {
             key={index}
             xs={12}
             md={4}
-            sx={{ padding: "0 15px", margin: "40px 0 0", height: "300px" }}
+            sx={{
+              padding: "0 15px",
+              margin: "40px 0 0",
+            }}
           >
-            <Box
-              sx={{
+            <Image
+              onClick={() => setOpenImgSlider(true)}
+              style={{
+                height: "auto",
+                width: "100%",
+                cursor: "pointer",
+                padding: "5px",
                 border: "1px solid #ddd",
                 borderRadius: "4px",
-                padding: "5px",
-                height: "100%",
               }}
-            >
-              <Box
-                sx={{
-                  overflow: "hidden",
-                  position: "relative",
-                  height: "100%",
-                }}
-              >
-                <Image
-                  onClick={() => setOpenImgSlider(true)}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    cursor: "pointer",
-                  }}
-                  unoptimized={true}
-                  src={item}
-                  alt={`gallery_img${index}`}
-                />
-              </Box>
-            </Box>
+              src={item}
+              alt={`gallery_img${index}`}
+              sizes="100vw"
+            />
           </Grid>
         ))}
       </Grid>
     </Grid>
   );
+}
+Gallery.propTypes = {
+  setOpenImgSlider: PropTypes.func.isRequired,
 };
 
-const Location = () => {
+function Location() {
   return (
     <Grid
       container
       item
       xs={12}
-      style={{ display: "flex", justifyContent: "center", margin: '40px 0 0' }}
+      style={{ display: "flex", justifyContent: "center", margin: "40px 0 0" }}
     >
       <Grid item xs={10} style={{ display: "flex", justifyContent: "center" }}>
         <Typography
@@ -1797,31 +1793,42 @@ const Location = () => {
         style={{ margin: "20px 15px 0", width: "100%", position: "relative" }}
       >
         <Grid
-        container
-        item
-        xs={12}
+          container
+          item
+          xs={12}
           sx={{
             overflow: "hidden",
             display: { xs: "none", md: "block" },
           }}
         >
-          <Image src={location} alt="location" style={{
-            width: '100%',
-            height: 'auto'
-          }} />
+          <Image
+            src={locationImg}
+            alt="location"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            sizes="100vw"
+          />
         </Grid>
         <Grid
-        container item
-        xs={12}
+          container
+          item
+          xs={12}
           sx={{
             overflow: "hidden",
             display: { xs: "block", md: "none" },
           }}
         >
-          <Image src={locationXs} alt="locationXs" style={{
-            width: '100%',
-            height: 'auto'
-          }} sizes="100vw" />
+          <Image
+            src={locationXsImg}
+            alt="locationXs"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            sizes="100vw"
+          />
         </Grid>
       </Grid>
       <Grid
@@ -1830,25 +1837,21 @@ const Location = () => {
         xs={12}
         style={{ margin: "30px 15px", width: "100%", position: "relative" }}
       >
-        <Box
-          sx={{
-            overflow: "hidden",
-            height: { xs: "230px", sm: "350px", md: "700px" },
+        <Image
+          style={{
+            width: "100%",
+            height: "auto",
           }}
-        >
-          <Image
-            fill
-            unoptimized={true}
-            src={location_advantages}
-            alt="location_advantages"
-          />
-        </Box>
+          src={locationAdvantagesImg}
+          alt="location_advantages"
+          sizes="100wv"
+        />
       </Grid>
     </Grid>
   );
-};
+}
 
-const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
+function Downloads({ openEnquiry, setOpenEnquiry }) {
   return (
     <Grid
       container
@@ -1865,7 +1868,8 @@ const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
           component="h1"
           style={{
             textAlign: "center",
-            padding: "10px 0",
+            margin: "30px 0 0",
+            padding: "0 0 16px",
             fontSize: "28px",
             fontWeight: "bolder",
             letterSpacing: "6px",
@@ -1880,7 +1884,8 @@ const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
           component="p"
           style={{
             textAlign: "center",
-            padding: "10px 0",
+            padding: "0",
+            margin: "0 0 10px",
             color: "#ffffff",
             fontSize: "14px",
           }}
@@ -1896,7 +1901,7 @@ const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          padding: "20px 0",
+          margin: "00px 0",
         }}
       >
         {planList.map((item, index) => (
@@ -1905,45 +1910,41 @@ const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
             item
             key={item.name}
             xs={10}
-            md={2}
+            md={4}
+            justifyContent="center"
             sx={{
-              display: "flex",
-              justifyContent: "center",
+              margin: "30px 0",
             }}
           >
             <Grid
+              container
               item
+              justifyContent="center"
               xs={12}
               sx={{
-                width: "100%",
-                padding: "20px",
-                display: "flex",
-                justifyContent: "center",
+                margin: "10px 0 30px",
               }}
             >
-              <Box
+              <Image
                 style={{
-                  overflow: "hidden",
-                  position: "relative",
-                  aspectRatio: "1/1",
-                  height: "160px",
+                  height: "100%",
+                  width: "auto",
                 }}
-              >
-                <Image
-                  fill
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  unoptimized={true}
-                  src={item.img || ""}
-                  alt={`${item.name}_img${index}`}
-                />
-              </Box>
+                src={item.img || ""}
+                alt={`${item.name}_img${index}`}
+                sizes="100vw"
+              />
             </Grid>
             <Grid
+              container
               item
               xs={12}
-              style={{ display: "flex", justifyContent: "center" }}
+              justifyContent="center"
+              style={
+                {
+                  // margin:
+                }
+              }
             >
               <Button
                 onClick={() =>
@@ -1974,13 +1975,13 @@ const Downloads = ({ openEnquiry, setOpenEnquiry }) => {
       </Grid>
     </Grid>
   );
-};
+}
 Downloads.propTypes = {
   openEnquiry: PropTypes.object.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
 };
 
-const Contact = ({ setOpenContactDialog }) => {
+function Contact({ setOpenContactDialog }) {
   return (
     <Grid
       container
@@ -1995,16 +1996,17 @@ const Contact = ({ setOpenContactDialog }) => {
           component="a"
           href="https://www.google.com/maps/place/Urbanrise+Revolution+One/@12.7987842,80.2205513,15z/data=!4m5!3m4!1s0x0:0xaf528dfe8d126e2d!8m2!3d12.7987842!4d80.2205513"
           target="_blank"
+          width="100%"
         >
-          <Box
-            sx={{
-              overflow: "hidden",
-              position: "relative",
-              height: { xs: "275px", md: "550px" },
+          <Image
+            src={mapImg}
+            alt="map"
+            style={{
+              width: "100%",
+              height: "auto",
             }}
-          >
-            <Image fill unoptimized={true} src={map} alt="map" />
-          </Box>
+            sizes="100vw"
+          />
         </Box>
       </Grid>
       <Grid
@@ -2014,31 +2016,23 @@ const Contact = ({ setOpenContactDialog }) => {
         sm={5}
         style={{ paddingLeft: "30px", alignContent: "flex-start" }}
       >
-        <Grid item xs={12} md={5} style={{ width: "100%", overflow: "hidden" }}>
-          <Box
+        <Grid item xs={12}>
+          <Image
             style={{
-              overflow: "hidden",
-              position: "relative",
-              height: "120px",
+              height: "auto",
+              width: "200px",
             }}
-          >
-            <Image
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-              unoptimized={true}
-              src={theWorldOfJoy_logo}
-              alt="theWorldOfJoy_logo"
-            />
-          </Box>
+            src={theWorldOfJoyLogoImg}
+            alt="theWorldOfJoy_logo"
+            sizes="100vw"
+          />
         </Grid>
         <Grid item xs={12}>
           <Typography
             component="h1"
             sx={{
               padding: "10px 0",
-              fontSize: { xs: "30px", md: "40px" },
+              fontSize: { xs: "30px", md: "36px" },
               fontWeight: "bold",
             }}
           >
@@ -2072,7 +2066,8 @@ const Contact = ({ setOpenContactDialog }) => {
             onClick={() => setOpenContactDialog(true)}
             component="h1"
             sx={{
-              padding: "20px 0",
+              padding: "0 0 16px",
+              margin: "30px 0",
               fontSize: { xs: "25px", md: "32px" },
               borderBottom: "2px solid #3c3c3c",
               fontWeight: "bolder",
@@ -2091,62 +2086,67 @@ const Contact = ({ setOpenContactDialog }) => {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            paddingTop: "20px",
+            height: "65px",
           }}
         >
           <Grid item xs={6} md={4} style={{ width: "100%" }}>
-            <Box
+            <Grid
+              item
+              container
+              xs={12}
               component="a"
               href="https://www.alliancein.com/"
               target="_blank"
+              style={{
+                position: "relative",
+                height: "100%",
+              }}
             >
-              <Box
+              <Image
+                fill
                 style={{
-                  overflow: "hidden",
-                  position: "relative",
-                  height: "70px",
+                  objectFit: "contain",
                 }}
-              >
-                <Image
-                  fill
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  unoptimized={true}
-                  src={alliance_logo}
-                  alt="alliance_logo"
-                />
-              </Box>
-            </Box>
+                src={allianceLogoImg}
+                alt="alliance_logo"
+                sizes="100vw"
+              />
+            </Grid>
           </Grid>
           <Grid item xs={6} md={4} style={{ width: "100%" }}>
-            <Box component="a" href="https://www.urbanrise.in/" target="_blank">
-              <Box
+            <Grid
+              item
+              container
+              xs={12}
+              component="a"
+              href="https://www.urbanrise.in/"
+              target="_blank"
+              style={{
+                position: "relative",
+                height: "100%",
+              }}
+            >
+              <Image
+                fill
                 style={{
-                  overflow: "hidden",
-                  position: "relative",
-                  height: "70px",
+                  objectFit: "contain",
                 }}
-              >
-                <Image
-                  fill
-                  style={{
-                    objectFit: "contain",
-                  }}
-                  unoptimized={true}
-                  src={urbanrise_logo}
-                  alt="urbanrise_logo"
-                />
-              </Box>
-            </Box>
+                src={urbanriseLogoImg}
+                alt="urbanrise_logo"
+                sizes="100vw"
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
     </Grid>
   );
+}
+Contact.propTypes = {
+  setOpenContactDialog: PropTypes.func.isRequired,
 };
 
-const Footer = () => {
+function Footer() {
   return (
     <Grid
       container
@@ -2199,14 +2199,14 @@ const Footer = () => {
       </Grid>
     </Grid>
   );
-};
+}
 
-const ContactDialog = ({
+function ContactDialog({
   openContactDialog,
   setOpenContactDialog,
   setOpenCancelContact,
   setOpenConfirmContact,
-}) => {
+}) {
   const handleClose = () => {
     setOpenContactDialog(false);
   };
@@ -2220,23 +2220,38 @@ const ContactDialog = ({
         aria-describedby="alert-dialog-description"
         sx={{
           ".MuiDialog-paper": {
-            padding: { xs: "10px", sm: "30px" },
+            padding: { xs: "10px", sm: "30px 30px 15px" },
           },
         }}
       >
-        <DialogTitle
+        <DialogContent
           id="alert-dialog-title"
           sx={{
-            fontSize: { xs: "22px", sm: "28px" },
-            color: "#000000",
             display: "flex",
             justifyContent: "center",
-            paddingBottom: "50px",
+            padding: 0,
+            paddingBottom: "20px",
           }}
         >
-          Are you looking to buy a property?
-        </DialogTitle>
-        <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography
+            sx={{
+              color: "#000000",
+              fontSize: { xs: "22px", sm: "24px" },
+              paddingBottom: "15px",
+              marginBottom: "10px",
+            }}
+            fontWeight={700}
+          >
+            Are you looking to buy a property?
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "11px",
+          }}
+        >
           <Button
             onClick={() => {
               handleClose();
@@ -2270,13 +2285,19 @@ const ContactDialog = ({
       </Dialog>
     </div>
   );
+}
+ContactDialog.propTypes = {
+  openContactDialog: PropTypes.bool.isRequired,
+  setOpenContactDialog: PropTypes.func.isRequired,
+  setOpenCancelContact: PropTypes.func.isRequired,
+  setOpenConfirmContact: PropTypes.func.isRequired,
 };
 
-const ConfirmContactDialog = ({
+function ConfirmContactDialog({
   openConfirmContact,
   setOpenConfirmContact,
   setOpenCancelContact,
-}) => {
+}) {
   const handleClose = () => {
     setOpenConfirmContact(false);
   };
@@ -2289,27 +2310,42 @@ const ConfirmContactDialog = ({
       aria-describedby="alert-dialog-description"
       sx={{
         ".MuiDialog-paper": {
-          padding: { xs: "10px", sm: "30px" },
+          padding: { xs: "10px", sm: "30px 30px 15px" },
         },
       }}
     >
-      <DialogTitle
+      <DialogContent
         id="alert-dialog-title"
         sx={{
-          fontSize: { xs: "22px", sm: "28px" },
-          color: "#000000",
           display: "flex",
           justifyContent: "center",
-          paddingBottom: "50px",
+          padding: 0,
+          paddingBottom: "20px",
         }}
       >
-        Are you intrested to speak to our project expert?
-      </DialogTitle>
-      <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography
+          sx={{
+            color: "#000000",
+            fontSize: { xs: "22px", sm: "24px" },
+            paddingBottom: "15px",
+            marginBottom: "10px",
+          }}
+          fontWeight={700}
+        >
+          Are you interested to speak to our project expert?
+        </Typography>
+      </DialogContent>
+      <DialogActions
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          paddingBottom: "11px",
+        }}
+      >
         <Button
           onClick={() => {
             handleClose();
-            window.location.href = "tel:";
+            window.open("tel:+918750183040");
           }}
           sx={{
             background: "#ecf0f1",
@@ -2338,9 +2374,14 @@ const ConfirmContactDialog = ({
       </DialogActions>
     </Dialog>
   );
+}
+ConfirmContactDialog.propTypes = {
+  openConfirmContact: PropTypes.bool.isRequired,
+  setOpenConfirmContact: PropTypes.func.isRequired,
+  setOpenCancelContact: PropTypes.func.isRequired,
 };
 
-const CancelContactDialog = ({ openCancelContact, setOpenCancelContact }) => {
+function CancelContactDialog({ openCancelContact, setOpenCancelContact }) {
   const handleClose = () => {
     setOpenCancelContact(false);
   };
@@ -2354,18 +2395,28 @@ const CancelContactDialog = ({ openCancelContact, setOpenCancelContact }) => {
         aria-describedby="alert-dialog-description"
         sx={{
           ".MuiDialog-paper": {
-            padding: { xs: "10px", sm: "30px" },
-            width: "400px",
+            padding: { xs: "10px", sm: "30px 30px 15px" },
           },
         }}
       >
-        <DialogTitle
-          id="alert-dialog-title"
-          sx={{ fontSize: "22px", color: "#000000" }}
+        <DialogContent id="alert-dialog-title">
+          <Typography
+            sx={{
+              color: "#000000",
+              paddingBottom: "15px",
+              marginBottom: "10px",
+            }}
+          >
+            Cancelled!
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingBottom: "11px",
+          }}
         >
-          Cancelled!
-        </DialogTitle>
-        <DialogActions>
           <Button
             onClick={handleClose}
             autoFocus
@@ -2382,9 +2433,13 @@ const CancelContactDialog = ({ openCancelContact, setOpenCancelContact }) => {
       </Dialog>
     </div>
   );
+}
+CancelContactDialog.propTypes = {
+  openCancelContact: PropTypes.bool.isRequired,
+  setOpenCancelContact: PropTypes.func.isRequired,
 };
 
-const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
+function ImageSlider({ openImgSlider, setOpenImgSlider }) {
   const closeTab = () => {
     setOpenImgSlider(false);
   };
@@ -2485,7 +2540,7 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
                     position: "relative",
                   }}
                 >
-                  <Image fill unoptimized={true} src={item} alt="location" />
+                  <Image fill src={item} alt="location" />
                   <Grid
                     item
                     xs={12}
@@ -2555,6 +2610,10 @@ const ImageSlider = ({ openImgSlider, setOpenImgSlider }) => {
       </Grid>
     </Dialog>
   );
+}
+ImageSlider.propTypes = {
+  openImgSlider: PropTypes.bool.isRequired,
+  setOpenImgSlider: PropTypes.func.isRequired,
 };
 
 export async function getStaticPaths() {
@@ -2581,8 +2640,8 @@ export const getStaticProps = async ({ params }) => {
     params.lpImg = ["lp-images", ...params.slug, "bannerImg.jpg"];
     params.lpImgXs = ["lp-images", ...params.slug, "bannerImg_xs.jpg"];
   } else {
-    params.lpImg = ["images", "db.webp"];
-    params.lpImgXs = ["images", "mb.webp"];
+    params.lpImg = ["images", "db.jpg"];
+    params.lpImgXs = ["images", "mb.jpg"];
   }
   params.lpImg = `/${params.lpImg.join("/")}`;
   params.lpImgXs = `/${params.lpImgXs.join("/")}`;

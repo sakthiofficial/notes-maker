@@ -16,7 +16,7 @@ const nextConfig = {
     NEXT_PUBLIC_PREVIEW: process.env.GTM_PREVIEW,
   },
   images: {
-    domains: ["jubileeresidences.com"],
+    domains: ["www.jubileeresidences.com"],
   },
 };
 
