@@ -23,6 +23,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
 import { DialogContent } from "@mui/material";
+import { useRouter } from "next/router";
 import amenitiesImg from "../../public/images/amenities.jpg";
 import locationImg from "../../public/images/location_1.jpg";
 import locationXsImg from "../../public/images/location_mobile.jpg";
@@ -136,6 +137,20 @@ export function checkUserNameErrors(userName) {
   return "";
 }
 
+const getSource = (paths) => {
+  let source = "Direct Traffic";
+  if (paths.includes("lp-dsc")) {
+    source = "Google-Disc";
+  } else if (paths.includes("taboola")) {
+    source = "Taboola";
+  } else if (paths.includes("lp-text")) {
+    source = "Google-Text";
+  } else if (paths.includes("lp-dsp")) {
+    source = "Google-Disp";
+  }
+  return source;
+};
+
 function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
@@ -215,12 +230,17 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
     setErrorMsgs(EMPTY_ERRORMSGS);
   };
 
+  const router = useRouter();
+
   const submitForm = () => {
     if (errorMsgs?.userName || errorMsgs?.email || errorMsgs?.phoneNo) {
       return;
     }
 
-    addFormData(userData)
+    const paths = router?.asPath?.split?.("/");
+    const source = getSource(paths);
+
+    addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
         enqueueSnackbar({ variant: "success", message: "Thank you !" });
@@ -721,12 +741,17 @@ function Enquiry({
     setErrorMsgs(EMPTY_ERRORMSGS);
   };
 
+  const router = useRouter();
+
   const submitForm = () => {
     if (errorMsgs?.userName || errorMsgs?.email || errorMsgs?.phoneNo) {
       return;
     }
 
-    addFormData(userData)
+    const paths = router?.asPath?.split?.("/");
+    const source = getSource(paths);
+
+    addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
         enqueueSnackbar({ variant: "success", message: "Thank you !" });
@@ -1117,12 +1142,17 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
     setErrorMsgs(EMPTY_ERRORMSGS);
   };
 
+  const router = useRouter();
+
   const submitForm = () => {
     if (errorMsgs?.userName || errorMsgs?.email || errorMsgs?.phoneNo) {
       return;
     }
 
-    addFormData(userData)
+    const paths = router?.asPath?.split?.("/");
+    const source = getSource(paths);
+
+    addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
         enqueueSnackbar({ variant: "success", message: "Thank you !" });

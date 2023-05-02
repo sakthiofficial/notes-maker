@@ -10,10 +10,11 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
       userName: Joi.string(),
       email: Joi.string(),
       phoneNo: Joi.string(),
+      source: Joi.string(),
     })
   );
 
-  const { userName, email, phoneNo } = req.body;
+  const { userName, email, phoneNo, source } = req.body;
 
   const { lsqConfig } = config;
 
@@ -31,6 +32,10 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
       {
         Attribute: "Phone",
         Value: phoneNo,
+      },
+      {
+        Attribute: "Source",
+        Value: source,
       },
     ],
     {
