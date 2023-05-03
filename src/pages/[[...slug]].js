@@ -582,7 +582,10 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
               setEnquiryPopupProps={setEnquiryPopupProps}
             />
           )}
-          <Contact setOpenContactDialog={setOpenContactDialog} />
+          <Contact
+            setOpenContactDialog={setOpenContactDialog}
+            pageProps={pageProps}
+          />
           <Footer />
         </Grid>
         <Grid
@@ -1038,21 +1041,23 @@ function Enquiry({
               For more details
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography
-              onClick={() => setOpenContactDialog(true)}
-              component="h2"
-              sx={{
-                padding: "0 0 5px 0",
-                fontSize: { xs: "25px", md: "32px" },
-                fontWeight: "bold",
-                color: "#000000",
-                cursor: "pointer",
-              }}
-            >
-              +91 8750183040
-            </Typography>
-          </Grid>
+          {!pageProps?.noPhNo && (
+            <Grid item xs={12}>
+              <Typography
+                onClick={() => setOpenContactDialog(true)}
+                component="h2"
+                sx={{
+                  padding: "0 0 5px 0",
+                  fontSize: { xs: "25px", md: "32px" },
+                  fontWeight: "bold",
+                  color: "#000000",
+                  cursor: "pointer",
+                }}
+              >
+                +91 8750183040
+              </Typography>
+            </Grid>
+          )}
           {!pageProps?.noForm && (
             <Grid item xs={12}>
               <Button
@@ -2032,7 +2037,7 @@ Downloads.propTypes = {
   planList: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-function Contact({ setOpenContactDialog }) {
+function Contact({ setOpenContactDialog, pageProps }) {
   return (
     <Grid
       container
@@ -2112,24 +2117,26 @@ function Contact({ setOpenContactDialog }) {
             Chennai, Tamil Nadu 603103
           </Typography>
         </Grid>
-        <Grid item xs={12}>
-          <Typography
-            onClick={() => setOpenContactDialog(true)}
-            component="h1"
-            sx={{
-              padding: "0 0 16px",
-              margin: "30px 0",
-              fontSize: { xs: "25px", md: "32px" },
-              borderBottom: "2px solid #3c3c3c",
-              fontWeight: "bolder",
-              letterSpacing: "6px",
-              color: "#3c3c3c",
-              cursor: "pointer",
-            }}
-          >
-            +91 8750183040
-          </Typography>
-        </Grid>
+        {!pageProps?.noPhNo && (
+          <Grid item xs={12}>
+            <Typography
+              onClick={() => setOpenContactDialog(true)}
+              component="h1"
+              sx={{
+                padding: "0 0 16px",
+                margin: "30px 0",
+                fontSize: { xs: "25px", md: "32px" },
+                borderBottom: "2px solid #3c3c3c",
+                fontWeight: "bolder",
+                letterSpacing: "6px",
+                color: "#3c3c3c",
+                cursor: "pointer",
+              }}
+            >
+              +91 8750183040
+            </Typography>
+          </Grid>
+        )}
         <Grid
           container
           item
