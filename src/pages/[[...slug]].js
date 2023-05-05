@@ -340,12 +340,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
             >
               <Image
                 fill
-                onClick={() =>
-                  setEnquiryPopupProps({
-                    ...enquiryPopupProps,
-                    isOpen: true,
-                  })
-                }
+                onClick={() => setOpenContactDialog(true)}
                 src={lpImgXs}
                 alt="landingPage"
                 style={{ cursor: "pointer" }}
