@@ -352,226 +352,229 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                 sizes="100vw"
               />
             </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              sx={{
-                background: "#3c4039",
-                display: { xs: "flex", sm: "none" },
-                justifyContent: "center",
-                margin: "30px 0",
-              }}
-            >
-              <Grid item xs={12}>
-                <Typography
-                  component="h1"
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "10px 0",
-                    fontSize: { xs: "28px", md: "32px" },
-                    fontWeight: "bold",
-                    color: "#ffffff",
-                  }}
-                >
-                  <EmailRoundedIcon
-                    sx={{
-                      fontSize: 45,
-                      color: "#ffffff",
-                      marginRight: "20px",
-                    }}
-                  />{" "}
-                  Enquire Now
-                </Typography>
-              </Grid>
+            {!pageProps?.noXsForm && (
               <Grid
                 container
                 item
                 xs={12}
-                style={{
-                  padding: "20px",
+                sx={{
+                  background: "#3c4039",
+                  display: { xs: "flex", sm: "none" },
+                  justifyContent: "center",
+                  margin: "30px 0",
                 }}
               >
                 <Grid item xs={12}>
-                  <InputLabel
-                    style={{
+                  <Typography
+                    component="h1"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                       padding: "10px 0",
-                      fontSize: "12px",
+                      fontSize: { xs: "28px", md: "32px" },
                       fontWeight: "bold",
                       color: "#ffffff",
                     }}
-                    htmlFor="outlined-basic1"
                   >
-                    Name*
-                  </InputLabel>
+                    <EmailRoundedIcon
+                      sx={{
+                        fontSize: 45,
+                        color: "#ffffff",
+                        marginRight: "20px",
+                      }}
+                    />{" "}
+                    Enquire Now
+                  </Typography>
                 </Grid>
-                <TextField
-                  type="text"
-                  id="outlined-basic1"
-                  value={userData.userName}
-                  error={!!errorMsgs.userName}
-                  helperText={errorMsgs?.userName || ""}
-                  onBlur={() => {
-                    setIsDirty((d) => ({
-                      ...d,
-                      userName: true,
-                    }));
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  style={{
+                    padding: "20px",
                   }}
-                  onChange={(e) => {
-                    setUserData({
-                      ...userData,
-                      userName: e.target.value || "",
-                    });
-                  }}
-                  sx={{
-                    width: "100%",
-                    borderRadius: "5px",
-                    "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
-                      padding: "8px",
-                      borderRadius: "5px",
-                    },
-                    "& .MuiFormHelperText-root": {
-                      fontSize: "12px",
-                    },
-                  }}
-                  InputProps={{
-                    sx: {
-                      height: "40px",
-                    },
-                  }}
-                  variant="outlined"
-                />
-                <Grid item xs={12}>
-                  <InputLabel
-                    style={{
-                      padding: "10px 0",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      color: "#ffffff",
+                >
+                  <Grid item xs={12}>
+                    <InputLabel
+                      style={{
+                        padding: "10px 0",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        color: "#ffffff",
+                      }}
+                      htmlFor="outlined-basic1"
+                    >
+                      Name*
+                    </InputLabel>
+                  </Grid>
+                  <TextField
+                    type="text"
+                    id="outlined-basic1"
+                    value={userData.userName}
+                    error={!!errorMsgs.userName}
+                    helperText={errorMsgs?.userName || ""}
+                    onBlur={() => {
+                      setIsDirty((d) => ({
+                        ...d,
+                        userName: true,
+                      }));
                     }}
-                    htmlFor="outlined-basic2"
-                  >
-                    Phone Number*
-                  </InputLabel>
-                </Grid>
-                <TextField
-                  type="number"
-                  id="outlined-basic2"
-                  value={userData.phoneNo}
-                  error={!!errorMsgs.phoneNo}
-                  helperText={errorMsgs?.phoneNo || ""}
-                  onBlur={() => {
-                    setIsDirty((d) => ({
-                      ...d,
-                      phoneNo: true,
-                    }));
-                  }}
-                  onChange={(e) => {
-                    setUserData({
-                      ...userData,
-                      phoneNo: e.target.value || "",
-                    });
-                  }}
-                  sx={{
-                    width: "100%",
-                    borderRadius: "5px",
-                    "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
-                      padding: "8px",
-                      borderRadius: "5px",
-                    },
-                    "& .MuiFormHelperText-root": {
-                      fontSize: "12px",
-                    },
-                  }}
-                  InputProps={{
-                    sx: {
-                      height: "40px",
-                    },
-                  }}
-                  variant="outlined"
-                />
-                <Grid item xs={12}>
-                  <InputLabel
-                    style={{
-                      padding: "10px 0",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      color: "#ffffff",
+                    onChange={(e) => {
+                      setUserData({
+                        ...userData,
+                        userName: e.target.value || "",
+                      });
                     }}
-                    htmlFor="outlined-basic3"
-                  >
-                    Email*
-                  </InputLabel>
-                </Grid>
-                <TextField
-                  type="email"
-                  id="outlined-basic3"
-                  value={userData.email}
-                  error={!!errorMsgs.email}
-                  helperText={errorMsgs?.email || ""}
-                  onBlur={() => {
-                    setIsDirty((d) => ({
-                      ...d,
-                      email: true,
-                    }));
-                  }}
-                  onChange={(e) => {
-                    setUserData({
-                      ...userData,
-                      email: e.target.value || "",
-                    });
-                  }}
-                  sx={{
-                    width: "100%",
-                    borderRadius: "5px",
-                    "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
-                      padding: "8px",
-                      borderRadius: "5px",
-                    },
-                    "& .MuiFormHelperText-root": {
-                      fontSize: "12px",
-                    },
-                  }}
-                  InputProps={{
-                    sx: {
-                      height: "40px",
-                    },
-                  }}
-                  variant="outlined"
-                />
-                <Grid item xs={12} style={{ paddingTop: "30px" }}>
-                  <LoadingButton
-                    onClick={() => submitForm()}
-                    loading={isLoading}
                     sx={{
                       width: "100%",
-                      height: "50px",
-                      background: "#FBB70F",
-                      textTransform: "capitalize",
-                      color: "#000000",
-                      fontWeight: "bold",
-                      fontSize: "14px",
-                      ":hover": {
-                        background: "#FBB70F",
+                      borderRadius: "5px",
+                      "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                        background: "#ffffff",
+                        padding: "8px",
+                        borderRadius: "5px",
+                      },
+                      "& .MuiFormHelperText-root": {
+                        fontSize: "12px",
                       },
                     }}
-                    variant="contained"
-                  >
-                    Submit
-                  </LoadingButton>
+                    InputProps={{
+                      sx: {
+                        height: "40px",
+                      },
+                    }}
+                    variant="outlined"
+                  />
+                  <Grid item xs={12}>
+                    <InputLabel
+                      style={{
+                        padding: "10px 0",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        color: "#ffffff",
+                      }}
+                      htmlFor="outlined-basic2"
+                    >
+                      Phone Number*
+                    </InputLabel>
+                  </Grid>
+                  <TextField
+                    type="number"
+                    id="outlined-basic2"
+                    value={userData.phoneNo}
+                    error={!!errorMsgs.phoneNo}
+                    helperText={errorMsgs?.phoneNo || ""}
+                    onBlur={() => {
+                      setIsDirty((d) => ({
+                        ...d,
+                        phoneNo: true,
+                      }));
+                    }}
+                    onChange={(e) => {
+                      setUserData({
+                        ...userData,
+                        phoneNo: e.target.value || "",
+                      });
+                    }}
+                    sx={{
+                      width: "100%",
+                      borderRadius: "5px",
+                      "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                        background: "#ffffff",
+                        padding: "8px",
+                        borderRadius: "5px",
+                      },
+                      "& .MuiFormHelperText-root": {
+                        fontSize: "12px",
+                      },
+                    }}
+                    InputProps={{
+                      sx: {
+                        height: "40px",
+                      },
+                    }}
+                    variant="outlined"
+                  />
+                  <Grid item xs={12}>
+                    <InputLabel
+                      style={{
+                        padding: "10px 0",
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        color: "#ffffff",
+                      }}
+                      htmlFor="outlined-basic3"
+                    >
+                      Email*
+                    </InputLabel>
+                  </Grid>
+                  <TextField
+                    type="email"
+                    id="outlined-basic3"
+                    value={userData.email}
+                    error={!!errorMsgs.email}
+                    helperText={errorMsgs?.email || ""}
+                    onBlur={() => {
+                      setIsDirty((d) => ({
+                        ...d,
+                        email: true,
+                      }));
+                    }}
+                    onChange={(e) => {
+                      setUserData({
+                        ...userData,
+                        email: e.target.value || "",
+                      });
+                    }}
+                    sx={{
+                      width: "100%",
+                      borderRadius: "5px",
+                      "& .MuiOutlinedInput-root .MuiInputBase-input": {
+                        background: "#ffffff",
+                        padding: "8px",
+                        borderRadius: "5px",
+                      },
+                      "& .MuiFormHelperText-root": {
+                        fontSize: "12px",
+                      },
+                    }}
+                    InputProps={{
+                      sx: {
+                        height: "40px",
+                      },
+                    }}
+                    variant="outlined"
+                  />
+                  <Grid item xs={12} style={{ paddingTop: "30px" }}>
+                    <LoadingButton
+                      onClick={() => submitForm()}
+                      loading={isLoading}
+                      sx={{
+                        width: "100%",
+                        height: "50px",
+                        background: "#FBB70F",
+                        textTransform: "capitalize",
+                        color: "#000000",
+                        fontWeight: "bold",
+                        fontSize: "14px",
+                        ":hover": {
+                          background: "#FBB70F",
+                        },
+                      }}
+                      variant="contained"
+                    >
+                      Submit
+                    </LoadingButton>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            )}
           </Grid>
           <ProjectHighlights />
           <Amenities
             enquiryPopupProps={enquiryPopupProps}
             setEnquiryPopupProps={setEnquiryPopupProps}
+            setOpenContactDialog={setOpenContactDialog}
           />
           <Gallery setOpenImgSlider={setOpenImgSlider} />
           <Location />
@@ -580,6 +583,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
               planList={planList}
               enquiryPopupProps={enquiryPopupProps}
               setEnquiryPopupProps={setEnquiryPopupProps}
+              setOpenContactDialog={setOpenContactDialog}
             />
           )}
           <Contact
@@ -621,12 +625,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
             Call Now
           </Button>
           <Button
-            onClick={() =>
-              setEnquiryPopupProps({
-                ...enquiryPopupProps,
-                isOpen: true,
-              })
-            }
+            onClick={() => setOpenContactDialog(true)}
             style={{
               width: "50%",
               height: "50px",
@@ -1054,7 +1053,7 @@ function Enquiry({
                   cursor: "pointer",
                 }}
               >
-                +91 8750183040
+                {pageProps.phoneNo || ""}
               </Typography>
             </Grid>
           )}
@@ -1590,7 +1589,11 @@ function ProjectHighlights() {
   );
 }
 
-function Amenities({ enquiryPopupProps, setEnquiryPopupProps }) {
+function Amenities({
+  enquiryPopupProps,
+  setEnquiryPopupProps,
+  setOpenContactDialog,
+}) {
   return (
     <>
       <Grid
@@ -1713,7 +1716,7 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps }) {
                   })
                 }
                 variant="contained"
-                style={{
+                sx={{
                   background: "#9BA11E",
                   borderRadius: "20px",
                   fontSize: "14px",
@@ -1721,6 +1724,23 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps }) {
                   textTransform: "capitalize",
                   fontWeight: "bold",
                   height: "40px",
+                  display: { xs: "none", sm: "flex" },
+                }}
+              >
+                Book Now
+              </Button>
+              <Button
+                onClick={() => setOpenContactDialog(true)}
+                variant="contained"
+                sx={{
+                  background: "#9BA11E",
+                  borderRadius: "20px",
+                  fontSize: "14px",
+                  color: "#000000",
+                  textTransform: "capitalize",
+                  fontWeight: "bold",
+                  height: "40px",
+                  display: { xs: "flex", sm: "none" },
                 }}
               >
                 Book Now
@@ -1735,6 +1755,7 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps }) {
 Amenities.propTypes = {
   enquiryPopupProps: PropTypes.object.isRequired,
   setEnquiryPopupProps: PropTypes.func.isRequired,
+  setOpenContactDialog: PropTypes.func.isRequired,
 };
 
 function Gallery({ setOpenImgSlider }) {
@@ -1919,7 +1940,12 @@ function Location() {
   );
 }
 
-function Downloads({ enquiryPopupProps, setEnquiryPopupProps, planList }) {
+function Downloads({
+  enquiryPopupProps,
+  setEnquiryPopupProps,
+  planList,
+  setOpenContactDialog,
+}) {
   return (
     <Grid
       container
@@ -2011,7 +2037,7 @@ function Downloads({ enquiryPopupProps, setEnquiryPopupProps, planList }) {
                   })
                 }
                 variant="contained"
-                style={{
+                sx={{
                   background: "#9BA11E",
                   borderRadius: "20px",
                   fontSize: "14px",
@@ -2020,6 +2046,24 @@ function Downloads({ enquiryPopupProps, setEnquiryPopupProps, planList }) {
                   fontWeight: "bold",
                   height: "40px",
                   width: "200px",
+                  display: { xs: "none", sm: "flex" },
+                }}
+              >
+                {item.name || ""}
+              </Button>
+              <Button
+                onClick={() => setOpenContactDialog(true)}
+                variant="contained"
+                sx={{
+                  background: "#9BA11E",
+                  borderRadius: "20px",
+                  fontSize: "14px",
+                  color: "#000000",
+                  textTransform: "capitalize",
+                  fontWeight: "bold",
+                  height: "40px",
+                  width: "200px",
+                  display: { xs: "flex", sm: "none" },
                 }}
               >
                 {item.name || ""}
@@ -2035,6 +2079,7 @@ Downloads.propTypes = {
   enquiryPopupProps: PropTypes.object.isRequired,
   setEnquiryPopupProps: PropTypes.func.isRequired,
   planList: PropTypes.arrayOf(PropTypes.any).isRequired,
+  setOpenContactDialog: PropTypes.func.isRequired,
 };
 
 function Contact({ setOpenContactDialog, pageProps }) {
@@ -2133,7 +2178,7 @@ function Contact({ setOpenContactDialog, pageProps }) {
                 cursor: "pointer",
               }}
             >
-              +91 8750183040
+              {pageProps?.phoneNo || ""}
             </Typography>
           </Grid>
         )}
@@ -2202,6 +2247,7 @@ function Contact({ setOpenContactDialog, pageProps }) {
 }
 Contact.propTypes = {
   setOpenContactDialog: PropTypes.func.isRequired,
+  pageProps: PropTypes.object.isRequired,
 };
 
 function Footer() {
