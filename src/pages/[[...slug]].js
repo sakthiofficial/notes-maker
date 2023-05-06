@@ -667,6 +667,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           openConfirmContact={openConfirmContact}
           setOpenConfirmContact={setOpenConfirmContact}
           setOpenCancelContact={setOpenCancelContact}
+          pageProps={pageProps}
         />
         <CancelContactDialog
           openCancelContact={openCancelContact}
@@ -2396,6 +2397,7 @@ function ConfirmContactDialog({
   openConfirmContact,
   setOpenConfirmContact,
   setOpenCancelContact,
+  pageProps,
 }) {
   const handleClose = () => {
     setOpenConfirmContact(false);
@@ -2444,7 +2446,7 @@ function ConfirmContactDialog({
         <Button
           onClick={() => {
             handleClose();
-            window.open("tel:+918750183040");
+            window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`);
           }}
           sx={{
             background: "#ecf0f1",
@@ -2478,6 +2480,10 @@ ConfirmContactDialog.propTypes = {
   openConfirmContact: PropTypes.bool.isRequired,
   setOpenConfirmContact: PropTypes.func.isRequired,
   setOpenCancelContact: PropTypes.func.isRequired,
+  pageProps: PropTypes.object,
+};
+ConfirmContactDialog.defaultProps = {
+  pageProps: {},
 };
 
 function CancelContactDialog({ openCancelContact, setOpenCancelContact }) {
