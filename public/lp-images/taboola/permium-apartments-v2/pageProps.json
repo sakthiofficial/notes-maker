@@ -1,0 +1,15 @@
+{
+  "styleInfo": {
+    "sidebar": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "backgroundImage": "linear-gradient(90deg, rgb(255, 165, 134), rgb(189, 32, 51))"
+    },
+    "sidebarForm": {
+      "backgroundColor": "rgba(0, 0, 0, 0.18)",
+      "backgroundImage": "none"
+    }
+  },
+  "noForm": false,
+  "noPhNo":true,
+  "phoneNo":"+91 8750183040"
+}
