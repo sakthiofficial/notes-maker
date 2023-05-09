@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import PropTypes from "prop-types";
@@ -23,7 +22,6 @@ import CallRoundedIcon from "@mui/icons-material/CallRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
-import { DialogContent } from "@mui/material";
 import { useRouter } from "next/router";
 import amenitiesImg from "../../public/images/amenities.jpg";
 import locationImg from "../../public/images/location_1.jpg";
@@ -155,9 +153,7 @@ const getSource = (paths) => {
 function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
-  const [openContactDialog, setOpenContactDialog] = useState(false);
-  const [openConfirmContact, setOpenConfirmContact] = useState(false);
-  const [openCancelContact, setOpenCancelContact] = useState(false);
+
   const planList = useMemo(
     () => [
       {
@@ -321,9 +317,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                 slidesPerView={1}
                 spaceBetween={0}
                 loop={true}
-                // onSlideChange={(swiper) => {
-                //   const currIdx = swiper.activeIndex;
-                // }}
                 onSwiper={(sw) => {
                   sliderRef.current = sw;
                 }}
@@ -411,9 +404,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                 slidesPerView={1}
                 spaceBetween={0}
                 loop={true}
-                // onSlideChange={(swiper) => {
-                //   const currIdx = swiper.activeIndex;
-                // }}
                 onSwiper={(sw) => {
                   sliderRefXs.current = sw;
                 }}
@@ -716,7 +706,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           <Amenities
             enquiryPopupProps={enquiryPopupProps}
             setEnquiryPopupProps={setEnquiryPopupProps}
-            setOpenContactDialog={setOpenContactDialog}
             pageProps={pageProps}
           />
           <Gallery setOpenImgSlider={setOpenImgSlider} />
@@ -726,12 +715,10 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
               planList={planList}
               enquiryPopupProps={enquiryPopupProps}
               setEnquiryPopupProps={setEnquiryPopupProps}
-              setOpenContactDialog={setOpenContactDialog}
               pageProps={pageProps}
             />
           )}
           <Contact
-            setOpenContactDialog={setOpenContactDialog}
             pageProps={pageProps}
           />
           <Footer />
@@ -747,11 +734,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           }}
         >
           <Button
-            onClick={() =>
-              pageProps.noXsForm
-                ? window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
-                : setOpenContactDialog(true)
-            }
+            onClick={() => window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)}
             style={{
               width: "50%",
               height: "50px",
@@ -810,28 +793,11 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           isVisible={isVisible}
           enquiryPopupProps={enquiryPopupProps}
           setEnquiryPopupProps={setEnquiryPopupProps}
-          setOpenContactDialog={setOpenContactDialog}
           pageProps={pageProps}
         />
         <EnquiryPopup
           enquiryPopupProps={enquiryPopupProps}
           setEnquiryPopupProps={setEnquiryPopupProps}
-        />
-        <ContactDialog
-          openContactDialog={openContactDialog}
-          setOpenContactDialog={setOpenContactDialog}
-          setOpenCancelContact={setOpenCancelContact}
-          setOpenConfirmContact={setOpenConfirmContact}
-        />
-        <ConfirmContactDialog
-          openConfirmContact={openConfirmContact}
-          setOpenConfirmContact={setOpenConfirmContact}
-          setOpenCancelContact={setOpenCancelContact}
-          pageProps={pageProps}
-        />
-        <CancelContactDialog
-          openCancelContact={openCancelContact}
-          setOpenCancelContact={setOpenCancelContact}
         />
       </Grid>
     </>
@@ -854,7 +820,6 @@ function Enquiry({
   isVisible,
   enquiryPopupProps,
   setEnquiryPopupProps,
-  setOpenContactDialog,
   pageProps,
 }) {
   const [addFormData, { isLoading }] = useAddFormDataMutation();
@@ -1199,7 +1164,9 @@ function Enquiry({
           {!pageProps?.noPhNo && (
             <Grid item xs={12}>
               <Typography
-                onClick={() => setOpenContactDialog(true)}
+                onClick={() =>
+                  window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
+                  }
                 component="h2"
                 sx={{
                   padding: "0 0 5px 0",
@@ -1248,7 +1215,6 @@ Enquiry.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   enquiryPopupProps: PropTypes.object.isRequired,
   setEnquiryPopupProps: PropTypes.func.isRequired,
-  setOpenContactDialog: PropTypes.func.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
 
@@ -2252,7 +2218,7 @@ Downloads.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-function Contact({ setOpenContactDialog, pageProps }) {
+function Contact({ pageProps }) {
   return (
     <Grid
       container
@@ -2336,30 +2302,11 @@ function Contact({ setOpenContactDialog, pageProps }) {
           <Grid item xs={12}>
             <Typography
               onClick={() =>
-                pageProps.noXsForm
-                  ? window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
-                  : setOpenContactDialog(true)
+              window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
               }
               component="h1"
               sx={{
-                display: { xs: "flex", sm: "none" },
-                padding: "0 0 16px",
-                margin: "30px 0",
-                fontSize: { xs: "25px", md: "32px" },
-                borderBottom: "2px solid #3c3c3c",
-                fontWeight: "bolder",
-                letterSpacing: "6px",
-                color: "#3c3c3c",
-                cursor: "pointer",
-              }}
-            >
-              {pageProps?.phoneNo || ""}
-            </Typography>
-            <Typography
-              onClick={() => setOpenContactDialog(true)}
-              component="h1"
-              sx={{
-                display: { xs: "none", sm: "flex" },
+                display: "flex",
                 padding: "0 0 16px",
                 margin: "30px 0",
                 fontSize: { xs: "25px", md: "32px" },
@@ -2438,7 +2385,6 @@ function Contact({ setOpenContactDialog, pageProps }) {
   );
 }
 Contact.propTypes = {
-  setOpenContactDialog: PropTypes.func.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
 
@@ -2496,246 +2442,6 @@ function Footer() {
     </Grid>
   );
 }
-
-function ContactDialog({
-  openContactDialog,
-  setOpenContactDialog,
-  setOpenCancelContact,
-  setOpenConfirmContact,
-}) {
-  const handleClose = () => {
-    setOpenContactDialog(false);
-  };
-
-  return (
-    <div>
-      <Dialog
-        open={openContactDialog}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{
-          ".MuiDialog-paper": {
-            padding: { xs: "10px", sm: "30px 30px 15px" },
-          },
-        }}
-      >
-        <DialogContent
-          id="alert-dialog-title"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            padding: 0,
-            paddingBottom: "20px",
-          }}
-        >
-          <Typography
-            sx={{
-              color: "#000000",
-              fontSize: { xs: "22px", sm: "24px" },
-              paddingBottom: "15px",
-              marginBottom: "10px",
-            }}
-            fontWeight={700}
-          >
-            Are you looking to buy a property?
-          </Typography>
-        </DialogContent>
-        <DialogActions
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: "11px",
-          }}
-        >
-          <Button
-            onClick={() => {
-              handleClose();
-              setOpenConfirmContact(true);
-            }}
-            sx={{
-              background: "#ecf0f1",
-              padding: "8px 15px",
-              color: "#000000",
-              fontWeight: "bolder",
-            }}
-          >
-            CONFIRM
-          </Button>
-          <Button
-            onClick={() => {
-              handleClose();
-              setOpenCancelContact(true);
-            }}
-            autoFocus
-            sx={{
-              background: "#ecf0f1",
-              padding: "8px 15px",
-              color: "#000000",
-              fontWeight: "bolder",
-            }}
-          >
-            CANCEL
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
-ContactDialog.propTypes = {
-  openContactDialog: PropTypes.bool.isRequired,
-  setOpenContactDialog: PropTypes.func.isRequired,
-  setOpenCancelContact: PropTypes.func.isRequired,
-  setOpenConfirmContact: PropTypes.func.isRequired,
-};
-
-function ConfirmContactDialog({
-  openConfirmContact,
-  setOpenConfirmContact,
-  setOpenCancelContact,
-  pageProps,
-}) {
-  const handleClose = () => {
-    setOpenConfirmContact(false);
-  };
-
-  return (
-    <Dialog
-      open={openConfirmContact}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-      sx={{
-        ".MuiDialog-paper": {
-          padding: { xs: "10px", sm: "30px 30px 15px" },
-        },
-      }}
-    >
-      <DialogContent
-        id="alert-dialog-title"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          padding: 0,
-          paddingBottom: "20px",
-        }}
-      >
-        <Typography
-          sx={{
-            color: "#000000",
-            fontSize: { xs: "22px", sm: "24px" },
-            paddingBottom: "15px",
-            marginBottom: "10px",
-          }}
-          fontWeight={700}
-        >
-          Are you interested to speak to our project expert?
-        </Typography>
-      </DialogContent>
-      <DialogActions
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingBottom: "11px",
-        }}
-      >
-        <Button
-          onClick={() => {
-            handleClose();
-            window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`);
-          }}
-          sx={{
-            background: "#ecf0f1",
-            padding: "8px 15px",
-            color: "#000000",
-            fontWeight: "bolder",
-          }}
-        >
-          CONFIRM
-        </Button>
-        <Button
-          onClick={() => {
-            handleClose();
-            setOpenCancelContact(true);
-          }}
-          autoFocus
-          sx={{
-            background: "#ecf0f1",
-            padding: "8px 15px",
-            color: "#000000",
-            fontWeight: "bolder",
-          }}
-        >
-          CANCEL
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
-ConfirmContactDialog.propTypes = {
-  openConfirmContact: PropTypes.bool.isRequired,
-  setOpenConfirmContact: PropTypes.func.isRequired,
-  setOpenCancelContact: PropTypes.func.isRequired,
-  pageProps: PropTypes.object.isRequired,
-};
-
-function CancelContactDialog({ openCancelContact, setOpenCancelContact }) {
-  const handleClose = () => {
-    setOpenCancelContact(false);
-  };
-
-  return (
-    <div>
-      <Dialog
-        open={openCancelContact}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{
-          ".MuiDialog-paper": {
-            padding: { xs: "10px", sm: "30px 30px 15px" },
-          },
-        }}
-      >
-        <DialogContent id="alert-dialog-title">
-          <Typography
-            sx={{
-              color: "#000000",
-              paddingBottom: "15px",
-              marginBottom: "10px",
-            }}
-          >
-            Cancelled!
-          </Typography>
-        </DialogContent>
-        <DialogActions
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: "11px",
-          }}
-        >
-          <Button
-            onClick={handleClose}
-            autoFocus
-            sx={{
-              background: "#ecf0f1",
-              padding: "8px 15px",
-              color: "#000000",
-              fontWeight: "bolder",
-            }}
-          >
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
-CancelContactDialog.propTypes = {
-  openCancelContact: PropTypes.bool.isRequired,
-  setOpenCancelContact: PropTypes.func.isRequired,
-};
 
 function ImageSlider({ openImgSlider, setOpenImgSlider }) {
   const closeTab = () => {
