@@ -379,7 +379,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowLeftIcon sx={{ fontSize: "70px" }} />
+                          <ArrowLeftIcon sx={{ fontSize: "60px",boxShadow:'0 0 20px grey' ,borderRadius:'50%'}} />
                         </Button>
                         <Button
                           onClick={() => sliderRef?.current?.slideNext()}
@@ -391,7 +391,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowRightIcon sx={{ fontSize: "70px" }} />
+                          <ArrowRightIcon sx={{ fontSize: "60px" ,boxShadow:'0 0 20px grey',borderRadius:'50%'}} />
                         </Button>
                       </Grid>
                     </Grid>
@@ -474,7 +474,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowLeftIcon sx={{ fontSize: "70px" }} />
+                          <ArrowLeftIcon sx={{ fontSize: "40px",boxShadow:'0 0 20px grey',borderRadius:'50%' }} />
                         </Button>
                         <Button
                           onClick={() => sliderRefXs?.current?.slideNext()}
@@ -486,7 +486,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowRightIcon sx={{ fontSize: "70px" }} />
+                          <ArrowRightIcon sx={{ fontSize: "40px" ,boxShadow:'0 0 20px grey',borderRadius:'50%'}} />
                         </Button>
                       </Grid>
                     </Grid>
