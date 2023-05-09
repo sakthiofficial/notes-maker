@@ -736,7 +736,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           />
           <Footer />
         </Grid>
-
         <Grid
           item
           xs={12}
@@ -2960,7 +2959,6 @@ export const getStaticProps = async ({ params }) => {
     lpImgXs = ["images", "mb.jpg"];
     pageProps = ["pageProps.json"];
   }
-
   lpImg = `/${lpImg.join("/")}`;
   lpImgXs = `/${lpImgXs.join("/")}`;
   pageProps = `/${pageProps.join("/")}`;
