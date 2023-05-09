@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import Head from "next/head";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
@@ -372,7 +371,13 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowLeftIcon sx={{ fontSize: "60px",boxShadow:'0 0 20px grey' ,borderRadius:'50%'}} />
+                          <ArrowLeftIcon
+                            sx={{
+                              fontSize: "60px",
+                              boxShadow: "0 0 20px grey",
+                              borderRadius: "50%",
+                            }}
+                          />
                         </Button>
                         <Button
                           onClick={() => sliderRef?.current?.slideNext()}
@@ -384,7 +389,13 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowRightIcon sx={{ fontSize: "60px" ,boxShadow:'0 0 20px grey',borderRadius:'50%'}} />
+                          <ArrowRightIcon
+                            sx={{
+                              fontSize: "60px",
+                              boxShadow: "0 0 20px grey",
+                              borderRadius: "50%",
+                            }}
+                          />
                         </Button>
                       </Grid>
                     </Grid>
@@ -464,7 +475,13 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowLeftIcon sx={{ fontSize: "40px",boxShadow:'0 0 20px grey',borderRadius:'50%' }} />
+                          <ArrowLeftIcon
+                            sx={{
+                              fontSize: "40px",
+                              boxShadow: "0 0 20px grey",
+                              borderRadius: "50%",
+                            }}
+                          />
                         </Button>
                         <Button
                           onClick={() => sliderRefXs?.current?.slideNext()}
@@ -476,7 +493,13 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                           }}
                           variant="contained"
                         >
-                          <ArrowRightIcon sx={{ fontSize: "40px" ,boxShadow:'0 0 20px grey',borderRadius:'50%'}} />
+                          <ArrowRightIcon
+                            sx={{
+                              fontSize: "40px",
+                              boxShadow: "0 0 20px grey",
+                              borderRadius: "50%",
+                            }}
+                          />
                         </Button>
                       </Grid>
                     </Grid>
@@ -718,9 +741,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
               pageProps={pageProps}
             />
           )}
-          <Contact
-            pageProps={pageProps}
-          />
+          <Contact pageProps={pageProps} />
           <Footer />
         </Grid>
         <Grid
@@ -734,7 +755,9 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           }}
         >
           <Button
-            onClick={() => window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)}
+            onClick={() =>
+              window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
+            }
             style={{
               width: "50%",
               height: "50px",
@@ -1166,7 +1189,7 @@ function Enquiry({
               <Typography
                 onClick={() =>
                   window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
-                  }
+                }
                 component="h2"
                 sx={{
                   padding: "0 0 5px 0",
@@ -2302,7 +2325,7 @@ function Contact({ pageProps }) {
           <Grid item xs={12}>
             <Typography
               onClick={() =>
-              window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
+                window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
               }
               component="h1"
               sx={{
@@ -2435,7 +2458,8 @@ function Footer() {
             fontSize: "14px",
           }}
         >
-         © 2023 Urbanrise The World Of Joy | All Rights Reserved | TN/01/BUILDING/0118/2019 | www.rera.tn.gov.in
+          © 2023 Urbanrise The World Of Joy | All Rights Reserved |
+          TN/01/BUILDING/0118/2019 | www.rera.tn.gov.in
         </Typography>
       </Grid>
     </Grid>
@@ -2636,7 +2660,7 @@ export async function getStaticPaths() {
       params: { slug },
     })),
   ];
-  
+
   // console.log("Paths: ", JSON.stringify(paths, null, 2));
   return {
     paths,
@@ -2651,41 +2675,41 @@ export const getStaticProps = async ({ params }) => {
   params.lpImg = [];
   params.lpImgXs = [];
 
-  
-
   if (Array.isArray(params.slug) && params.slug.length) {
-    const lpDirectory = path.join(process.cwd(), "public/lp-images/",params.slug.join('/'));
+    const lpDirectory = path.join(
+      process.cwd(),
+      "public/lp-images/",
+      params.slug.join("/")
+    );
 
-  const filenames = read(lpDirectory);
+    const filenames = read(lpDirectory);
 
-  const lpImages = filenames.filter((d)=>d);
+    const lpImages = filenames.filter((d) => d);
 
-    lpImages.forEach((e)=>{
+    lpImages.forEach((e) => {
+      if (e.startsWith("bannerImg_xs") || e.startsWith("galleryImg_xs")) {
+        lpImgXs = ["lp-images", ...params.slug, e];
+        lpImgXs = `/${lpImgXs.join("/")}`;
+        const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
 
-     if(e.startsWith("bannerImg_xs") || e.startsWith("galleryImg_xs") ){
-      lpImgXs = ["lp-images", ...params.slug, e];
-      lpImgXs = `/${lpImgXs.join("/")}`;
-      const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+        if (fs.existsSync(lpImgXsAbsPath)) {
+          const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+          params.lpImgXsSize = imgXsDimensions;
+          params.lpImgXs.push(lpImgXs);
+        }
+      } else if (e.startsWith("bannerImg") || e.startsWith("galleryImg")) {
+        lpImg = ["lp-images", ...params.slug, e];
+        lpImg = `/${lpImg.join("/")}`;
+        const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
 
-      if (fs.existsSync(lpImgXsAbsPath)) {
-        const imgXsDimensions = sizeOf(lpImgXsAbsPath);
-        params.lpImgXsSize = imgXsDimensions;
-        params.lpImgXs.push(lpImgXs);
+        if (fs.existsSync(lpImgAbsPath)) {
+          const imgDimensions = sizeOf(lpImgAbsPath);
+          params.lpImgSize = imgDimensions;
+          params.lpImg.push(lpImg);
+        }
       }
-     } else if(e.startsWith("bannerImg") || e.startsWith("galleryImg")){
-
-      lpImg = ["lp-images", ...params.slug, e];
-      lpImg = `/${lpImg.join("/")}`;
-       const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
-
-       if (fs.existsSync(lpImgAbsPath)) {
-         const imgDimensions = sizeOf(lpImgAbsPath);
-         params.lpImgSize = imgDimensions;
-         params.lpImg.push(lpImg);
-       }
-     }
-     pageProps = ["lp-images", ...params.slug, "pageProps.json"];
-    })
+      pageProps = ["lp-images", ...params.slug, "pageProps.json"];
+    });
   } else {
     lpImg = ["images", "db.jpg"];
     lpImgXs = ["images", "mb.jpg"];
@@ -2695,18 +2719,18 @@ export const getStaticProps = async ({ params }) => {
     lpImgXs = `/${lpImgXs.join("/")}`;
 
     const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
-       if (fs.existsSync(lpImgAbsPath)) {
-         const imgDimensions = sizeOf(lpImgAbsPath);
-         params.lpImgSize = imgDimensions;
-         params.lpImg.push(lpImg);
-       }
+    if (fs.existsSync(lpImgAbsPath)) {
+      const imgDimensions = sizeOf(lpImgAbsPath);
+      params.lpImgSize = imgDimensions;
+      params.lpImg.push(lpImg);
+    }
 
     const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
-      if (fs.existsSync(lpImgXsAbsPath)) {
-        const imgXsDimensions = sizeOf(lpImgXsAbsPath);
-        params.lpImgXsSize = imgXsDimensions;
-        params.lpImgXs.push(lpImgXs);
-      }
+    if (fs.existsSync(lpImgXsAbsPath)) {
+      const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+      params.lpImgXsSize = imgXsDimensions;
+      params.lpImgXs.push(lpImgXs);
+    }
   }
 
   pageProps = `/${pageProps.join("/")}`;
