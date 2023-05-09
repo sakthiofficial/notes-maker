@@ -32,8 +32,8 @@ import floorPlan from "../../public/images/floor_plan.jpg";
 import masterPlanImg from "../../public/images/master-plan.png";
 import floorPlanImg from "../../public/images/floor-plan.png";
 import mapImg from "../../public/images/map.jpg";
-import allianceLogoImg from "../../public/images/alliance_logo.png";
-import urbanriseLogoImg from "../../public/images/urbanrise_logo.png";
+import allianceLogoImg from "../../public/images/alliance-group-logo.png";
+import urbanriseLogoImg from "../../public/images/urbanrise-logo.png";
 import theWorldOfJoyLogoImg from "../../public/images/logo.png";
 import galleryImg1 from "../../public/images/gal_1.jpg";
 import galleryImg2 from "../../public/images/gal_2.jpg";
@@ -2435,8 +2435,7 @@ function Footer() {
             fontSize: "14px",
           }}
         >
-          © 2022 Alliance Revolution One | All Rights Reserved |
-          TN/01/BUILDING/0015/2019 | www.tnrera.in
+         © 2023 Urbanrise The World Of Joy | All Rights Reserved | TN/01/BUILDING/0118/2019 | www.rera.tn.gov.in
         </Typography>
       </Grid>
     </Grid>
@@ -2637,6 +2636,7 @@ export async function getStaticPaths() {
       params: { slug },
     })),
   ];
+  
   // console.log("Paths: ", JSON.stringify(paths, null, 2));
 
   return {
@@ -2665,6 +2665,7 @@ export const getStaticProps = async ({ params }) => {
     lpImgXs = ["images", "mb.jpg"];
     pageProps = ["pageProps.json"];
   }
+
   lpImg = `/${lpImg.join("/")}`;
   lpImgXs = `/${lpImgXs.join("/")}`;
   pageProps = `/${pageProps.join("/")}`;
