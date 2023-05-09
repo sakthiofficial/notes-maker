@@ -2638,7 +2638,6 @@ export async function getStaticPaths() {
   ];
   
   // console.log("Paths: ", JSON.stringify(paths, null, 2));
-
   return {
     paths,
     fallback: false,
@@ -2647,55 +2646,70 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async ({ params }) => {
   let lpImg = [];
-  let lpImg2 = [];
   let lpImgXs = [];
-  let lpImgXs2 = [];
   let pageProps = [];
   params.lpImg = [];
   params.lpImgXs = [];
 
+  
+
   if (Array.isArray(params.slug) && params.slug.length) {
-    lpImg = ["lp-images", ...params.slug, "bannerImg.jpg"];
-    lpImgXs = ["lp-images", ...params.slug, "bannerImg_xs.jpg"];
-    lpImg2 = ["lp-images", ...params.slug, "bannerImg1.jpg"];
-    lpImgXs2 = ["lp-images", ...params.slug, "bannerImg_xs1.jpg"];
-    pageProps = ["lp-images", ...params.slug, "pageProps.json"];
+    const lpDirectory = path.join(process.cwd(), "public/lp-images/",params.slug.join('/'));
+
+  const filenames = read(lpDirectory);
+
+  const lpImages = filenames.filter((d)=>d);
+
+    lpImages.forEach((e)=>{
+
+     if(e.startsWith("bannerImg_xs") || e.startsWith("galleryImg_xs") ){
+      lpImgXs = ["lp-images", ...params.slug, e];
+      lpImgXs = `/${lpImgXs.join("/")}`;
+      const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+
+      if (fs.existsSync(lpImgXsAbsPath)) {
+        const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+        params.lpImgXsSize = imgXsDimensions;
+        params.lpImgXs.push(lpImgXs);
+      }
+     } else if(e.startsWith("bannerImg") || e.startsWith("galleryImg")){
+
+      lpImg = ["lp-images", ...params.slug, e];
+      lpImg = `/${lpImg.join("/")}`;
+       const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
+
+       if (fs.existsSync(lpImgAbsPath)) {
+         const imgDimensions = sizeOf(lpImgAbsPath);
+         params.lpImgSize = imgDimensions;
+         params.lpImg.push(lpImg);
+       }
+     }
+     pageProps = ["lp-images", ...params.slug, "pageProps.json"];
+    })
   } else {
     lpImg = ["images", "db.jpg"];
     lpImgXs = ["images", "mb.jpg"];
     pageProps = ["pageProps.json"];
+
+    lpImg = `/${lpImg.join("/")}`;
+    lpImgXs = `/${lpImgXs.join("/")}`;
+
+    const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
+       if (fs.existsSync(lpImgAbsPath)) {
+         const imgDimensions = sizeOf(lpImgAbsPath);
+         params.lpImgSize = imgDimensions;
+         params.lpImg.push(lpImg);
+       }
+
+    const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+      if (fs.existsSync(lpImgXsAbsPath)) {
+        const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+        params.lpImgXsSize = imgXsDimensions;
+        params.lpImgXs.push(lpImgXs);
+      }
   }
 
-  lpImg = `/${lpImg.join("/")}`;
-  lpImgXs = `/${lpImgXs.join("/")}`;
   pageProps = `/${pageProps.join("/")}`;
-
-  lpImg2 = `/${lpImg2.join("/")}`;
-  lpImgXs2 = `/${lpImgXs2.join("/")}`;
-
-  const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
-  if (fs.existsSync(lpImgAbsPath)) {
-    const imgDimensions = sizeOf(lpImgAbsPath);
-    params.lpImgSize = imgDimensions;
-    params.lpImg.push(lpImg);
-  }
-
-  const lpImg2AbsPath = path.join(process.cwd(), "public", lpImg2);
-  if (fs.existsSync(lpImg2AbsPath) && lpImg2 !== "/") {
-    params.lpImg.push(lpImg2);
-  }
-
-  const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
-  if (fs.existsSync(lpImgXsAbsPath)) {
-    const imgXsDimensions = sizeOf(lpImgXsAbsPath);
-    params.lpImgXsSize = imgXsDimensions;
-    params.lpImgXs.push(lpImgXs);
-  }
-
-  const lpImgXs2AbsPath = path.join(process.cwd(), "public", lpImgXs2);
-  if (fs.existsSync(lpImgXs2AbsPath) && lpImgXs2 !== "/") {
-    params.lpImgXs.push(lpImgXs2);
-  }
 
   const pagePropsAbsPath = path.join(process.cwd(), "public", pageProps);
   if (fs.existsSync(pagePropsAbsPath)) {
