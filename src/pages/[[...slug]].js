@@ -831,7 +831,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
           setEnquiryPopupProps={setEnquiryPopupProps}
         />
         <Script
-          src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
           async
         />
         <Script
