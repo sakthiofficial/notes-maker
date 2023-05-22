@@ -244,7 +244,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         // enqueueSnackbar({ variant: "success", message: "Thank you !" });
         resetData();
         router.push("/thanku");
-        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
@@ -284,11 +283,6 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
           async
-        />
-        <link
-          href="https://propstory.in/universe-chat-bot-html-template/css/worldofjoy-chatbot.css"
-          rel="stylesheet"
-          type="text/css"
         />
       </Head>
       <Grid
@@ -909,6 +903,8 @@ function Enquiry({
   const router = useRouter();
 
   const submitForm = () => {
+    router.push("/thanku");
+
     if (errorMsgs?.userName || errorMsgs?.email || errorMsgs?.phoneNo) {
       return;
     }
@@ -921,7 +917,6 @@ function Enquiry({
       .then(() => {
         resetData();
         router.push("/thanku");
-        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
@@ -1326,7 +1321,6 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
       .then(() => {
         resetData();
         router.push("/thanku");
-        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
