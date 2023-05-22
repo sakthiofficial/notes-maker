@@ -244,6 +244,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         // enqueueSnackbar({ variant: "success", message: "Thank you !" });
         resetData();
         router.push("/thanku");
+        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
@@ -920,6 +921,7 @@ function Enquiry({
       .then(() => {
         resetData();
         router.push("/thanku");
+        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
@@ -1324,6 +1326,7 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
       .then(() => {
         resetData();
         router.push("/thanku");
+        router.reload()
       })
       .catch(() => {
         enqueueSnackbar({
