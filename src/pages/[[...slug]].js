@@ -241,8 +241,10 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
     addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
-        enqueueSnackbar({ variant: "success", message: "Thank you !" });
+        // enqueueSnackbar({ variant: "success", message: "Thank you !" });
         resetData();
+        window.location =
+          "https://www.urbanrisetheworldofjoy.com/promos/thanku.html";
       })
       .catch(() => {
         enqueueSnackbar({
@@ -917,7 +919,9 @@ function Enquiry({
     addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
-        enqueueSnackbar({ variant: "success", message: "Thank you !" });
+        // enqueueSnackbar({ variant: "success", message: "Thank you !" });
+        window.location =
+        "https://www.urbanrisetheworldofjoy.com/promos/thanku.html";
         resetData();
       })
       .catch(() => {
@@ -1321,7 +1325,9 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
     addFormData({ ...(userData || {}), source })
       .unwrap()
       .then(() => {
-        enqueueSnackbar({ variant: "success", message: "Thank you !" });
+        // enqueueSnackbar({ variant: "success", message: "Thank you !" });
+        window.location =
+        "https://www.urbanrisetheworldofjoy.com/promos/thanku.html";
         resetData();
       })
       .catch(() => {
