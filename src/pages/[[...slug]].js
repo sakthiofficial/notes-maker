@@ -903,8 +903,6 @@ function Enquiry({
   const router = useRouter();
 
   const submitForm = () => {
-    router.push("/thanku");
-
     if (errorMsgs?.userName || errorMsgs?.email || errorMsgs?.phoneNo) {
       return;
     }
