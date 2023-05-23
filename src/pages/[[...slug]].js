@@ -1636,7 +1636,7 @@ function ProjectHighlights() {
             color: "#3c3c3c",
           }}
         >
-          PROJECT HIHLIGHTS
+          PROJECT HIGHLIGHTS
         </Typography>
       </Grid>
       <Grid
