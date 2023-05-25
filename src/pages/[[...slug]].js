@@ -23,6 +23,7 @@ import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import Link from "next/link";
 import amenitiesImg from "../../public/images/amenities.jpg";
 import locationImg from "../../public/images/location_1.jpg";
 import locationXsImg from "../../public/images/location_mobile.jpg";
