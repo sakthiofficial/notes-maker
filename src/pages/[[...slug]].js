@@ -137,18 +137,20 @@ export function checkUserNameErrors(userName) {
   return "";
 }
 
-const getSource = (paths) => {
-  let source = "Direct Traffic";
-  if (paths.includes("lp-dsc")) {
-    source = "Google-Disc";
-  } else if (paths.includes("taboola")) {
-    source = "Taboola";
-  } else if (paths.includes("lp-text")) {
-    source = "Google-Text";
-  } else if (paths.includes("lp-dsp")) {
-    source = "Google-Disp";
-  }
-  return source;
+const getSource = (pageQueryParams = {}) => {
+  const source = pageQueryParams?.utm_source || "Direct Traffic";
+  const medium = pageQueryParams?.utm_medium;
+  const campaign = pageQueryParams?.utm_campaign;
+  const content = pageQueryParams?.utm_content;
+  const ad = pageQueryParams?.utm_ad;
+
+  return {
+    source,
+    medium,
+    campaign,
+    content,
+    ad,
+  };
 };
 
 function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
@@ -235,10 +237,10 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
       return;
     }
 
-    const paths = router?.asPath?.split?.("/");
-    const source = getSource(paths);
+    const pageQueryParams = router?.query;
+    const utmParams = getSource(pageQueryParams);
 
-    addFormData({ ...(userData || {}), source })
+    addFormData({ ...(userData || {}), utmParams })
       .unwrap()
       .then(() => {
         // enqueueSnackbar({ variant: "success", message: "Thank you !" });
@@ -907,10 +909,10 @@ function Enquiry({
       return;
     }
 
-    const paths = router?.asPath?.split?.("/");
-    const source = getSource(paths);
+    const pageQueryParams = router?.query;
+    const utmParams = getSource(pageQueryParams);
 
-    addFormData({ ...(userData || {}), source })
+    addFormData({ ...(userData || {}), utmParams })
       .unwrap()
       .then(() => {
         resetData();
@@ -1311,10 +1313,10 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
       return;
     }
 
-    const paths = router?.asPath?.split?.("/");
-    const source = getSource(paths);
+    const pageQueryParams = router?.query;
+    const utmParams = getSource(pageQueryParams);
 
-    addFormData({ ...(userData || {}), source })
+    addFormData({ ...(userData || {}), utmParams })
       .unwrap()
       .then(() => {
         resetData();

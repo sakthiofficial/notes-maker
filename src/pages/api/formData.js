@@ -11,40 +11,82 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
       email: Joi.string(),
       phoneNo: Joi.string(),
       source: Joi.string(),
+      utmParams: Joi.object({
+        source: Joi.string(),
+        medium: Joi.string(),
+        campaign: Joi.string(),
+        content: Joi.string(),
+      }),
     })
   );
 
-  const { userName, email, phoneNo, source } = req.body;
+  const {
+    userName,
+    email,
+    phoneNo,
+    utmParams: { source, medium, campaign, content, ad },
+  } = req.body;
 
   const { lsqConfig } = config;
-
-  const promise = axios.post(
-    lsqConfig.apiUrl,
-    [
-      {
-        Attribute: "FirstName",
-        Value: userName,
-      },
-      {
-        Attribute: "EmailAddress",
-        Value: email,
-      },
-      {
-        Attribute: "Phone",
-        Value: phoneNo,
-      },
-      {
-        Attribute: "Source",
-        Value: source,
-      },
-    ],
+  const postBody = [
     {
-      params: {
-        accessKey: lsqConfig.accessKey,
-        secretKey: lsqConfig.secretKey,
-      },
-    }
-  );
+      Attribute: "FirstName",
+      Value: userName,
+    },
+    {
+      Attribute: "EmailAddress",
+      Value: email,
+    },
+    {
+      Attribute: "Phone",
+      Value: phoneNo,
+    },
+    {
+      Attribute: "Source",
+      Value: source,
+    },
+
+    ...(campaign
+      ? [
+          {
+            Attribute: "SourceCampaign",
+            Value: campaign,
+          },
+        ]
+      : []),
+
+    ...(medium
+      ? [
+          {
+            Attribute: "SourceMedium",
+            Value: medium,
+          },
+        ]
+      : []),
+
+    ...(content
+      ? [
+          {
+            Attribute: "SourceContent",
+            Value: content,
+          },
+        ]
+      : []),
+
+    // ...(ad && [
+    //   {
+    //     Attribute: "SourceContent",
+    //     Value: ad,
+    //   },
+    // ]),
+  ];
+
+  const promise = axios.post(lsqConfig.apiUrl, postBody, {
+    params: {
+      accessKey: lsqConfig.accessKey,
+      secretKey: lsqConfig.secretKey,
+    },
+  });
 
   res.sendPromise(promise);
 });
