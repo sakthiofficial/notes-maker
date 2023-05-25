@@ -2267,22 +2267,16 @@ function Contact({ pageProps }) {
       }}
     >
       <Grid item xs={12} sm={7} style={{ width: "100%", overflow: "hidden" }}>
-        <Box
-          component="a"
-          href="https://www.google.com/maps/place/Urbanrise+Revolution+One/@12.7987842,80.2205513,15z/data=!4m5!3m4!1s0x0:0xaf528dfe8d126e2d!8m2!3d12.7987842!4d80.2205513"
-          target="_blank"
+        <iframe
+          title="sitemap"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2502935907273!2d80.202401!3d12.8270962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy!5e0!3m2!1sen!2sin!4v1685036397265!5m2!1sen!2sin"
           width="100%"
-        >
-          <Image
-            src={mapImg}
-            alt="map"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-            sizes="100vw"
-          />
-        </Box>
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </Grid>
       <Grid
         container
@@ -2458,7 +2452,7 @@ function Footer() {
               color: "#D8A75B",
             }}
           >
-            &quot;I authorize Revolution One and its representatives to Call,
+            &quot;I authorize The World of Joy and its representatives to Call,
             SMS, Email or WhatsApp me about their products and offers. This
             consent overrides any registration for DNC / NDNC.&quot;
           </Typography>
