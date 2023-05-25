@@ -137,7 +137,7 @@ export function checkUserNameErrors(userName) {
   return "";
 }
 
-const getSource = (pageQueryParams = {}) => {
+const getUtmParams = (pageQueryParams = {}) => {
   const source = pageQueryParams?.utm_source || "Direct Traffic";
   const medium = pageQueryParams?.utm_medium;
   const campaign = pageQueryParams?.utm_campaign;
@@ -238,7 +238,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
     }
 
     const pageQueryParams = router?.query;
-    const utmParams = getSource(pageQueryParams);
+    const utmParams = getUtmParams(pageQueryParams);
 
     addFormData({ ...(userData || {}), utmParams })
       .unwrap()
@@ -910,7 +910,7 @@ function Enquiry({
     }
 
     const pageQueryParams = router?.query;
-    const utmParams = getSource(pageQueryParams);
+    const utmParams = getUtmParams(pageQueryParams);
 
     addFormData({ ...(userData || {}), utmParams })
       .unwrap()
@@ -1314,7 +1314,7 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
     }
 
     const pageQueryParams = router?.query;
-    const utmParams = getSource(pageQueryParams);
+    const utmParams = getUtmParams(pageQueryParams);
 
     addFormData({ ...(userData || {}), utmParams })
       .unwrap()
