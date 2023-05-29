@@ -16,6 +16,7 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
         medium: Joi.string(),
         campaign: Joi.string(),
         content: Joi.string(),
+        ad: Joi.string(),
       }),
     })
   );
