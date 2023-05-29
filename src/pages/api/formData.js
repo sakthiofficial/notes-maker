@@ -24,7 +24,7 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
     userName,
     email,
     phoneNo,
-    utmParams: { source, medium, campaign, content, ad },
+    utmParams: { source, medium, campaign, content },
   } = req.body;
 
   const { lsqConfig } = config;
