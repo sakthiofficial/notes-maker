@@ -72,13 +72,6 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
           },
         ]
       : []),
-
-    // ...(ad && [
-    //   {
-    //     Attribute: "SourceContent",
-    //     Value: ad,
-    //   },
-    // ]),
   ];
 
   const promise = axios.post(lsqConfig.apiUrl, postBody, {

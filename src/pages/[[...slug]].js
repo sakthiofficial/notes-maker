@@ -142,14 +142,14 @@ const getUtmParams = (pageQueryParams = {}) => {
   const medium = pageQueryParams?.utm_medium;
   const campaign = pageQueryParams?.utm_campaign;
   const content = pageQueryParams?.utm_content;
-  const ad = pageQueryParams?.utm_ad;
+  // const ad = pageQueryParams?.utm_ad;
 
   return {
     source,
     medium,
     campaign,
     content,
-    ad,
+    // ad,
   };
 };
 
