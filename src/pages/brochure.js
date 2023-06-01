@@ -8,7 +8,7 @@ function Brochure() {
         height: "100vh",
       }}
       title="brochure"
-      src="/The-World-of-Joy-Brochure.pdf"
+      src="https://s3.ap-south-1.amazonaws.com/com.alliancein.lp.public/The-World-of-Joy-Brochure.pdf"
     />
   );
 }
