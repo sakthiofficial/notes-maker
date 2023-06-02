@@ -1,1 +1,14 @@
-{"styleInfo":{"sidebar":{"backgroundColor":"rgba(0, 0, 0, 0)","backgroundImage":"linear-gradient(90deg, rgb(237, 223, 210), rgb(171, 161, 152))"},"sidebarForm":{"backgroundColor":"rgb(116, 109, 102)","backgroundImage":"none"}},"noForm":false,"phoneNo":"+91 8750183040"}
+{
+  "styleInfo": {
+    "sidebar": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "backgroundImage": "linear-gradient(90deg, rgb(237, 223, 210), rgb(171, 161, 152))"
+    },
+    "sidebarForm": {
+      "backgroundColor": "rgb(116, 109, 102)",
+      "backgroundImage": "none"
+    }
+  },
+  "noForm": false,
+  "phoneNo": "+91 8447952050"
+}
