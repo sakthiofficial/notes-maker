@@ -1,7 +1,15 @@
+function getDomainFromBrowser() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  const domainUrl = window.location.origin;
+  return domainUrl;
+}
+
 export default {
   appEnv: process.env.NEXT_PUBLIC_APPENV,
   buildNo: process.env.NEXT_PUBLIC_BUILDID,
-  apiUrl: process.env.NEXT_PUBLIC_API_URL,
+  apiUrl: getDomainFromBrowser(),
   lsqConfig: {
     apiUrl: process.env.LSQ_APIURL,
     accessKey: process.env.LSQ_ACCESSKEY,
