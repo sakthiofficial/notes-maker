@@ -833,7 +833,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         />
 
         <Script
-          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoychatbot_cloned.js"
+          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoy-chatbotNew.js"
           async
         />
         <Box component="div" className="chat-bot-icon" />
