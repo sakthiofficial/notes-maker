@@ -23,27 +23,27 @@ import { LoadingButton } from "@mui/lab";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import amenitiesImg from "../../public/images/amenities.jpg";
-import locationImg from "../../public/images/location_1.jpg";
-import locationXsImg from "../../public/images/location_mobile.jpg";
-import locationAdvantagesImg from "../../public/images/location_advantages.jpg";
-import downloadBrochureImg from "../../public/images/download-brochure.png";
-import floorPlan from "../../public/images/floor_plan.jpg";
-import masterPlanImg from "../../public/images/master-plan.png";
-import floorPlanImg from "../../public/images/floor-plan.png";
-import allianceLogoImg from "../../public/images/alliance-group-logo.png";
-import urbanriseLogoImg from "../../public/images/urbanrise-logo.png";
-import theWorldOfJoyLogoImg from "../../public/images/logo.png";
-import galleryImg1 from "../../public/images/gal_1.jpg";
-import galleryImg2 from "../../public/images/gal_2.jpg";
-import galleryImg3 from "../../public/images/gal_3.jpg";
-import galleryImg4 from "../../public/images/gal_4.jpg";
-import galleryImg5 from "../../public/images/gal_5.jpg";
-import galleryImg6 from "../../public/images/gal_6.jpg";
-import galleryImg7 from "../../public/images/gal_7.jpg";
-import galleryImg8 from "../../public/images/gal_8.jpg";
-import galleryImg9 from "../../public/images/gal_9.jpg";
-import { useAddFormDataMutation } from "../reduxSlice/apiSlice";
+import amenitiesImg from "../../../public/images/amenities.jpg";
+import locationImg from "../../../public/images/location_1.jpg";
+import locationXsImg from "../../../public/images/location_mobile.jpg";
+import locationAdvantagesImg from "../../../public/images/location_advantages.jpg";
+import downloadBrochureImg from "../../../public/images/download-brochure.png";
+import floorPlan from "../../../public/images/floor_plan.jpg";
+import masterPlanImg from "../../../public/images/master-plan.png";
+import floorPlanImg from "../../../public/images/floor-plan.png";
+import allianceLogoImg from "../../../public/images/alliance-group-logo.png";
+import urbanriseLogoImg from "../../../public/images/urbanrise-logo.png";
+import theWorldOfJoyLogoImg from "../../../public/images/logo.png";
+import galleryImg1 from "../../../public/images/gal_1.jpg";
+import galleryImg2 from "../../../public/images/gal_2.jpg";
+import galleryImg3 from "../../../public/images/gal_3.jpg";
+import galleryImg4 from "../../../public/images/gal_4.jpg";
+import galleryImg5 from "../../../public/images/gal_5.jpg";
+import galleryImg6 from "../../../public/images/gal_6.jpg";
+import galleryImg7 from "../../../public/images/gal_7.jpg";
+import galleryImg8 from "../../../public/images/gal_8.jpg";
+import galleryImg9 from "../../../public/images/gal_9.jpg";
+import { useAddFormDataMutation } from "../../reduxSlice/apiSlice";
 
 const galleryImgList = [
   galleryImg1,
@@ -151,7 +151,13 @@ const getUtmParams = (pageQueryParams = {}) => {
   };
 };
 
-function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
+function ChatBotTestPage({
+  lpImg,
+  lpImgXs,
+  lpImgSize,
+  lpImgXsSize,
+  pageProps,
+}) {
   const [isVisible, setIsVisible] = useState(false);
   const [openImgSlider, setOpenImgSlider] = useState(false);
 
@@ -831,7 +837,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         />
 
         <Script
-          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoychatbot_cloned.js"
+          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoy-chatbotNew.js"
           async
         />
         <Box component="div" className="chat-bot-icon" />
@@ -839,18 +845,18 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
     </>
   );
 }
-Home.propTypes = {
+ChatBotTestPage.propTypes = {
   lpImg: PropTypes.array.isRequired,
   lpImgXs: PropTypes.array.isRequired,
   lpImgSize: PropTypes.object.isRequired,
   lpImgXsSize: PropTypes.object.isRequired,
   pageProps: PropTypes.object,
 };
-Home.defaultProps = {
+ChatBotTestPage.defaultProps = {
   pageProps: {},
 };
 
-export default Home;
+export default ChatBotTestPage;
 
 function Enquiry({
   isVisible,
