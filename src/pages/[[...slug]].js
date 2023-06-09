@@ -1814,108 +1814,108 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps, pageProps }) {
         </Grid>
       </Grid>
       {!pageProps?.noBookNowSection && (
-      <Grid container item xs={12}>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            position: "relative",
-            margin: "30px 0",
-            height: { xs: "300px", md: "350px" },
-            width: "100%",
-            overflow: "hidden",
-          }}
-        >
-          <Image
-            fill
-            alt="animated_gif"
-            src="https://www.jubileeresidences.com/promos/google/aug-dsp-2020/images/book_site_visit.gif"
-            sizes="100vw"
-          />
+        <Grid container item xs={12}>
           <Grid
-            container
             item
             xs={12}
-            style={{
-              position: "absolute",
+            sx={{
+              position: "relative",
+              margin: "30px 0",
+              height: { xs: "300px", md: "350px" },
               width: "100%",
-              height: "100%",
-              top: 0,
-              right: 0,
-              background: "rgba(255, 193, 7, 0.32941176470588235)",
-              alignContent: "flex-start",
+              overflow: "hidden",
             }}
           >
-            <Grid item xs={12}>
-              <Typography
-                component="h1"
-                style={{
-                  textAlign: "center",
-                  padding: "20px 0 10px 0",
-                  fontSize: "25px",
-                  fontWeight: "bold",
-                }}
-              >
-                Book a FREE Site visit
-              </Typography>
-            </Grid>
-
+            <Image
+              fill
+              alt="animated_gif"
+              src="https://www.jubileeresidences.com/promos/google/aug-dsp-2020/images/book_site_visit.gif"
+              sizes="100vw"
+            />
             <Grid
+              container
               item
               xs={12}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                right: 0,
+                background: "rgba(255, 193, 7, 0.32941176470588235)",
+                alignContent: "flex-start",
+              }}
             >
-              <Button
-                onClick={() =>
-                  setEnquiryPopupProps({
-                    ...enquiryPopupProps,
-                    heading: "Book a Site Visit",
-                    isOpen: true,
-                  })
-                }
-                variant="contained"
-                sx={{
-                  background: "#9BA11E",
-                  borderRadius: "20px",
-                  fontSize: "14px",
-                  color: "#000000",
-                  textTransform: "capitalize",
-                  fontWeight: "bold",
-                  height: "40px",
-                  display: { xs: "none", sm: "flex" },
-                }}
+              <Grid item xs={12}>
+                <Typography
+                  component="h1"
+                  style={{
+                    textAlign: "center",
+                    padding: "20px 0 10px 0",
+                    fontSize: "25px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Book a FREE Site visit
+                </Typography>
+              </Grid>
+
+              <Grid
+                item
+                xs={12}
+                style={{ display: "flex", justifyContent: "center" }}
               >
-                Book Now
-              </Button>
-              <Button
-                onClick={() =>
-                  pageProps.noXsForm
-                    ? window.open(
-                        `tel:${pageProps?.phoneNo || "+918750183040"}`
-                      )
-                    : setEnquiryPopupProps(() => ({
-                        ...enquiryPopupProps,
-                        isOpen: true,
-                      }))
-                }
-                variant="contained"
-                sx={{
-                  background: "#9BA11E",
-                  borderRadius: "20px",
-                  fontSize: "14px",
-                  color: "#000000",
-                  textTransform: "capitalize",
-                  fontWeight: "bold",
-                  height: "40px",
-                  display: { xs: "flex", sm: "none" },
-                }}
-              >
-                Book Now
-              </Button>
+                <Button
+                  onClick={() =>
+                    setEnquiryPopupProps({
+                      ...enquiryPopupProps,
+                      heading: "Book a Site Visit",
+                      isOpen: true,
+                    })
+                  }
+                  variant="contained"
+                  sx={{
+                    background: "#9BA11E",
+                    borderRadius: "20px",
+                    fontSize: "14px",
+                    color: "#000000",
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                    height: "40px",
+                    display: { xs: "none", sm: "flex" },
+                  }}
+                >
+                  Book Now
+                </Button>
+                <Button
+                  onClick={() =>
+                    pageProps.noXsForm
+                      ? window.open(
+                          `tel:${pageProps?.phoneNo || "+918750183040"}`
+                        )
+                      : setEnquiryPopupProps(() => ({
+                          ...enquiryPopupProps,
+                          isOpen: true,
+                        }))
+                  }
+                  variant="contained"
+                  sx={{
+                    background: "#9BA11E",
+                    borderRadius: "20px",
+                    fontSize: "14px",
+                    color: "#000000",
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                    height: "40px",
+                    display: { xs: "flex", sm: "none" },
+                  }}
+                >
+                  Book Now
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
       )}
     </>
   );
@@ -2286,7 +2286,10 @@ function Contact({ pageProps }) {
         item
         xs={12}
         sm={5}
-        style={{ paddingLeft: "30px", alignContent: "flex-start" }}
+        sx={{
+          paddingLeft: { xs: "0", sm: "30px" },
+          alignContent: "flex-start",
+        }}
       >
         <Grid item xs={12}>
           <Image
@@ -2306,6 +2309,7 @@ function Contact({ pageProps }) {
               padding: "10px 0",
               fontSize: { xs: "30px", md: "36px" },
               fontWeight: "bold",
+              textAlign: { xs: "center", sm: "left" },
             }}
           >
             THE WORLD OF JOY
@@ -2314,9 +2318,10 @@ function Contact({ pageProps }) {
         <Grid item xs={12}>
           <Typography
             component="h2"
-            style={{
+            sx={{
               fontSize: "18px",
               color: "#3c3c3c",
+              textAlign: { xs: "center", sm: "left" },
             }}
           >
             OMR Main Road, Siruseri,
@@ -2325,9 +2330,11 @@ function Contact({ pageProps }) {
         <Grid item xs={12}>
           <Typography
             component="h3"
-            style={{
+            sx={{
               fontSize: "18px",
               color: "#3c3c3c",
+              textAlign: { xs: "center", sm: "left" },
+              paddingBottom: "20px",
             }}
           >
             Chennai, Tamil Nadu 603103
@@ -2360,13 +2367,13 @@ function Contact({ pageProps }) {
           container
           item
           xs={12}
-          style={{
+          sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: { xs: "center", sm: "flex-start" },
             height: "65px",
           }}
         >
-          <Grid item xs={6} md={4} style={{ width: "100%" }}>
+          <Grid item xs={4} md={3} sx={{ width: "100%", paddingRight: "10px" }}>
             <Grid
               item
               container
@@ -2390,7 +2397,7 @@ function Contact({ pageProps }) {
               />
             </Grid>
           </Grid>
-          <Grid item xs={6} md={4} style={{ width: "100%" }}>
+          <Grid item xs={5} md={4} style={{ width: "100%" }}>
             <Grid
               item
               container
