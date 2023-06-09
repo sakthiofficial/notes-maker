@@ -761,30 +761,32 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
             width: "100%",
           }}
         >
-          <Button
-            onClick={() =>
-              window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
-            }
-            style={{
-              width: "50%",
-              height: "50px",
-              background: "#337ab7",
-              textTransform: "capitalize",
-              color: "#ffffff",
-              fontWeight: "bold",
-              fontSize: "14px",
-            }}
-            variant="contained"
-          >
-            <CallRoundedIcon
-              sx={{
-                fontSize: 25,
+          {!pageProps?.noCallBtn && (
+            <Button
+              onClick={() =>
+                window.open(`tel:${pageProps?.phoneNo || "+918750183040"}`)
+              }
+              style={{
+                width: "50%",
+                height: "50px",
+                background: "#337ab7",
+                textTransform: "capitalize",
                 color: "#ffffff",
-                marginRight: "10px",
+                fontWeight: "bold",
+                fontSize: "14px",
               }}
-            />{" "}
-            Call Now
-          </Button>
+              variant="contained"
+            >
+              <CallRoundedIcon
+                sx={{
+                  fontSize: 25,
+                  color: "#ffffff",
+                  marginRight: "10px",
+                }}
+              />{" "}
+              Call Now
+            </Button>
+          )}
           <Button
             onClick={() =>
               pageProps.noXsForm
@@ -795,7 +797,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
                   }))
             }
             style={{
-              width: "50%",
+              width: !pageProps?.noCallBtn ? "50%" : "100%",
               height: "50px",
               background: "#ffbb00",
               textTransform: "capitalize",
@@ -831,7 +833,8 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
         />
 
         <Script
-          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoychatbot_cloned.js"
+          // src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoychatbot_cloned.js"
+          src="https://propstory.in/universe-chat-bot-html-template/js/WorldofJoy-chatbotNew.js"
           async
         />
         <Box component="div" className="chat-bot-icon" />
@@ -1810,6 +1813,7 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps, pageProps }) {
           />
         </Grid>
       </Grid>
+      {!pageProps?.noBookNowSection && (
       <Grid container item xs={12}>
         <Grid
           item
@@ -1912,6 +1916,7 @@ function Amenities({ enquiryPopupProps, setEnquiryPopupProps, pageProps }) {
           </Grid>
         </Grid>
       </Grid>
+      )}
     </>
   );
 }
