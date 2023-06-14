@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 export default function ThankYouPage() {
   return (
     <Grid
-      conatiner
+      container
       xs={12}
       sx={{
         justifyContent: "center",

@@ -243,7 +243,7 @@ function Home({ lpImg, lpImgXs, lpImgSize, lpImgXsSize, pageProps }) {
       .then(() => {
         // enqueueSnackbar({ variant: "success", message: "Thank you !" });
         resetData();
-        router.push("/thanku");
+        window.location.href = "/thanku";
       })
       .catch(() => {
         enqueueSnackbar({
@@ -914,7 +914,7 @@ function Enquiry({
       .unwrap()
       .then(() => {
         resetData();
-        router.push("/thanku");
+        window.location.href = "/thanku";
       })
       .catch(() => {
         enqueueSnackbar({
@@ -1318,7 +1318,7 @@ function EnquiryPopup({ enquiryPopupProps, setEnquiryPopupProps }) {
       .unwrap()
       .then(() => {
         resetData();
-        router.push("/thanku");
+        window.location.href = "/thanku";
       })
       .catch(() => {
         enqueueSnackbar({
