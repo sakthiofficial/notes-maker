@@ -1,0 +1,16 @@
+{
+  "styleInfo": {
+    "sidebar": {
+      "backgroundColor": "rgb(177, 62, 93)",
+      "backgroundImage": "none"
+    },
+    "sidebarForm": {
+      "backgroundColor": "rgb(118, 46, 46)",
+      "backgroundImage": "none"
+    }
+  },
+  "noForm": false,
+  "noPhNo":true,
+  "noCallBtn":true,
+  "noBookNowSection":true
+}
