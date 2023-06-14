@@ -9,6 +9,11 @@ export default function Document() {
           rel="stylesheet"
           type="text/css"
         />
+        <script
+          defer
+          type="application/javascript"
+          src="https://tracker.clickguard.com/s/accTXeVmnd1SS/astFsQNUyycPP"
+        />
       </Head>
       <body>
         <Main />
