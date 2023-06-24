@@ -3,11 +3,8 @@ import axios from "axios";
 import handler from "../../lib/handler";
 import config from "../../lib/config";
 import { LpLead } from "../../../models/lplead";
-import initDb from "../../lib/db";
 
 export default handler({ checkAuthenticated: true }).post(async (req, res) => {
-  await initDb();
-
   req.validate(
     req.body,
     Joi.object({
