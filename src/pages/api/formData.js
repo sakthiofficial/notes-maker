@@ -29,15 +29,19 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
     utmParams: { source, medium, campaign, content },
   } = req.body;
 
-  await new LpLead({
-    FirstName: userName,
-    EmailAddress: email,
-    Phone: phoneNo,
-    Source: source,
-    SourceMedium: medium,
-    SourceCampaign: campaign,
-    SourceContent: content,
-  }).save();
+  try {
+    await new LpLead({
+      FirstName: userName,
+      EmailAddress: email,
+      Phone: phoneNo,
+      Source: source,
+      SourceMedium: medium,
+      SourceCampaign: campaign,
+      SourceContent: content,
+    }).save();
+  } catch (err) {
+    console.log("Error saving to db");
+  }
 
   const { lsqConfig } = config;
   const postBody = [
