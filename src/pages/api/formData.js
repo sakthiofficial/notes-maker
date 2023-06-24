@@ -2,8 +2,12 @@ import Joi from "joi";
 import axios from "axios";
 import handler from "../../lib/handler";
 import config from "../../lib/config";
+import { LpLead } from "../../../models/lplead";
+import initDb from "../../lib/db";
 
 export default handler({ checkAuthenticated: true }).post(async (req, res) => {
+  await initDb();
+
   req.validate(
     req.body,
     Joi.object({
@@ -27,6 +31,16 @@ export default handler({ checkAuthenticated: true }).post(async (req, res) => {
     phoneNo,
     utmParams: { source, medium, campaign, content },
   } = req.body;
+
+  await new LpLead({
+    FirstName: userName,
+    EmailAddress: email,
+    Phone: phoneNo,
+    Source: source,
+    SourceMedium: medium,
+    SourceCampaign: campaign,
+    SourceContent: content,
+  }).save();
 
   const { lsqConfig } = config;
   const postBody = [
