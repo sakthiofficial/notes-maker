@@ -1,0 +1,348 @@
+[
+  {
+    "id": 0,
+    "type": "navBar",
+    "sections": [
+      "Project Highlights",
+      "Amenities",
+      "Gallery",
+      "Location Advantages",
+      "Walkthrough Video"
+    ],
+    "style": {
+      "bgColor": "#000000",
+      "btnBgColor": "#F9B800",
+      "textColor": "#ffffff"
+    },
+    "col": {
+      "xs": 12
+    }
+  },
+  {
+    "id": 1,
+    "type": "landingPage",
+    "style": {
+      "formTopColor": "#006CB5",
+      "formBg": "#ffffff",
+      "containerBg": "linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))"
+    },
+    "title": "WORLD OF JOY APARTMENTS",
+    "description": "The World of Joy - 3 BHK Premium Apartments With 50 + Life Style Amenities. 1 Acre of Large Park with Amenities for Everyone in the Family.",
+    "flatType": "1, 2 & 3BHK",
+    "price": "48 Lacs*",
+    "phoneNo": "+91 9876543210",
+    "containerCol": {
+      "xs": 12
+    },
+    "innerContainerCol": {
+      "xs": 11,
+      "sm":10
+    },
+    "leftCol": {
+      "xs":11,
+      "sm": 5
+    },
+    "formCol": {
+      "xs": 4
+    }
+  },
+  {
+    "id": 2,
+    "type": "projectHighlights",
+    "title": "― Features ―",
+    "subTitle": "Project Highlights",
+    "highLights": [
+      "Located at Siruseri, Asia's Largest IT Park spread over 980 Acres",
+      "45,000 Sq. Ft. Cosmo Clubhouse",
+      "1 Acre of Large Park with Amenities for Everyone in the Family",
+      "Strong Home Built with International Mivan Technology",
+      "75,000 Sq. Ft. of Never before Rooftop Amenities",
+      "12,000 Sq. Ft. Urbanrise Genius - Children's Learning Hub",
+      "24,000 Sq. Ft. of Never before 'Tower to Tower' Amenities"
+    ],
+    "containerCol": {
+      "xs": 9
+    },
+    "imgCol": {
+      "xs": 12,
+      "sm":6
+    },
+    "highlightsCol": {
+      "xs": 12,
+      "sm":6
+    }
+  },
+  {
+    "id": 3,
+    "type": "amenities",
+    "title": "― Amenities ―",
+    "subTitle": "Why you choose us",
+    "amenities": [
+      {
+        "title": "Power Backup",
+        "description": "The plan is the fixed generator through which your AC loads, electrical appliances and essential lights can work.",
+        "img": "/testImages/powerBackup.png"
+      },
+      {
+        "title": "Swimming Pool",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/swimmingPool.png"
+      },
+      {
+        "title": "Indoor Games",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/indoorGames.png"
+      },
+      {
+        "title": "Fitness Studio",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/fitnessStudio.png"
+      },
+      {
+        "title": "SPA",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/spa.png"
+      },
+      {
+        "title": "Party Hall",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/partyHall.png"
+      },
+      {
+        "title": "Movie Theatre",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/movieTheatre.png"
+      },
+      {
+        "title": "Cafe Lounge",
+        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "img": "/testImages/cafeLounge.png"
+      }
+    ],
+    "containerCol": {
+      "xs": 12
+    },
+    "subContainerCol": {
+      "xs": 12,
+      "sm":10
+    },
+    "contentCol": {
+      "xs": 6,
+      "sm":4.5
+    },
+    "imgCol": {
+      "xs": 7,
+      "sm":3
+    }
+  },
+  {
+    "id": 4,
+    "type": "gallery",
+    "title": "― Gallery ―",
+    "subTitle":"World Of Joy's Gallery",
+    "containerCol": {
+      "xs": 12
+    },
+    "tabCol":{
+      "xs":11,
+      "sm":5
+    },
+    "tabNames":[
+      {
+        "id":0,
+        "name":"All Pictures"
+      },
+      {
+        "id":1,
+        "name":"Exterior"
+      },
+      {
+        "id":2,
+        "name":"Interior"
+      },
+      {
+        "id":3,
+        "name":"Designs"
+      },
+      {
+        "id":4,
+        "name":"Roof Top"
+      }
+    ],
+    "sliderCol":{
+      "xs":12,
+      "sm":10
+    }
+  },
+  {
+    "id": 5,
+    "type": "location",
+    "title": "― Location Advantages ―",
+    "subTitle":"Key Infrastructure Within 5 Mins",
+    "containerCol": {
+      "xs": 12
+    },
+    "subContainerCol":{
+      "xs":10
+    },
+    "imgCol":{
+      "xs":12,
+      "sm":7
+    },
+    "facilitiesCol":{
+      "xs":12,
+      "sm":5
+    },
+   "facilities" : [
+      {
+        "id": 0,
+        "facility": "Colleges",
+        "listAndTime": [
+          {
+            "name": "Chettinad Medical",
+            "time": "2 mins"
+          },
+          {
+            "name": "Hindustan University",
+            "time": "5 mins"
+          },
+          {
+            "name": "Anand Institute",
+            "time": "10 mins"
+          },
+          {
+            "name": "SSN College",
+            "time": "15 mins"
+          },
+          {
+            "name": "Dr. Ambedkar College",
+            "time": "15 mins"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "facility": "IT Parks",
+        "listAndTime": [
+          {
+            "name": "Sipcot IT Park",
+            "time": "5 mins"
+          },
+          {
+            "name": "TCS, Siruseri",
+            "time": "7 mins"
+          },
+          {
+            "name": "CTS, Siruseri",
+            "time": "7 mins"
+          },
+          {
+            "name": "Polaris",
+            "time": "8 mins"
+          },
+          {
+            "name": "ETA Tech Park",
+            "time": "10 mins"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "facility": "Schools",
+        "listAndTime": [
+          {
+            "name": "Marina Grand Mall",
+            "time": "5 mins"
+          },
+          {
+            "name": "AGS Cinema",
+            "time": "6 mins"
+          },
+          {
+            "name": "MGM",
+            "time": "12 mins"
+          },
+          {
+            "name": "Mayajal",
+            "time": "15 mins"
+          },
+          {
+            "name": "Muttu Kadu",
+            "time": "10 mins"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "facility": "Hospitals",
+        "listAndTime": [
+          {
+            "name": "Chettinad Health City",
+            "time": "2 mins"
+          },
+          {
+            "name": "Life Line Hospital",
+            "time": "5 mins"
+          },
+          {
+            "name": "Supreme Hospital",
+            "time": "10 mins"
+          },
+          {
+            "name": "Madhura Hospital",
+            "time": "10 mins"
+          },
+          {
+            "name": "Vision Hospital",
+            "time": "5 mins"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "type": "walkthrough",
+    "title": "― Walkthrough ―",
+    "subTitle":"World Of Joy Walkthrough Video",
+    "containerCol": {
+      "xs": 12
+    },
+    "videoCol":{
+      "xs":11
+    }
+  },
+  {
+    "id": 7,
+    "type": "downloads",
+    "title": "Information About Our Property",
+    "containerCol": {
+      "xs": 12
+    },
+    "titleCol":{
+      "xs":12,
+      "sm":4
+    },
+    "linkContainerCol":{
+      "xs":12,
+      "sm":8
+    },
+    "linkCol":{
+      "xs":6,
+      "sm":2
+    }
+  },
+  {
+    "id": 8,
+    "type": "contactDetails",
+    "title": "THE WORLD OF JOY APARTMENTS",
+    "companyName":"Urbanrise constructions",
+    "directionBtn":"Get direction from here",
+    "address":"SURVEY NO.117/2, Siruseri, Tamil Nadu 603103",
+    "email":"info@alliancegroup.com",
+    "mapUrl":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2502935907273!2d80.202401!3d12.8270962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy!5e0!3m2!1sen!2sin!4v1685036397265!5m2!1sen!2sin",
+    "containerCol": {
+      "xs": 12
+    }
+  }
+]
