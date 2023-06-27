@@ -1,9 +1,10 @@
 import nc from "next-connect";
 import Joi from "joi";
 import { Response, RESPONSE_MESSAGE, RESPONSE_STATUS } from "../appConstants";
+import initDb from "./db";
 // import logger from "../logger";
 
-export default () => {
+export default ({ withoutDb } = { withoutDb: false }) => {
   const handler = nc({
     attachParams: true,
     onError: (err, req, res) => {
@@ -54,6 +55,13 @@ export default () => {
 
       await next();
     });
+
+  if (!withoutDb) {
+    handler.use(async (req, res, next) => {
+      await initDb();
+      next();
+    });
+  }
 
   return handler;
 };

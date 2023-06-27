@@ -5,6 +5,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   env: {
+    URL_DB: process.env.URL_DB,
     NEXT_PUBLIC_APPENV: process.env.APPENV,
     NEXT_PUBLIC_BUILDID: process.env.BUILDID,
     NEXT_PUBLIC_API_URL: process.env.API_URL,
