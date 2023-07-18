@@ -136,7 +136,6 @@ export function checkUserNameErrors(userName) {
 }
 
 const getUtmParams = (pageQueryParams = {}) => {
-  debugger;
   let source = pageQueryParams?.utm_source || "Direct Traffic";
   if (Array.isArray(source) && source?.[0]) {
     [source] = source;
