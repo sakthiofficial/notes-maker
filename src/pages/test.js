@@ -3011,7 +3011,6 @@ function Contact({ setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                     borderRadius: "9px",
                   },
@@ -3058,7 +3057,6 @@ function Contact({ setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                   },
                   "& .MuiFormHelperText-root": {
@@ -3104,7 +3102,6 @@ function Contact({ setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                   },
                   "& .MuiFormHelperText-root": {
