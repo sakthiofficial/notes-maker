@@ -136,11 +136,26 @@ export function checkUserNameErrors(userName) {
 }
 
 const getUtmParams = (pageQueryParams = {}) => {
-  const source = pageQueryParams?.utm_source || "Direct Traffic";
-  const medium = pageQueryParams?.utm_medium;
-  const campaign = pageQueryParams?.utm_campaign;
-  const content = pageQueryParams?.utm_content;
-  const ad = pageQueryParams?.utm_ad;
+  let source = pageQueryParams?.utm_source || "Direct Traffic";
+  if (Array.isArray(source) && source?.[0]) {
+    [source] = source;
+  }
+  let medium = pageQueryParams?.utm_medium;
+  if (Array.isArray(medium) && medium?.[0]) {
+    [medium] = medium;
+  }
+  let campaign = pageQueryParams?.utm_campaign;
+  if (Array.isArray(campaign) && campaign?.[0]) {
+    [campaign] = campaign;
+  }
+  let content = pageQueryParams?.utm_content;
+  if (Array.isArray(content) && content?.[0]) {
+    [content] = content;
+  }
+  let ad = pageQueryParams?.utm_ad || pageQueryParams?.utm_Ad;
+  if (Array.isArray(ad) && ad?.[0]) {
+    [ad] = ad;
+  }
 
   return {
     source,
