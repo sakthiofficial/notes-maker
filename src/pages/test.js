@@ -18,6 +18,13 @@ import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import TextField from "@mui/material/TextField";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import { LoadingButton } from "@mui/lab";
 import CallIcon from "@mui/icons-material/Call";
 import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
@@ -161,6 +168,23 @@ export default function Home() {
               return <Navbar key={item.id} content={item} />;
             case "landingPage":
               return <LandingPage key={item.id} content={item} />;
+            case "overview":
+              return (
+                <Box component="section" id="Overview" sx={{ width: "100%" }}>
+                  <Overview key={item.id} content={item} />
+                </Box>
+              );
+            case "priceDetails":
+              return (
+                <Box
+                  component="section"
+                  id="PriceDetails"
+                  sx={{ width: "100%" }}
+                >
+                  <PriceDetails key={item.id} content={item} />
+                </Box>
+              );
+
             case "projectHighlights":
               return (
                 <Box
@@ -235,9 +259,6 @@ function Navbar({ content }) {
   const scrollToView = (target) => {
     const section = document.querySelector(target?.replace(/\s/g, ""));
     section?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    console.log(target);
-    console.log(section);
   };
   return (
     <AppBar
@@ -294,7 +315,7 @@ function Navbar({ content }) {
             container
             item
             xs={8}
-            sm={7}
+            sm={9}
             sx={{ visibility: { xs: "hidden", md: "visible" } }}
           >
             <Box
@@ -605,9 +626,9 @@ function LandingPage({ content }) {
                   component="h1"
                   sx={{
                     padding: "30px 0 10px 0",
-                    fontSize: { xs: "18px", sm: "36px" },
+                    fontSize: { xs: "20px", sm: "36px" },
                     fontWeight: "bold",
-                    color: "#ffffff",
+                    color: "#F9B800",
                   }}
                 >
                   {content?.title || ""}
@@ -617,64 +638,12 @@ function LandingPage({ content }) {
                 <Typography
                   component="h1"
                   sx={{
-                    fontSize: { xs: "14px", sm: "16px" },
+                    fontSize: { xs: "18px", sm: "28px" },
                     color: "#ffffff",
                   }}
                 >
                   {content?.description || ""}
                 </Typography>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={11}
-                sm={7}
-                margin="20px 0"
-                sx={{
-                  border: "2px solid #ffffff",
-                  borderRadius: "12px",
-                  padding: "20px 10px",
-                }}
-              >
-                <Grid item xs={12}>
-                  <Typography
-                    component="h1"
-                    sx={{
-                      fontSize: { xs: "18px", sm: "28px" },
-                      color: "#ffffff",
-                      paddingBottom: "10px",
-                      fontWeight: "bolder",
-                    }}
-                  >
-                    {content?.flatType || ""}
-                  </Typography>
-                </Grid>
-                <Grid item xs={8}>
-                  <Typography
-                    component="h1"
-                    sx={{
-                      textAlign: "center",
-                      fontSize: { xs: "30px", sm: "45px" },
-                      color: "#F9B800",
-                      background: "#000000",
-                      fontWeight: "bolder",
-                    }}
-                  >
-                    {content?.price || ""}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} display="flex" alignItems="flex-end">
-                  <Typography
-                    component="p"
-                    sx={{
-                      fontSize: { xs: "14px", sm: "20px" },
-                      color: "#FFFFFF",
-                      paddingLeft: "10px",
-                    }}
-                  >
-                    onwards
-                  </Typography>
-                </Grid>
               </Grid>
             </Grid>
             <Grid
@@ -748,7 +717,6 @@ function LandingPage({ content }) {
                       sx={{
                         width: "100%",
                         "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                          background: "#ffffff",
                           background: "rgba(0, 0, 0, 0.04)",
                           borderRadius: "9px",
                         },
@@ -789,7 +757,6 @@ function LandingPage({ content }) {
                       sx={{
                         width: "100%",
                         "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                          background: "#ffffff",
                           background: "rgba(0, 0, 0, 0.04)",
                         },
                         "& .MuiFormHelperText-root": {
@@ -829,7 +796,6 @@ function LandingPage({ content }) {
                       sx={{
                         width: "100%",
                         "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                          background: "#ffffff",
                           background: "rgba(0, 0, 0, 0.04)",
                         },
                         "& .MuiFormHelperText-root": {
@@ -947,7 +913,6 @@ function LandingPage({ content }) {
                   sx={{
                     width: "100%",
                     "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
                       background: "rgba(0, 0, 0, 0.04)",
                       borderRadius: "9px",
                     },
@@ -988,7 +953,6 @@ function LandingPage({ content }) {
                   sx={{
                     width: "100%",
                     "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
                       background: "rgba(0, 0, 0, 0.04)",
                     },
                     "& .MuiFormHelperText-root": {
@@ -1028,7 +992,6 @@ function LandingPage({ content }) {
                   sx={{
                     width: "100%",
                     "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                      background: "#ffffff",
                       background: "rgba(0, 0, 0, 0.04)",
                     },
                     "& .MuiFormHelperText-root": {
@@ -1073,6 +1036,327 @@ LandingPage.propTypes = {
   content: PropTypes.object.isRequired,
 };
 
+function Overview({ content }) {
+  return (
+    <Grid
+      container
+      item
+      xs={content?.containerCol?.xs}
+      sm={content?.containerCol?.sm}
+      md={content?.containerCol?.md}
+      lg={content?.containerCol?.lg}
+      xl={content?.containerCol?.xl}
+      sx={{ margin: "20px 0" }}
+    >
+      <Grid
+        container
+        item
+        xs={content?.imgCol?.xs}
+        sm={content?.imgCol?.sm}
+        md={content?.imgCol?.md}
+        lg={content?.imgCol?.lg}
+        xl={content?.imgCol?.xl}
+        sx={{
+          position: "relative",
+          height: "550px",
+          display: { xs: "flex", sm: "none" },
+          marginBottom: "30px",
+        }}
+      >
+        <Image
+          fill
+          src={lpImg}
+          style={{ objectFit: "cover" }}
+          alt="location map"
+          sizes="100vw"
+        />
+      </Grid>
+      <Grid
+        container
+        item
+        xs={content?.contentCol?.xs}
+        sm={content?.contentCol?.sm}
+        md={content?.contentCol?.md}
+        lg={content?.contentCol?.lg}
+        xl={content?.contentCol?.xl}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid
+          container
+          item
+          xs={10}
+          sx={{
+            border: "1px solid #000",
+            padding: "30px",
+            borderRadius: "5px",
+            height: "fit-content",
+            position: "relative",
+          }}
+        >
+          <Grid item xs={12}>
+            <Typography
+              component="h1"
+              sx={{
+                padding: "10px",
+                fontSize: { xs: "14px", sm: "20px" },
+                fontWeight: "bolder",
+                color: "#F9B800",
+              }}
+            >
+              {content?.title || ""}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              component="h1"
+              sx={{
+                fontSize: { xs: "20px", sm: "36px" },
+                fontWeight: "bold",
+                color: "#000000",
+              }}
+            >
+              {content?.subTitle || ""}
+            </Typography>
+          </Grid>
+          <Typography
+            component="li"
+            sx={{
+              padding: "10px 0",
+              fontSize: { xs: "14px", sm: "18px" },
+              color: "#000",
+              listStyle: "none",
+              "::before": {
+                content: '"♦"',
+                color: "#006CB5",
+                paddingRight: "20px",
+              },
+            }}
+          >
+            {content?.listItem1 || ""}
+          </Typography>
+          <Typography
+            component="li"
+            sx={{
+              padding: "10px 0",
+              fontSize: { xs: "14px", sm: "18px" },
+              color: "#000",
+              listStyle: "none",
+              "::before": {
+                content: '"♦"',
+                color: "#006CB5",
+                paddingRight: "20px",
+              },
+            }}
+          >
+            {content?.listItem2 || ""}
+          </Typography>
+
+          <Box
+            sx={{
+              position: "absolute",
+              right: 0,
+              top: "15%",
+              width: "20px",
+              height: "70%",
+              background: "#fff",
+              transform: "translate(50%,0)",
+            }}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid
+        container
+        item
+        xs={content?.imgCol?.xs}
+        sm={content?.imgCol?.sm}
+        md={content?.imgCol?.md}
+        lg={content?.imgCol?.lg}
+        xl={content?.imgCol?.xl}
+        sx={{
+          position: "relative",
+          height: "550px",
+          display: { xs: "none", sm: "flex" },
+        }}
+      >
+        <Image
+          fill
+          src={lpImg}
+          style={{ objectFit: "cover" }}
+          alt="location map"
+          sizes="100vw"
+        />
+      </Grid>
+    </Grid>
+  );
+}
+Overview.propTypes = {
+  content: PropTypes.object.isRequired,
+};
+
+function PriceDetails({ content }) {
+  return (
+    <Grid
+      container
+      item
+      xs={content?.containerCol?.xs}
+      sm={content?.containerCol?.sm}
+      md={content?.containerCol?.md}
+      lg={content?.containerCol?.lg}
+      xl={content?.containerCol?.xl}
+      sx={{
+        background:
+          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(/testImages/db.jpg), lightgray 50% / cover no-repeat",
+        backgroundSize: "cover",
+        padding: "50px 0",
+        justifyContent: "center",
+      }}
+    >
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          component="h1"
+          sx={{
+            padding: "30px 0 10px 0",
+            fontSize: { xs: "14px", sm: "20px" },
+            fontWeight: "bolder",
+            color: "#F9B800",
+          }}
+        >
+          {content?.title || ""}
+        </Typography>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          component="h1"
+          sx={{
+            fontSize: { xs: "20px", sm: "36px" },
+            fontWeight: "bold",
+            color: "#fff",
+          }}
+        >
+          {content?.subTitle || ""}
+        </Typography>
+      </Grid>
+      <Grid container item xs={11} sm={9} sx={{ paddingTop: "50px" }}>
+        <TableContainer component={Paper} sx={{ borderRadius: "14px" }}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  sx={{
+                    background: "#F9B800",
+                    fontSize: { xs: "14px", sm: "24px" },
+                    fontWeight: "bolder",
+                    padding: "20px 0",
+                    borderRight: "1px solid #000",
+                  }}
+                  align="center"
+                >
+                  Unit Type
+                </TableCell>
+                <TableCell
+                  sx={{
+                    background: "#F9B800",
+                    fontSize: { xs: "14px", sm: "24px" },
+                    fontWeight: "bolder",
+                    padding: "20px 0",
+                    borderRight: "1px solid #000",
+                  }}
+                  align="center"
+                >
+                  Price
+                </TableCell>
+                <TableCell
+                  sx={{
+                    background: "#F9B800",
+                    fontSize: { xs: "14px", sm: "24px" },
+                    fontWeight: "bolder",
+                    padding: "20px 0",
+                  }}
+                  align="center"
+                >
+                  Enquire
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(content?.tableData || []).map((item) => (
+                <TableRow
+                  key={item?.unitType}
+                  sx={{
+                    "&:last-child td, &:last-child th": { borderBottom: 0 },
+                  }}
+                >
+                  <TableCell
+                    sx={{
+                      fontSize: { xs: "14px", sm: "18px" },
+                      fontWeight: "bolder",
+                      borderRight: "1px solid #000",
+                    }}
+                    align="center"
+                    component="th"
+                    scope="row"
+                  >
+                    {item?.unitType || ""}
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{
+                      fontSize: { xs: "14px", sm: "18px" },
+                      fontWeight: "bolder",
+                      borderRight: "1px solid #000",
+                    }}
+                  >
+                    {item?.price || ""}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      sx={{
+                        background: "#F9B800",
+                        color: "#000000",
+                        borderRadius: "9px",
+                        textTransform: "none",
+                        height: "fit-content",
+                        padding: { xs: "10px 10px", sm: "10px 30px" },
+                        fontWeight: "bolder",
+                        fontSize: { xs: "14px", sm: "18px" },
+                        ":hover": {
+                          background: "#F9B800",
+                        },
+                      }}
+                      variant="contained"
+                    >
+                      {item?.enquire || ""}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+    </Grid>
+  );
+}
+PriceDetails.propTypes = {
+  content: PropTypes.object.isRequired,
+};
+
 function ProjectHighlights({ content }) {
   return (
     <Grid
@@ -1083,7 +1367,7 @@ function ProjectHighlights({ content }) {
       sx={{
         background: `url(/testImages/features_bg.png)`,
         backgroundSize: "cover",
-        padding: { xs: "50px 0", sm: "100px 0" },
+        padding: { xs: "50px 0", sm: "100px 0 30px 0" },
       }}
     >
       <Grid
@@ -1217,7 +1501,6 @@ function ProjectHighlights({ content }) {
 ProjectHighlights.propTypes = {
   content: PropTypes.object.isRequired,
 };
-
 function Amenties({ content }) {
   return (
     <Grid
@@ -1231,7 +1514,7 @@ function Amenties({ content }) {
       sx={{
         background: `url(/testImages/amenities_bg.png)`,
         backgroundSize: "cover",
-        padding: { xs: "50px 0", sm: "100px 0" },
+        padding: { xs: "50px 0", sm: "100px 0 30px 0" },
         justifyContent: "center",
       }}
     >
@@ -1468,7 +1751,7 @@ function Amenties({ content }) {
           display: { xs: "flex", sm: "none" },
           position: "relative",
           width: "100%",
-          height: "400px",
+          height: { xs: "500px", sm: "400px" },
         }}
       >
         <Image
@@ -1503,7 +1786,7 @@ function Gallery({ content }) {
       lg={content?.containerCol?.lg}
       xl={content?.containerCol?.xl}
       sx={{
-        padding: { xs: "50px 0 100px 0", sm: "100px 0" },
+        padding: { xs: "50px 0 100px 0", sm: "100px 0 30px 0" },
         justifyContent: "center",
       }}
     >
@@ -1635,9 +1918,10 @@ function Gallery({ content }) {
         <Grid
           container
           item
-          xs={10}
+          xs={11}
+          sm={10}
           sx={{
-            height: { xs: "200px", sm: "600px" },
+            height: { xs: "250px", sm: "600px" },
           }}
         >
           <Swiper
@@ -1676,6 +1960,76 @@ function Gallery({ content }) {
                     sizes="100vw"
                     alt="location"
                   />
+                  <Grid
+                    container
+                    item
+                    xs={12}
+                    sx={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      justifyContent: "space-between",
+                      display: { xs: "flex", sm: "none" },
+                    }}
+                  >
+                    <Grid
+                      item
+                      xs={1}
+                      display="flex"
+                      justifyContent="flex-start"
+                      alignItems="center"
+                      sx={{
+                        height: "100%",
+                      }}
+                    >
+                      <Button
+                        onClick={() => sliderRef?.current?.slidePrev()}
+                        disabled={currentExpIdx === 0}
+                        sx={{
+                          background: "rgba(249, 184, 0, 0.7) !important",
+                          color: currentExpIdx === 0 ? "grey" : "#000000",
+                          boxShadow: "none !important",
+                          borderRadius: "50% !important",
+                          height: "60px",
+                          width: "40px",
+                          border: "1px solid #000000",
+                        }}
+                        variant="contained"
+                      >
+                        <ArrowBackIosRoundedIcon sx={{ fontSize: "20px" }} />
+                      </Button>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={1}
+                      display="flex"
+                      justifyContent="flex-end"
+                      alignItems="center"
+                      sx={{
+                        height: "100%",
+                      }}
+                    >
+                      <Button
+                        onClick={() => sliderRef?.current?.slideNext()}
+                        disabled={currentExpIdx === galleryImgList.length - 1}
+                        style={{
+                          background: "rgba(249, 184, 0, 0.7)",
+                          color:
+                            currentExpIdx === galleryImgList.length - 1
+                              ? "grey"
+                              : "#000000",
+                          boxShadow: "none",
+                          height: "60px",
+                          width: "40px",
+                          borderRadius: "50%",
+                          border: "1px solid #000000",
+                        }}
+                        variant="contained"
+                      >
+                        <ArrowForwardIosRoundedIcon sx={{ fontSize: "20px" }} />
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </SwiperSlide>
             ))}
@@ -1710,75 +2064,6 @@ function Gallery({ content }) {
           >
             <ArrowForwardIosRoundedIcon sx={{ fontSize: "50px" }} />
           </Button>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          sx={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            justifyContent: "space-between",
-          }}
-        >
-          <Grid
-            item
-            xs={1}
-            display="flex"
-            justifyContent="flex-start"
-            alignItems="center"
-            sx={{
-              height: "100%",
-            }}
-          >
-            <Button
-              onClick={() => sliderRef?.current?.slidePrev()}
-              disabled={currentExpIdx === 0}
-              sx={{
-                background: "rgba(249, 184, 0, 0.7) !important",
-                color: currentExpIdx === 0 ? "grey" : "#000000",
-                boxShadow: "none !important",
-                borderRadius: "50% !important",
-                height: "80px",
-                aspectRatio: "1/1",
-                border: "1px solid #000000",
-              }}
-              variant="contained"
-            >
-              <ArrowBackIosRoundedIcon sx={{ fontSize: "50px" }} />
-            </Button>
-          </Grid>
-          <Grid
-            item
-            xs={1}
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            sx={{
-              height: "100%",
-            }}
-          >
-            <Button
-              onClick={() => sliderRef?.current?.slideNext()}
-              disabled={currentExpIdx === galleryImgList.length - 1}
-              style={{
-                background: "rgba(249, 184, 0, 0.7)",
-                color:
-                  currentExpIdx === galleryImgList.length - 1
-                    ? "grey"
-                    : "#000000",
-                boxShadow: "none",
-                height: "80px",
-                borderRadius: "50%",
-                aspectRatio: "1/1",
-                border: "1px solid #000000",
-              }}
-              variant="contained"
-            >
-              <ArrowForwardIosRoundedIcon sx={{ fontSize: "50px" }} />
-            </Button>
-          </Grid>
         </Grid>
       </Grid>
     </Grid>
@@ -1840,7 +2125,7 @@ function LocationAdvantages({ content }) {
       sx={{
         background: `url(/testImages/locationAdvantages_bg.png)`,
         backgroundSize: "cover",
-        padding: { xs: "50px 0", sm: "100px 0" },
+        padding: { xs: "50px 0", sm: "100px 0 30px 0" },
         justifyContent: "center",
       }}
     >
@@ -2207,12 +2492,14 @@ function Downloads({ content, setOpenEnquiry }) {
           }}
         >
           <Grid
+            item
             xs={content?.linkCol?.xs}
             sm={content?.linkCol?.sm}
             md={content?.linkCol?.md}
             lg={content?.linkCol?.lg}
             xl={content?.linkCol?.xl}
             sx={{
+              width: "100%",
               border: "2px solid #ffffff",
               display: "flex",
               flexDirection: "column",
@@ -2257,6 +2544,7 @@ function Downloads({ content, setOpenEnquiry }) {
             lg={content?.linkCol?.lg}
             xl={content?.linkCol?.xl}
             sx={{
+              width: "100%",
               border: "2px solid #ffffff",
               display: "flex",
               flexDirection: "column",
@@ -2301,6 +2589,7 @@ function Downloads({ content, setOpenEnquiry }) {
             lg={content?.linkCol?.lg}
             xl={content?.linkCol?.xl}
             sx={{
+              width: "100%",
               border: "2px solid #ffffff",
               display: "flex",
               flexDirection: "column",
@@ -2603,12 +2892,6 @@ function Contact({ setOpenEnquiry }) {
           }}
           variant="contained"
         >
-          <Typography
-            component="span"
-            sx={{ display: { xs: "none", sm: "flex" } }}
-          >
-            CALL NOW
-          </Typography>
           <CallIcon
             sx={{
               paddingLeft: { xs: "5px", sm: "10px" },
@@ -2624,7 +2907,7 @@ function Contact({ setOpenEnquiry }) {
               fontWeight: "bolder",
             }}
           >
-            +91 9876543210
+            CALL NOW
           </Typography>
         </Button>
       </Grid>

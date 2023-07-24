@@ -4,6 +4,8 @@
     "type": "navBar",
     "sections": [
       "Project Highlights",
+      "Overview",
+      "Price Details",
       "Amenities",
       "Gallery",
       "Location Advantages",
@@ -26,8 +28,8 @@
       "formBg": "#ffffff",
       "containerBg": "linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))"
     },
-    "title": "WORLD OF JOY APARTMENTS",
-    "description": "The World of Joy - 3 BHK Premium Apartments With 50 + Life Style Amenities. 1 Acre of Large Park with Amenities for Everyone in the Family.",
+    "title": "DESIGNED TO MEET YOUR EVERY DESIRE!",
+    "description": "Launching 1, 2 & 3 BHK Premium Gated Community Apartments at Siruseri, OMR with 150+ Amenities.",
     "flatType": "1, 2 & 3BHK",
     "price": "48 Lacs*",
     "phoneNo": "+91 9876543210",
@@ -36,10 +38,10 @@
     },
     "innerContainerCol": {
       "xs": 11,
-      "sm":10
+      "sm": 10
     },
     "leftCol": {
-      "xs":11,
+      "xs": 11,
       "sm": 5
     },
     "formCol": {
@@ -48,73 +50,136 @@
   },
   {
     "id": 2,
-    "type": "projectHighlights",
-    "title": "― Features ―",
-    "subTitle": "Project Highlights",
-    "highLights": [
-      "Located at Siruseri, Asia's Largest IT Park spread over 980 Acres",
-      "45,000 Sq. Ft. Cosmo Clubhouse",
-      "1 Acre of Large Park with Amenities for Everyone in the Family",
-      "Strong Home Built with International Mivan Technology",
-      "75,000 Sq. Ft. of Never before Rooftop Amenities",
-      "12,000 Sq. Ft. Urbanrise Genius - Children's Learning Hub",
-      "24,000 Sq. Ft. of Never before 'Tower to Tower' Amenities"
-    ],
+    "type": "overview",
+    "title": "― Overview ―",
+    "subTitle": "About world of joy",
+    "listItem1": "Urbanrise The World of Joy constructed in an alluring green environment spread over 10.13 acres of land these aspirational Siruseri flats built with the latest MIVAN technology are all about living life king size. Strategically located just 10 minutes from Sholinganallur.",
+    "listItem2": "The 43,000 sq.ft magnificent clubhouse offers an array of jaw dropping amenities right from Work, Workout to gaming and grooming, the banquet hall offers the perfect space and ambience for parties, the co-working spaces and board rooms are a boon to residents working from Home.",
     "containerCol": {
-      "xs": 9
+      "xs": 12
     },
-    "imgCol": {
+    "contentCol": {
       "xs": 12,
       "sm":6
     },
-    "highlightsCol": {
+    "imgCol": {
       "xs": 12,
       "sm":6
     }
   },
   {
     "id": 3,
+    "type": "priceDetails",
+    "title": "― Price details ―",
+    "subTitle": "Configurations",
+    "tableData":[{
+      "unitType":"Studio",
+      "price":"19 Lacs* Onwards",
+      "enquire":"Enquire now"
+    },
+    {
+      "unitType":"1 BHK",
+      "price":"28 Lacs* Onwards",
+      "enquire":"Enquire now"
+    },
+    {
+      "unitType":"1 BHK Regular",
+      "price":"45 Lacs* Onwards",
+      "enquire":"Enquire now"
+    },
+    {
+      "unitType":"2 BHK Large",
+      "price":"48 Lacs* Onwards",
+      "enquire":"Enquire now"
+    },
+    {
+      "unitType":"2 BHK Regular",
+      "price":"54 Lacs* Onwards",
+      "enquire":"Enquire now"
+    },
+    {
+      "unitType":"1 BHK Regular",
+      "price":"57 Lacs* Onwards",
+      "enquire":"Enquire now"
+    }
+  ],
+    "containerCol": {
+      "xs": 12
+    },
+    "tableCol": {
+      "xs": 9
+    }
+  },
+  {
+    "id": 4,
+    "type": "projectHighlights",
+    "title": "― Features ―",
+    "subTitle": "Project Highlights",
+    "highLights": [
+      "The World of Joy has created a buzz in the city, setting new standards of futuristic living.",
+      "Located at Siruseri, one of Asia's Largest IT Parks and Chennai’s fastest growing commercial and residential hub.",
+      "75,000 Sq. Ft. of Never before Rooftop Amenities",
+      "45,000 Sq. Ft. Cosmo Clubhouse",
+      "24,000 Sq. Ft. “Tower to Tower” Amenities",
+      "12,000 Sq. Ft. Urbanrise Genius - Children's Learning Hub",
+      "15,000 Sq. Ft. of Co-Working Spaces",
+      "Over 1 Acre of Large Park with Amenities for Everyone in the Family"
+    ],
+    "containerCol": {
+      "xs": 9
+    },
+    "imgCol": {
+      "xs": 12,
+      "sm": 6
+    },
+    "highlightsCol": {
+      "xs": 12,
+      "sm": 6
+    }
+  },
+  {
+    "id": 5,
     "type": "amenities",
     "title": "― Amenities ―",
     "subTitle": "Why you choose us",
     "amenities": [
       {
-        "title": "Power Backup",
-        "description": "The plan is the fixed generator through which your AC loads, electrical appliances and essential lights can work.",
+        "title": "Located in Siruseri",
+        "description": "One of the Asia’s Largest IT Park. Fastest growing Residential & Commercial locality of Chennai that will set you on a whole new lifestyle orbit.",
         "img": "/testImages/powerBackup.png"
       },
       {
-        "title": "Swimming Pool",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Rooftop Amenities",
+        "description": "There is no limit to the happiness that awaits you at The World of Joy. Mini theatre, Barbeque & Party Area, Viewing Decks, Game Zone, Yoga Decks, Green Dining and More.",
         "img": "/testImages/swimmingPool.png"
       },
       {
-        "title": "Indoor Games",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Cosmo Clubhouse",
+        "description": "OMR’s biggest Cosmo clubhouse unlimited ways to unwind. Swimming pool, Clubhouse Lounge, Gym, Banquet Hall, Co-working Spaces, Supermarket, Board Games Room and More.",
         "img": "/testImages/indoorGames.png"
       },
       {
-        "title": "Fitness Studio",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Tower to Tower Amenities",
+        "description": "A great place to work out and also for parents to play with their kids. Joy, play a game of badminton, work those brains with a game of life size chess – It’s all right here!",
         "img": "/testImages/fitnessStudio.png"
       },
       {
-        "title": "SPA",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Urbanrise Genius",
+        "description": "A well designed Children’s learning hub – Urbanrise Genius ensures within the community will ensure the Children won’t have to go anywhere else for the tuition classes.",
         "img": "/testImages/spa.png"
       },
       {
-        "title": "Party Hall",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "1 Acre Green Park",
+        "description": "Find happiness in the great outdoor – Mini Soccer Field, Basketball Court, Outdoor Gym, Cricket Practice Nets, Amphitheatre, Table Tennis, Gazebo, Hammock Park and More.",
         "img": "/testImages/partyHall.png"
       },
       {
-        "title": "Movie Theatre",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Mivan Technology",
+        "description": "Strong homes built using Mivan Technology – High Strength & Superior Quality, Speedy construction, More soundproof for privacy, No cracks & less repair works and more.",
         "img": "/testImages/movieTheatre.png"
       },
       {
-        "title": "Cafe Lounge",
+        "title": "Café Lounge",
         "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
         "img": "/testImages/cafeLounge.png"
       }
@@ -124,76 +189,76 @@
     },
     "subContainerCol": {
       "xs": 12,
-      "sm":10
+      "sm": 10
     },
     "contentCol": {
       "xs": 6,
-      "sm":4.5
+      "sm": 4.5
     },
     "imgCol": {
       "xs": 7,
-      "sm":3
+      "sm": 3
     }
   },
   {
-    "id": 4,
+    "id": 6,
     "type": "gallery",
     "title": "― Gallery ―",
-    "subTitle":"World Of Joy's Gallery",
+    "subTitle": "World Of Joy's Gallery",
     "containerCol": {
       "xs": 12
     },
-    "tabCol":{
-      "xs":11,
-      "sm":5
+    "tabCol": {
+      "xs": 11,
+      "sm": 5
     },
-    "tabNames":[
+    "tabNames": [
       {
-        "id":0,
-        "name":"All Pictures"
+        "id": 0,
+        "name": "All Pictures"
       },
       {
-        "id":1,
-        "name":"Exterior"
+        "id": 1,
+        "name": "Exterior"
       },
       {
-        "id":2,
-        "name":"Interior"
+        "id": 2,
+        "name": "Interior"
       },
       {
-        "id":3,
-        "name":"Designs"
+        "id": 3,
+        "name": "Designs"
       },
       {
-        "id":4,
-        "name":"Roof Top"
+        "id": 4,
+        "name": "Roof Top"
       }
     ],
-    "sliderCol":{
-      "xs":12,
-      "sm":10
+    "sliderCol": {
+      "xs": 12,
+      "sm": 10
     }
   },
   {
-    "id": 5,
+    "id": 7,
     "type": "location",
     "title": "― Location Advantages ―",
-    "subTitle":"Key Infrastructure Within 5 Mins",
+    "subTitle": "Key Infrastructure Within 5 Mins",
     "containerCol": {
       "xs": 12
     },
-    "subContainerCol":{
-      "xs":10
+    "subContainerCol": {
+      "xs": 10
     },
-    "imgCol":{
-      "xs":12,
-      "sm":7
+    "imgCol": {
+      "xs": 12,
+      "sm": 7
     },
-    "facilitiesCol":{
-      "xs":12,
-      "sm":5
+    "facilitiesCol": {
+      "xs": 12,
+      "sm": 5
     },
-   "facilities" : [
+    "facilities": [
       {
         "id": 0,
         "facility": "Colleges",
@@ -301,46 +366,46 @@
     ]
   },
   {
-    "id": 6,
+    "id": 8,
     "type": "walkthrough",
     "title": "― Walkthrough ―",
-    "subTitle":"World Of Joy Walkthrough Video",
+    "subTitle": "World Of Joy Walkthrough Video",
     "containerCol": {
       "xs": 12
     },
-    "videoCol":{
-      "xs":11
+    "videoCol": {
+      "xs": 11
     }
   },
   {
-    "id": 7,
+    "id": 9,
     "type": "downloads",
     "title": "Information About Our Property",
     "containerCol": {
       "xs": 12
     },
-    "titleCol":{
-      "xs":12,
-      "sm":4
+    "titleCol": {
+      "xs": 12,
+      "sm": 4
     },
-    "linkContainerCol":{
-      "xs":12,
-      "sm":8
+    "linkContainerCol": {
+      "xs": 12,
+      "sm": 8
     },
-    "linkCol":{
-      "xs":6,
-      "sm":2
+    "linkCol": {
+      "xs": 6,
+      "sm": 2
     }
   },
   {
-    "id": 8,
+    "id": 10,
     "type": "contactDetails",
     "title": "THE WORLD OF JOY APARTMENTS",
-    "companyName":"Urbanrise constructions",
-    "directionBtn":"Get direction from here",
-    "address":"SURVEY NO.117/2, Siruseri, Tamil Nadu 603103",
-    "email":"info@alliancegroup.com",
-    "mapUrl":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2502935907273!2d80.202401!3d12.8270962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy!5e0!3m2!1sen!2sin!4v1685036397265!5m2!1sen!2sin",
+    "companyName": "Urbanrise constructions",
+    "directionBtn": "Get direction from here",
+    "address": "SURVEY NO.117/2, Siruseri, Tamil Nadu 603103",
+    "email": "info@alliancegroup.com",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2502935907273!2d80.202401!3d12.8270962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy!5e0!3m2!1sen!2sin!4v1685036397265!5m2!1sen!2sin",
     "containerCol": {
       "xs": 12
     }
