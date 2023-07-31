@@ -1715,17 +1715,18 @@ function Amenties({ content }) {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: { xs: "5px", sm: "10px" },
+                  padding: { xs: "10px", sm: "20px" },
                 }}
               >
                 <Box
                   sx={{
                     background: `url(${item?.img})`,
-                    backgroundSize: "100%",
+                    backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     width: "100%",
                     height: "100%",
+                    // margin: "15px",
                   }}
                 />
               </Grid>
@@ -1809,13 +1810,13 @@ function Amenties({ content }) {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: { xs: "5px", sm: "10px" },
+                  padding: { xs: "10px", sm: "20px" },
                 }}
               >
                 <Box
                   sx={{
                     background: `url(${item?.img})`,
-                    backgroundSize: "100%",
+                    backgroundSize: "100% 100%",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     width: "100%",

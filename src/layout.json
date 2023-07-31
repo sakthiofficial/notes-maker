@@ -148,42 +148,42 @@
       {
         "title": "Located in Siruseri",
         "description": "One of the Asia’s Largest IT Park. Fastest growing Residential & Commercial locality of Chennai that will set you on a whole new lifestyle orbit.",
-        "img": "/testImages/powerBackup.png"
+        "img": "/testImages/location.png"
       },
       {
         "title": "Rooftop Amenities",
         "description": "There is no limit to the happiness that awaits you at The World of Joy. Mini theatre, Barbeque & Party Area, Viewing Decks, Game Zone, Yoga Decks, Green Dining and More.",
-        "img": "/testImages/swimmingPool.png"
+        "img": "/testImages/rooftopAmenities.png"
       },
       {
         "title": "Cosmo Clubhouse",
         "description": "OMR’s biggest Cosmo clubhouse unlimited ways to unwind. Swimming pool, Clubhouse Lounge, Gym, Banquet Hall, Co-working Spaces, Supermarket, Board Games Room and More.",
-        "img": "/testImages/indoorGames.png"
+        "img": "/testImages/cosmoClubhouse.png"
       },
       {
         "title": "Tower to Tower Amenities",
         "description": "A great place to work out and also for parents to play with their kids. Joy, play a game of badminton, work those brains with a game of life size chess – It’s all right here!",
-        "img": "/testImages/fitnessStudio.png"
+        "img": "/testImages/towerToTowerAmenities.png"
       },
       {
         "title": "Urbanrise Genius",
         "description": "A well designed Children’s learning hub – Urbanrise Genius ensures within the community will ensure the Children won’t have to go anywhere else for the tuition classes.",
-        "img": "/testImages/spa.png"
+        "img": "/testImages/urbanriseGenius.png"
       },
       {
         "title": "1 Acre Green Park",
         "description": "Find happiness in the great outdoor – Mini Soccer Field, Basketball Court, Outdoor Gym, Cricket Practice Nets, Amphitheatre, Table Tennis, Gazebo, Hammock Park and More.",
-        "img": "/testImages/partyHall.png"
+        "img": "/testImages/greenPark.png"
       },
       {
         "title": "Mivan Technology",
         "description": "Strong homes built using Mivan Technology – High Strength & Superior Quality, Speedy construction, More soundproof for privacy, No cracks & less repair works and more.",
-        "img": "/testImages/movieTheatre.png"
+        "img": "/testImages/mivanTechnology.png"
       },
       {
         "title": "Location Advantage",
         "description": "Close proximity to everything you'll ever need - restaurants, schools, colleges, hospitals, malls and more.",
-        "img": "/testImages/cafeLounge.png"
+        "img": "/testImages/locationAdvantage.png"
       }
     ],
     "containerCol": {
@@ -191,7 +191,7 @@
     },
     "subContainerCol": {
       "xs": 12,
-      "sm": 10
+      "sm": 11
     },
     "contentCol": {
       "xs": 6,
