@@ -41,21 +41,42 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useAddFormDataMutation } from "../reduxSlice/apiSlice";
 import layoutData from "../layout.json";
 
+// exterior images
+import exterior from "../../public/testImages1/Exterior/Exterior.jpg";
+import exterior1 from "../../public/testImages1/Exterior/Exterior 1.jpg";
+import exterior2 from "../../public/testImages1/Exterior/Exterior 2.jpg";
+import exterior3 from "../../public/testImages1/Exterior/Exterior 3.jpg";
+import exterior4 from "../../public/testImages1/Exterior/Exterior 4.jpg";
+
+// interior images
+import interior from "../../public/testImages1/Interior/Interior.jpg";
+import interior1 from "../../public/testImages1/Interior/Interior 1.jpg";
+import interior2 from "../../public/testImages1/Interior/Interior 2.jpg";
+import interior3 from "../../public/testImages1/Interior/Interior 3.jpg";
+
+// rooftop images
+import roofTop from "../../public/testImages1/RoofTop/Rooftop.jpg";
+// import roofTop1 from "../../public/testImages1/RoofTop/Rooftop1.tif";
+// import roofTop2 from "../../public/testImages1/RoofTop/Rooftop2.tif";
+import roofTop3 from "../../public/testImages1/RoofTop/Rooftop3.jpg";
+import roofTop4 from "../../public/testImages1/RoofTop/Rooftop 4.jpg";
+import roofTop5 from "../../public/testImages1/RoofTop/Rooftop 5.jpg";
+
+// tower to tower images
+import towerToTower from "../../public/testImages1/Tower_to_tower/Tower to tower.jpg";
+import towerToTower1 from "../../public/testImages1/Tower_to_tower/Tower to tower 1.jpg";
+import towerToTower2 from "../../public/testImages1/Tower_to_tower/Tower to tower 2.jpg";
+import towerToTower3 from "../../public/testImages1/Tower_to_tower/Tower to tower 3.jpg";
+import towerToTower4 from "../../public/testImages1/Tower_to_tower/Tower to tower 4.jpg";
+
+import projectHighlightsImg from "../../public/testImages1/projectHighlightsImg.png";
 import urbanriseLogo from "../../public/testImages/urbanrise_logo.png";
-import lpImg from "../../public/testImages/db.jpg";
+// import lpImg from "../../public/testImages/db.jpg";
 import lpImgXs from "../../public/testImages/lpImg_xs.png";
 import wojLogo from "../../public/testImages/TWOJ_logo.png";
 import trisha from "../../public/testImages/trisha.png";
 import trishaXs from "../../public/testImages/trisha_xs.png";
 import locationMap from "../../public/testImages/location_map.jpg";
-import gal1 from "../../public/testImages/gal1.jpg";
-import gal2 from "../../public/testImages/gal2.jpg";
-import gal3 from "../../public/testImages/gal3.jpg";
-import gal4 from "../../public/testImages/gal4.jpg";
-import gal5 from "../../public/testImages/gal5.jpg";
-import gal6 from "../../public/testImages/gal6.jpg";
-import gal7 from "../../public/testImages/gal7.jpg";
-import gal8 from "../../public/testImages/gal8.jpg";
 
 const EMPTY_USERDATA = {
   userName: "",
@@ -181,7 +202,11 @@ export default function Home() {
                   id="PriceDetails"
                   sx={{ width: "100%" }}
                 >
-                  <PriceDetails key={item.id} content={item} />
+                  <PriceDetails
+                    key={item.id}
+                    content={item}
+                    setOpenEnquiry={setOpenEnquiry}
+                  />
                 </Box>
               );
 
@@ -358,11 +383,43 @@ function Navbar({ content }) {
           <Grid
             container
             item
-            xs={1}
-            display="flex"
+            xs={2}
             alignItems="center"
             paddingLeft="0"
             sx={{
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
+            <Typography
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                fontSize: "18px",
+                color: "#F9B800",
+                padding: "10px 20px",
+                textTransform: "capitalize",
+                borderRadius: "10px",
+              }}
+            >
+              <CallIcon
+                sx={{
+                  paddingRight: { xs: "5px", sm: "10px" },
+                  fontSize: "20px",
+                  fontWeight: "bolder",
+                }}
+              />{" "}
+              {content?.phoneNo || ""}
+            </Typography>
+          </Grid>
+          <Grid
+            container
+            item
+            xs={1}
+            alignItems="center"
+            paddingLeft="0"
+            sx={{
+              display: { xs: "flex", md: "none" },
               justifyContent: "center",
             }}
           >
@@ -370,7 +427,6 @@ function Navbar({ content }) {
               item
               xs={12}
               sx={{
-                display: { xs: "flex", md: "none" },
                 justifyContent: "center",
                 color: "#ffffff",
               }}
@@ -554,7 +610,7 @@ function LandingPage({ content }) {
         }}
       >
         <Grid item xs={12} sx={{ display: { xs: "none", sm: "block" } }}>
-          <Image fill src={lpImg} alt="landingpage" sizes="100vw" />
+          <Image fill src={exterior3} alt="landingpage" sizes="100vw" />
         </Grid>
         <Grid item xs={12} sx={{ display: { xs: "block", sm: "none" } }}>
           <Image fill src={lpImgXs} alt="landingpageXs" sizes="100vw" />
@@ -592,7 +648,7 @@ function LandingPage({ content }) {
               background: "rgba(0, 108, 181, 0.1)",
               borderRadius: "24px",
               overflow: "hidden",
-              height: { xs: "90%", sm: "60%" },
+              height: { xs: "90%", sm: "80%" },
             }}
           >
             <Grid
@@ -626,7 +682,7 @@ function LandingPage({ content }) {
                   component="h1"
                   sx={{
                     padding: "30px 0 10px 0",
-                    fontSize: { xs: "20px", sm: "36px" },
+                    fontSize: { xs: "20px", sm: "34px" },
                     fontWeight: "bold",
                     color: "#F9B800",
                   }}
@@ -638,11 +694,71 @@ function LandingPage({ content }) {
                 <Typography
                   component="h1"
                   sx={{
-                    fontSize: { xs: "18px", sm: "28px" },
+                    fontSize: { xs: "18px", sm: "24px" },
                     color: "#ffffff",
                   }}
                 >
                   {content?.description || ""}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sx={{ paddingTop: "20px" }}>
+                <Typography
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: "14px", sm: "20px" },
+                    color: "#F9B800",
+                  }}
+                >
+                  APARTMENTS:{" "}
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontSize: { xs: "14px", sm: "20px" },
+                      color: "#ffffff",
+                    }}
+                  >
+                    {content?.apartments || ""}
+                  </Typography>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: "14px", sm: "20px" },
+                    color: "#F9B800",
+                  }}
+                >
+                  STATUS:{" "}
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontSize: { xs: "14px", sm: "20px" },
+                      color: "#ffffff",
+                    }}
+                  >
+                    {content?.status || ""}
+                  </Typography>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: "14px", sm: "20px" },
+                    color: "#F9B800",
+                  }}
+                >
+                  PRICE:{" "}
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontSize: { xs: "14px", sm: "20px" },
+                      color: "#ffffff",
+                    }}
+                  >
+                    {content?.price || ""}
+                  </Typography>
                 </Typography>
               </Grid>
             </Grid>
@@ -655,7 +771,7 @@ function LandingPage({ content }) {
               lg={content?.formCol?.lg}
               xl={content?.formCol?.xl}
               sx={{
-                height: "90%",
+                height: "fit-content",
                 background: content?.style?.formBg,
                 borderRadius: "20px",
                 overflow: "hidden",
@@ -663,6 +779,7 @@ function LandingPage({ content }) {
                 alignContent: "flex-start",
                 margin: "30px 30px 0 0",
                 display: { xs: "none", sm: "flex" },
+                paddingBottom: "50px",
               }}
             >
               <Grid
@@ -1065,7 +1182,7 @@ function Overview({ content }) {
       >
         <Image
           fill
-          src={lpImg}
+          src={exterior2}
           style={{ objectFit: "cover" }}
           alt="location map"
           sizes="100vw"
@@ -1182,7 +1299,7 @@ function Overview({ content }) {
       >
         <Image
           fill
-          src={lpImg}
+          src={exterior2}
           style={{ objectFit: "cover" }}
           alt="location map"
           sizes="100vw"
@@ -1195,7 +1312,7 @@ Overview.propTypes = {
   content: PropTypes.object.isRequired,
 };
 
-function PriceDetails({ content }) {
+function PriceDetails({ content, setOpenEnquiry }) {
   return (
     <Grid
       container
@@ -1207,7 +1324,7 @@ function PriceDetails({ content }) {
       xl={content?.containerCol?.xl}
       sx={{
         background:
-          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(/testImages/db.jpg), lightgray 50% / cover no-repeat",
+          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(/testImages1/allianceSiruseri_Image-05.jpg), lightgray 50% / cover no-repeat",
         backgroundSize: "cover",
         padding: "50px 0",
         justifyContent: "center",
@@ -1326,6 +1443,7 @@ function PriceDetails({ content }) {
                   </TableCell>
                   <TableCell align="center">
                     <Button
+                      onClick={() => setOpenEnquiry(true)}
                       sx={{
                         background: "#F9B800",
                         color: "#000000",
@@ -1355,6 +1473,7 @@ function PriceDetails({ content }) {
 }
 PriceDetails.propTypes = {
   content: PropTypes.object.isRequired,
+  setOpenEnquiry: PropTypes.func.isRequired,
 };
 
 function ProjectHighlights({ content }) {
@@ -1421,13 +1540,13 @@ function ProjectHighlights({ content }) {
               height: { xs: "225px", sm: "530px" },
               position: "absolute",
               top: 0,
-              border: "10px solid #ffffff",
+              // border: "10px solid #ffffff",
               borderRadius: "10px",
             }}
           >
             <Image
               fill
-              src={lpImg}
+              src={projectHighlightsImg}
               style={{ objectFit: "cover" }}
               alt="landingpage"
               sizes="100vw"
@@ -1775,7 +1894,38 @@ function Gallery({ content }) {
 
   const [currentExpIdx, setCurrentExpIdx] = useState(0);
 
-  const galleryImgList = [gal1, gal2, gal3, gal4, gal5, gal6, gal7, gal8];
+  const [galleryImgList, setGalleryImgList] = useState([]);
+
+  const exteriorImg = [exterior, exterior1, exterior2, exterior3, exterior4];
+  const interiorImg = [interior, interior1, interior2, interior3];
+  const roofTopImg = [roofTop, roofTop3, roofTop4, roofTop5];
+  const towerToTowerImg = [
+    towerToTower,
+    towerToTower1,
+    towerToTower2,
+    towerToTower3,
+    towerToTower4,
+  ];
+
+  useEffect(() => {
+    if (selectedImgType.includes(1)) {
+      setGalleryImgList(exteriorImg);
+    } else if (selectedImgType.includes(2)) {
+      setGalleryImgList(interiorImg);
+    } else if (selectedImgType.includes(3)) {
+      setGalleryImgList(towerToTowerImg);
+    } else if (selectedImgType.includes(4)) {
+      setGalleryImgList(roofTopImg);
+    } else {
+      const allImg = [
+        ...exteriorImg,
+        ...interiorImg,
+        ...roofTopImg,
+        ...towerToTowerImg,
+      ];
+      setGalleryImgList(allImg);
+    }
+  }, [selectedImgType]);
   return (
     <Grid
       container
@@ -2078,7 +2228,7 @@ const facilitiesList = (data) => {
     <>
       {(data || []).map((item) => (
         <Grid
-          key={item?.name}
+          key={item}
           item
           xs={12}
           display="flex"
@@ -2092,9 +2242,9 @@ const facilitiesList = (data) => {
               fontSize: { xs: "12px", sm: "18px" },
             }}
           >
-            {item?.name || ""}
+            {item || ""}
           </Typography>
-          <Typography
+          {/* <Typography
             variant="p"
             sx={{
               color: "#000000",
@@ -2102,7 +2252,7 @@ const facilitiesList = (data) => {
             }}
           >
             {item?.time || ""}
-          </Typography>
+          </Typography> */}
         </Grid>
       ))}
     </>
@@ -2376,14 +2526,23 @@ function WalkThrough({ content }) {
           overflow: "hidden",
         }}
       >
-        <Image
+        <iframe
+          width="100%"
+          height="100%"
+          src="https://www.youtube.com/embed/pSN9EB79rYE"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+        {/* <Image
           fill
           src={gal4}
           style={{ objectFit: "cover" }}
           alt="location map"
           sizes="100vw"
-        />
-        <Box
+        /> */}
+        {/* <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -2419,7 +2578,7 @@ function WalkThrough({ content }) {
               />
             </Button>
           </Box>
-        </Box>
+        </Box> */}
       </Grid>
     </Grid>
   );
@@ -2758,10 +2917,23 @@ function ContactDetails({ content }) {
             }}
             variant="contained"
           >
-            <NearMeRoundedIcon
-              sx={{ fontSize: "30px", paddingRight: "10px" }}
-            />
-            {content?.directionBtn || ""}
+            <Typography
+              component="a"
+              target="_blank"
+              href={content?.directionBtnUrl}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                color: "#000000",
+                textDecoration: "none",
+                fontWeight: "bolder",
+              }}
+            >
+              <NearMeRoundedIcon
+                sx={{ fontSize: "30px", paddingRight: "10px" }}
+              />
+              {content?.directionBtn || ""}
+            </Typography>
           </Button>
         </Grid>
       </Grid>
@@ -2771,12 +2943,12 @@ function ContactDetails({ content }) {
         sx={{ margin: "30px 0", height: { xs: "185px", sm: "300px" } }}
       >
         <iframe
-          title="sitemap"
-          src={content?.mapUrl || ""}
+          title="location"
+          src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d7780.500587181455!2d80.202401!3d12.8270962!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy%20SURVEY%20NO.117%2F2%20Siruseri%2C%20Tamil%20Nadu%20603103!3m2!1d12.8270962!2d80.202401!5e0!3m2!1sen!2sin!4v1690797014899!5m2!1sen!2sin"
           width="100%"
           height="100%"
           style={{ border: 0 }}
-          allowFullScreen=""
+          allowfullscreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
@@ -2866,11 +3038,16 @@ function Contact({ setOpenEnquiry }) {
         bottom: 0,
         right: { xs: 0, sm: 50 },
         width: "100%",
-        justifyContent: "space-between",
+        justifyContent: { xs: "space-between", md: "flex-end" },
         alignItems: "flex-end",
       }}
     >
-      <Grid item xs={6} width="100%">
+      <Grid
+        item
+        xs={6}
+        width="100%"
+        sx={{ display: { xs: "flex", md: "none" } }}
+      >
         <Button
           onClick={() => window.open("tel: +91 9876543210")}
           sx={{
@@ -3248,18 +3425,17 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
           sx={{ height: "15%", background: "#F9B800", position: "relative" }}
         >
           <Typography
-            component="h2"
+            component="h1"
             sx={{
               textAlign: "center",
               width: "100%",
               color: "#000000",
-              fontWeight: "bolder",
               fontSize: { xs: "14px", sm: "24px" },
               padding: { xs: "0 10px", sm: "0 30px" },
+              fontWeight: "bolder",
             }}
-            variant="contained"
           >
-            ENQUIRE NOW{" "}
+            ENQUIRE NOW
           </Typography>
           <CloseRoundedIcon
             onClick={onClose}
@@ -3314,7 +3490,6 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                     borderRadius: "9px",
                     padding: { xs: "10px", sm: "12px 10px" },
@@ -3362,7 +3537,6 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                     padding: { xs: "10px", sm: "12px 10px" },
                   },
@@ -3409,7 +3583,6 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
                 sx={{
                   width: "100%",
                   "& .MuiOutlinedInput-root .MuiInputBase-input": {
-                    background: "#ffffff",
                     background: "rgba(0, 0, 0, 0.04)",
                     padding: { xs: "10px", sm: "12px 10px" },
                   },

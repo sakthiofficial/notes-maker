@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 
-// eslint-disable-next-line import/no-mutable-exports
 const theme = createTheme({
   typography: {
     allVariants: {

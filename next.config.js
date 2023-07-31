@@ -19,6 +19,22 @@ const nextConfig = {
   images: {
     domains: ["www.jubileeresidences.com"],
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(mov|mp4|avi)$/i,
+      use: [
+        {
+          loader: "file-loader",
+          options: {
+            publicPath: "/_next",
+            name: "assets/videos/[name].[ext]",
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
 };
 
 module.exports = nextConfig;

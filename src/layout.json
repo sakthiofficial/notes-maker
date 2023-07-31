@@ -16,6 +16,7 @@
       "btnBgColor": "#F9B800",
       "textColor": "#ffffff"
     },
+    "phoneNo": "+91 8750911020",
     "col": {
       "xs": 12
     }
@@ -29,20 +30,20 @@
       "containerBg": "linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))"
     },
     "title": "DESIGNED TO MEET YOUR EVERY DESIRE!",
-    "description": "Launching 1, 2 & 3 BHK Premium Gated Community Apartments at Siruseri, OMR with 150+ Amenities.",
-    "flatType": "1, 2 & 3BHK",
-    "price": "48 Lacs*",
-    "phoneNo": "+91 9876543210",
+    "description": "Urbanrise The World of Joy Launching 1, 2 & 3 BHK Premium Gated Community Apartments at Siruseri, OMR with 150+ Amenities.",
+    "apartments": "Studio, 1, 2 & 3 BHK luxury residences",
+    "status": "On going",
+    "price": "19* Lacs onwards.",
+    "phoneNo": "+91 8750911020",
     "containerCol": {
       "xs": 12
     },
     "innerContainerCol": {
-      "xs": 11,
-      "sm": 10
+      "xs": 11
     },
     "leftCol": {
       "xs": 11,
-      "sm": 5
+      "sm": 6
     },
     "formCol": {
       "xs": 4
@@ -60,11 +61,11 @@
     },
     "contentCol": {
       "xs": 12,
-      "sm":6
+      "sm": 6
     },
     "imgCol": {
       "xs": 12,
-      "sm":6
+      "sm": 6
     }
   },
   {
@@ -72,37 +73,38 @@
     "type": "priceDetails",
     "title": "― Price details ―",
     "subTitle": "Configurations",
-    "tableData":[{
-      "unitType":"Studio",
-      "price":"19 Lacs* Onwards",
-      "enquire":"Enquire now"
-    },
-    {
-      "unitType":"1 BHK",
-      "price":"28 Lacs* Onwards",
-      "enquire":"Enquire now"
-    },
-    {
-      "unitType":"1 BHK Regular",
-      "price":"45 Lacs* Onwards",
-      "enquire":"Enquire now"
-    },
-    {
-      "unitType":"2 BHK Large",
-      "price":"48 Lacs* Onwards",
-      "enquire":"Enquire now"
-    },
-    {
-      "unitType":"2 BHK Regular",
-      "price":"54 Lacs* Onwards",
-      "enquire":"Enquire now"
-    },
-    {
-      "unitType":"1 BHK Regular",
-      "price":"57 Lacs* Onwards",
-      "enquire":"Enquire now"
-    }
-  ],
+    "tableData": [
+      {
+        "unitType": "Studio",
+        "price": "19 Lacs* Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "1 BHK",
+        "price": "28 Lacs* Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "1 BHK Regular",
+        "price": "45 Lacs* Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "2 BHK Large",
+        "price": "48 Lacs* Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "2 BHK Regular",
+        "price": "54 Lacs* Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "1 BHK Regular",
+        "price": "57 Lacs* Onwards",
+        "enquire": "Enquire now"
+      }
+    ],
     "containerCol": {
       "xs": 12
     },
@@ -179,8 +181,8 @@
         "img": "/testImages/movieTheatre.png"
       },
       {
-        "title": "Café Lounge",
-        "description": "It is a tank that is filled with water and intended for recreational or competitive swimming or diving.",
+        "title": "Location Advantage",
+        "description": "Close proximity to everything you'll ever need - restaurants, schools, colleges, hospitals, malls and more.",
         "img": "/testImages/cafeLounge.png"
       }
     ],
@@ -210,7 +212,8 @@
     },
     "tabCol": {
       "xs": 11,
-      "sm": 5
+      "md": 8,
+      "xl": 7
     },
     "tabNames": [
       {
@@ -227,7 +230,7 @@
       },
       {
         "id": 3,
-        "name": "Designs"
+        "name": "Tower to tower"
       },
       {
         "id": 4,
@@ -263,104 +266,63 @@
         "id": 0,
         "facility": "Colleges",
         "listAndTime": [
-          {
-            "name": "Chettinad Medical",
-            "time": "2 mins"
-          },
-          {
-            "name": "Hindustan University",
-            "time": "5 mins"
-          },
-          {
-            "name": "Anand Institute",
-            "time": "10 mins"
-          },
-          {
-            "name": "SSN College",
-            "time": "15 mins"
-          },
-          {
-            "name": "Dr. Ambedkar College",
-            "time": "15 mins"
-          }
+          "Sathyabama University",
+          "Hindustan University",
+          "St.Joseph college of Engineering",
+          "Mohamed Sathak A.J. College of Engineering",
+          "SSN College of Engineering"
         ]
       },
       {
         "id": 1,
         "facility": "IT Parks",
         "listAndTime": [
-          {
-            "name": "Sipcot IT Park",
-            "time": "5 mins"
-          },
-          {
-            "name": "TCS, Siruseri",
-            "time": "7 mins"
-          },
-          {
-            "name": "CTS, Siruseri",
-            "time": "7 mins"
-          },
-          {
-            "name": "Polaris",
-            "time": "8 mins"
-          },
-          {
-            "name": "ETA Tech Park",
-            "time": "10 mins"
-          }
+          "Tata Consultancy Services",
+          "Atos Syntel",
+          "Airtel data center",
+          "Adani data center",
+          "Cognizant",
+          "Capegemini",
+          "Hexaware",
+          "Aspire System"
         ]
       },
       {
         "id": 2,
         "facility": "Schools",
         "listAndTime": [
-          {
-            "name": "Marina Grand Mall",
-            "time": "5 mins"
-          },
-          {
-            "name": "AGS Cinema",
-            "time": "6 mins"
-          },
-          {
-            "name": "MGM",
-            "time": "12 mins"
-          },
-          {
-            "name": "Mayajal",
-            "time": "15 mins"
-          },
-          {
-            "name": "Muttu Kadu",
-            "time": "10 mins"
-          }
+          "PSBB School",
+          "Chettinad School",
+          "Hindustan International School",
+          "Gateway International School",
+          "Velammal Vidhyashram School"
         ]
       },
       {
         "id": 3,
         "facility": "Hospitals",
         "listAndTime": [
-          {
-            "name": "Chettinad Health City",
-            "time": "2 mins"
-          },
-          {
-            "name": "Life Line Hospital",
-            "time": "5 mins"
-          },
-          {
-            "name": "Supreme Hospital",
-            "time": "10 mins"
-          },
-          {
-            "name": "Madhura Hospital",
-            "time": "10 mins"
-          },
-          {
-            "name": "Vision Hospital",
-            "time": "5 mins"
-          }
+          "Chettinad Health City",
+          "Supreme Hospital",
+          "Life line Hospital",
+          "Madhura Hospital",
+          "Apollo Diagnostics",
+          "Radiant Dental Care",
+          "Phoenix Mind Care"
+        ]
+      },
+      {
+        "id": 4,
+        "facility": "Entertainment Avenues",
+        "listAndTime": [
+          "Marina Mall",
+          "Vivira Mall",
+          "INOX",
+          "AGS Cinemas",
+          "OMR Food Street",
+          "Kovalam Blue flag beach",
+          "PVR Cinemas",
+          "MGM Dizzee World"
         ]
       }
     ]
@@ -404,7 +366,8 @@
     "companyName": "Urbanrise constructions",
     "directionBtn": "Get direction from here",
     "address": "SURVEY NO.117/2, Siruseri, Tamil Nadu 603103",
-    "email": "info@alliancegroup.com",
+    "directionBtnUrl": "https://www.google.com/maps/dir//Urbanrise+The+World+of+Joy+SURVEY+NO.117%2F2+Siruseri,+Tamil+Nadu+603103/@12.8270962,80.202401,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a525b2c2fa92a95:0x7513c77caf9ef2f0!2m2!1d80.202401!2d12.8270962?entry=ttu",
+    "email": "info@urbanrise.in",
     "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.2502935907273!2d80.202401!3d12.8270962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b2c2fa92a95%3A0x7513c77caf9ef2f0!2sUrbanrise%20The%20World%20of%20Joy!5e0!3m2!1sen!2sin!4v1685036397265!5m2!1sen!2sin",
     "containerCol": {
       "xs": 12
