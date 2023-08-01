@@ -76,32 +76,32 @@
     "tableData": [
       {
         "unitType": "Studio",
-        "price": "19 Lacs* Onwards",
+        "price": "19 Lacs Onwards",
         "enquire": "Enquire now"
       },
       {
         "unitType": "1 BHK",
-        "price": "28 Lacs* Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "1 BHK Regular",
-        "price": "45 Lacs* Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "2 BHK Large",
-        "price": "48 Lacs* Onwards",
+        "price": "28 Lacs Onwards",
         "enquire": "Enquire now"
       },
       {
         "unitType": "2 BHK Regular",
-        "price": "54 Lacs* Onwards",
+        "price": "45 Lacs Onwards",
         "enquire": "Enquire now"
       },
       {
-        "unitType": "1 BHK Regular",
-        "price": "57 Lacs* Onwards",
+        "unitType": "2 BHK Large",
+        "price": "48 Lacs Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "2 BHK Regular",
+        "price": "54 Lacs Onwards",
+        "enquire": "Enquire now"
+      },
+      {
+        "unitType": "3 BHK Large",
+        "price": "57 Lacs Onwards",
         "enquire": "Enquire now"
       }
     ],
