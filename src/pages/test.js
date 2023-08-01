@@ -30,7 +30,6 @@ import CallIcon from "@mui/icons-material/Call";
 import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import DomainRoundedIcon from "@mui/icons-material/DomainRounded";
@@ -60,7 +59,7 @@ import roofTop from "../../public/testImages1/RoofTop/Rooftop.jpg";
 // import roofTop2 from "../../public/testImages1/RoofTop/Rooftop2.tif";
 import roofTop3 from "../../public/testImages1/RoofTop/Rooftop3.jpg";
 import roofTop4 from "../../public/testImages1/RoofTop/Rooftop 4.jpg";
-import roofTop5 from "../../public/testImages1/RoofTop/Rooftop 5.jpg";
+import roofTop5 from "../../public/testImages1/RoofTop/Roof top 5.jpg";
 
 // tower to tower images
 import towerToTower from "../../public/testImages1/Tower_to_tower/Tower to tower.jpg";
@@ -70,13 +69,12 @@ import towerToTower3 from "../../public/testImages1/Tower_to_tower/Tower to towe
 import towerToTower4 from "../../public/testImages1/Tower_to_tower/Tower to tower 4.jpg";
 
 import projectHighlightsImg from "../../public/testImages1/projectHighlightsImg.png";
-import urbanriseLogo from "../../public/testImages/urbanrise_logo.png";
-// import lpImg from "../../public/testImages/db.jpg";
-import lpImgXs from "../../public/testImages/lpImg_xs.png";
-import wojLogo from "../../public/testImages/TWOJ_logo.png";
-import trisha from "../../public/testImages/trisha.png";
-import trishaXs from "../../public/testImages/trisha_xs.png";
-import locationMap from "../../public/testImages/location_map.jpg";
+import urbanriseLogo from "../../public/testImages1/urbanrise_logo.png";
+import lpImgXs from "../../public/testImages1/lpImg_xs.png";
+import wojLogo from "../../public/testImages1/TWOJ_logo.png";
+import trisha from "../../public/testImages1/trisha.png";
+import trishaXs from "../../public/testImages1/trisha_xs.png";
+import locationMap from "../../public/testImages1/location_map.jpg";
 
 const EMPTY_USERDATA = {
   userName: "",
@@ -1324,7 +1322,7 @@ function PriceDetails({ content, setOpenEnquiry }) {
       xl={content?.containerCol?.xl}
       sx={{
         background:
-          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(/testImages1/allianceSiruseri_Image-05.jpg), lightgray 50% / cover no-repeat",
+          "linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(/testImages1/AllianceSiruseri_Image-05.jpg), lightgray 50% / cover no-repeat",
         backgroundSize: "cover",
         padding: "50px 0",
         justifyContent: "center",
@@ -1484,7 +1482,7 @@ function ProjectHighlights({ content }) {
       xs={12}
       justifyContent="center"
       sx={{
-        background: `url(/testImages/features_bg.png)`,
+        background: `url(/testImages1/features_bg.png)`,
         backgroundSize: "cover",
         padding: { xs: "50px 0", sm: "100px 0 30px 0" },
       }}
@@ -1631,7 +1629,7 @@ function Amenties({ content }) {
       lg={content?.containerCol?.lg}
       xl={content?.containerCol?.xl}
       sx={{
-        background: `url(/testImages/amenities_bg.png)`,
+        background: `url(/testImages1/amenities_bg.png)`,
         backgroundSize: "cover",
         padding: { xs: "50px 0", sm: "100px 0 30px 0" },
         justifyContent: "center",
@@ -2274,7 +2272,7 @@ function LocationAdvantages({ content }) {
       lg={content?.containerCol?.lg}
       xl={content?.containerCol?.xl}
       sx={{
-        background: `url(/testImages/locationAdvantages_bg.png)`,
+        background: `url(/testImages1/locationAdvantages_bg.png)`,
         backgroundSize: "cover",
         padding: { xs: "50px 0", sm: "100px 0 30px 0" },
         justifyContent: "center",
@@ -2465,7 +2463,7 @@ function WalkThrough({ content }) {
       lg={content?.containerCol?.lg}
       xl={content?.containerCol?.xl}
       sx={{
-        background: `url(/testImages/walkthrough_bg.png)`,
+        background: `url(/testImages1/walkthrough_bg.png)`,
         backgroundSize: "cover",
         padding: { xs: "50px 0 100px 0", sm: "100px 0" },
         justifyContent: "center",
@@ -2599,7 +2597,7 @@ function Downloads({ content, setOpenEnquiry }) {
       lg={content?.containerCol?.lg}
       xl={content?.containerCol?.xl}
       sx={{
-        background: `url(/testImages/downloads_bg.png)`,
+        background: `url(/testImages1/downloads_bg.png)`,
         backgroundSize: "cover",
         justifyContent: "center",
       }}

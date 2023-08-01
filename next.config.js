@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -21,18 +22,11 @@ const nextConfig = {
   },
   webpack: (config) => {
     config.module.rules.push({
-      test: /\.(mov|mp4|avi)$/i,
-      use: [
-        {
-          loader: "file-loader",
-          options: {
-            publicPath: "/_next",
-            name: "assets/videos/[name].[ext]",
-          },
-        },
-      ],
+      test: /\.tif$/,
+      use: {
+        loader: "file-loader",
+      },
     });
-
     return config;
   },
 };
