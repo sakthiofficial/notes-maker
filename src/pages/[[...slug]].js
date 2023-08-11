@@ -210,7 +210,7 @@ export default function Home() {
               return (
                 <Box
                   component="section"
-                  id="Overview"
+                  id="OVERVIEW"
                   sx={{ width: "100%", marginTop: "5rem" }}
                 >
                   <BannerImg />
@@ -221,7 +221,7 @@ export default function Home() {
               return (
                 <Box
                   component="section"
-                  id="PriceDetails"
+                  id="CONFIGURATION"
                   sx={{ width: "100%" }}
                 >
                   <PriceDetails
@@ -256,18 +256,16 @@ export default function Home() {
               );
             case "location":
               return (
-                <Box
-                  component="section"
-                  id="LocationAdvantages"
-                  sx={{ width: "100%" }}
-                >
+                <Box component="section" id="Location" sx={{ width: "100%" }}>
                   <LocationAdvantages key={item.id} content={item} />
                 </Box>
               );
 
             case "downloads":
               return (
-                <LandingPage key={layoutData[1].id} content={layoutData[1]} />
+                <Box component="section" id="Contact" sx={{ width: "100%" }}>
+                  <LandingPage key={layoutData[1].id} content={layoutData[1]} />
+                </Box>
               );
             case "contactDetails":
               return <Footer />;
@@ -372,17 +370,11 @@ function Navbar({ content }) {
                   sx={{
                     fontSize: "15px",
                     color: content?.style?.textColor,
-                    background: selectedSection === item ? "#006CB5" : "none",
+
                     fontWeight: selectedSection === item ? "bold" : "none",
                     textTransform: "uppercase",
                     cursor: "pointer",
                     borderRadius: "10px",
-                    ":hover": {
-                      color:
-                        selectedSection === item
-                          ? ""
-                          : content?.style?.btnBgColor,
-                    },
                   }}
                 >
                   {item || ""}
@@ -431,14 +423,14 @@ function Navbar({ content }) {
               xs={12}
               sx={{
                 justifyContent: "center",
-                color: "#ffffff",
+                // color: "#ffffff",
               }}
             >
               <IconButton
                 onClick={() => setDrawerState(!drawerState)}
                 size="large"
                 edge="start"
-                color="inherit"
+                color="#000"
                 aria-label="menu"
               >
                 <MenuIcon />
@@ -480,8 +472,9 @@ function NavbarDrawer({ drawerState, setDrawerState, sectionNames }) {
         rowSpacing={5}
         padding="15px"
         sx={{
-          background: "#000000",
+          background: "rgba(0, 0, 0, 0.9)",
           marginTop: "0",
+          zIndex: "100",
         }}
       >
         {(sectionNames || [])?.map((item) => (
@@ -3270,10 +3263,10 @@ function Contact({ setOpenEnquiry }) {
       sx={{
         position: "fixed",
         bottom: 0,
-        right: { xs: 0, sm: 0 },
         width: "100%",
         justifyContent: { xs: "space-between", md: "flex-end" },
         alignItems: "flex-end",
+        padding: "0px 10px",
       }}
     >
       <Grid
@@ -3330,8 +3323,8 @@ function Contact({ setOpenEnquiry }) {
             height: { xs: "48px", sm: "70px" },
             display: { xs: "none", sm: "flex" },
             justifyContent: "space-between",
-            background: "#F9B800",
-            color: "#000000",
+            background: "#202b60",
+            color: "#fff",
             fontWeight: "bolder",
             fontSize: { xs: "14px", sm: "24px" },
             borderTopLeftRadius: { xs: "17px", sm: "29px" },
@@ -3363,8 +3356,8 @@ function Contact({ setOpenEnquiry }) {
             height: "48px",
             display: { xs: "flex", sm: "none" },
             justifyContent: "center",
-            background: "#F9B800",
-            color: "#000000",
+            background: "#202b60",
+            color: "#fff",
             fontWeight: "bolder",
             fontSize: "14px",
             borderTopLeftRadius: "17px",
