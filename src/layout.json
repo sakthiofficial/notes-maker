@@ -3,18 +3,18 @@
     "id": 0,
     "type": "navBar",
     "sections": [
-      "Project Highlights",
-      "Overview",
-      "Price Details",
+      "OVERVIEW",
+      "CONFIGURATION",
       "Amenities",
       "Gallery",
-      "Location Advantages",
-      "Walkthrough Video"
+      "Location",
+      "Contact us",
+      "E-BROCHURE"
     ],
     "style": {
-      "bgColor": "#000000",
+      "bgColor": "#fff",
       "btnBgColor": "#F9B800",
-      "textColor": "#ffffff"
+      "textColor": "#202b60"
     },
     "phoneNo": "+91 8750911020",
     "col": {
@@ -27,7 +27,7 @@
     "style": {
       "formTopColor": "#006CB5",
       "formBg": "#ffffff",
-      "containerBg": "linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))"
+      "containerBg": "https://siddhasky-mumbai.com/images/contact-bg.jpg"
     },
     "title": "DESIGNED TO MEET YOUR EVERY DESIRE!",
     "description": "Urbanrise The World of Joy Launching 1, 2 & 3 BHK Premium Gated Community Apartments at Siruseri, OMR with 150+ Amenities.",
@@ -72,37 +72,17 @@
     "id": 3,
     "type": "priceDetails",
     "title": "― Price details ―",
-    "subTitle": "Configurations",
+    "subTitle": "Project Configurations",
     "tableData": [
       {
-        "unitType": "Studio",
-        "price": "19 Lacs Onwards",
-        "enquire": "Enquire now"
+        "unitType": "2 BHK",
+        "price": "644 & 691 Sq.ft",
+        "enquire": "Click Here"
       },
       {
-        "unitType": "1 BHK",
-        "price": "28 Lacs Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "2 BHK Regular",
-        "price": "45 Lacs Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "2 BHK Large",
-        "price": "48 Lacs Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "2 BHK Regular",
-        "price": "54 Lacs Onwards",
-        "enquire": "Enquire now"
-      },
-      {
-        "unitType": "3 BHK Large",
-        "price": "57 Lacs Onwards",
-        "enquire": "Enquire now"
+        "unitType": "3 BHK",
+        "price": "644 & 691 Sq.ft",
+        "enquire": "Click Here"
       }
     ],
     "containerCol": {
@@ -142,48 +122,48 @@
   {
     "id": 5,
     "type": "amenities",
-    "title": "― Amenities ―",
+    "title": "Amenities",
     "subTitle": "Why you choose us",
     "amenities": [
       {
-        "title": "Located in Siruseri",
+        "title": "Kid's Play Area",
         "description": "One of the Asia’s Largest IT Park. Fastest growing Residential & Commercial locality of Chennai that will set you on a whole new lifestyle orbit.",
-        "img": "/testImages1/location.png"
+        "img": "kidLogo"
       },
       {
-        "title": "Rooftop Amenities",
+        "title": "Swimming Pool",
         "description": "There is no limit to the happiness that awaits you at The World of Joy. Mini theatre, Barbeque & Party Area, Viewing Decks, Game Zone, Yoga Decks, Green Dining and More.",
-        "img": "/testImages1/rooftopAmenities.png"
+        "img": "swimmingLogo"
       },
       {
-        "title": "Cosmo Clubhouse",
+        "title": "Multipurpose lawn/Party Space",
         "description": "OMR’s biggest Cosmo clubhouse unlimited ways to unwind. Swimming pool, Clubhouse Lounge, Gym, Banquet Hall, Co-working Spaces, Supermarket, Board Games Room and More.",
-        "img": "/testImages1/cosmoClubhouse.png"
+        "img": "hallLogo"
       },
       {
-        "title": "Tower to Tower Amenities",
+        "title": "Billards Room",
         "description": "A great place to work out and also for parents to play with their kids. Joy, play a game of badminton, work those brains with a game of life size chess – It’s all right here!",
-        "img": "/testImages1/towerToTowerAmenities.png"
+        "img": "dramsLogo"
       },
       {
-        "title": "Urbanrise Genius",
+        "title": "Toddler's Play Area",
         "description": "A well designed Children’s learning hub – Urbanrise Genius ensures within the community will ensure the Children won’t have to go anywhere else for the tuition classes.",
-        "img": "/testImages1/urbanriseGenius.png"
+        "img": "playingLogo"
       },
       {
-        "title": "1 Acre Green Park",
+        "title": "Gymnasium",
         "description": "Find happiness in the great outdoor – Mini Soccer Field, Basketball Court, Outdoor Gym, Cricket Practice Nets, Amphitheatre, Table Tennis, Gazebo, Hammock Park and More.",
-        "img": "/testImages1/greenPark.png"
+        "img": "gymLogo"
       },
       {
-        "title": "Mivan Technology",
+        "title": "Amphitheatre with stage",
         "description": "Strong homes built using Mivan Technology – High Strength & Superior Quality, Speedy construction, More soundproof for privacy, No cracks & less repair works and more.",
-        "img": "/testImages1/mivanTechnology.png"
+        "img": "stepsLogo"
       },
       {
-        "title": "Location Advantage",
+        "title": "Jacuzzi",
         "description": "Close proximity to everything you'll ever need - restaurants, schools, colleges, hospitals, malls and more.",
-        "img": "/testImages1/locationAdvantage.png"
+        "img": "jaccussiLogo"
       }
     ],
     "containerCol": {
@@ -205,36 +185,40 @@
   {
     "id": 6,
     "type": "gallery",
-    "title": "― Gallery ―",
+    "title": "Gallery ",
     "subTitle": "World Of Joy's Gallery",
     "containerCol": {
       "xs": 12
     },
     "tabCol": {
       "xs": 11,
-      "md": 8,
+      "md": 11,
       "xl": 7
     },
     "tabNames": [
       {
         "id": 0,
-        "name": "All Pictures"
+        "name": "Elevation"
       },
       {
         "id": 1,
-        "name": "Exterior"
+        "name": "Amenities"
       },
       {
         "id": 2,
-        "name": "Interior"
+        "name": "interior"
       },
       {
         "id": 3,
-        "name": "Tower to tower"
+        "name": "Constraction updated"
       },
       {
         "id": 4,
-        "name": "Roof Top"
+        "name": "floor plan"
+      },
+      {
+        "id": 5,
+        "name": "master plan"
       }
     ],
     "sliderCol": {
@@ -244,101 +228,123 @@
   },
   {
     "id": 7,
-    "type": "location",
-    "title": "― Location Advantages ―",
-    "subTitle": "Key Infrastructure Within 5 Mins",
-    "containerCol": {
-      "xs": 12
-    },
-    "subContainerCol": {
-      "xs": 10
-    },
-    "imgCol": {
-      "xs": 12,
-      "sm": 7
-    },
-    "facilitiesCol": {
-      "xs": 12,
-      "sm": 5
-    },
-    "facilities": [
-      {
-        "id": 0,
-        "facility": "Colleges",
-        "listAndTime": [
-          "Sathyabama University",
-          "Hindustan University",
-          "St.Joseph college of Engineering",
-          "Mohamed Sathak A.J. College of Engineering",
-          "SSN College of Engineering"
-        ]
-      },
-      {
-        "id": 1,
-        "facility": "IT Parks",
-        "listAndTime": [
-          "Tata Consultancy Services",
-          "Atos Syntel",
-          "Airtel data center",
-          "Adani data center",
-          "Cognizant",
-          "Capegemini",
-          "Hexaware",
-          "Aspire System"
-        ]
-      },
-      {
-        "id": 2,
-        "facility": "Schools",
-        "listAndTime": [
-          "PSBB School",
-          "Chettinad School",
-          "Hindustan International School",
-          "Gateway International School",
-          "Velammal Vidhyashram School"
-        ]
-      },
-      {
-        "id": 3,
-        "facility": "Hospitals",
-        "listAndTime": [
-          "Chettinad Health City",
-          "Supreme Hospital",
-          "Life line Hospital",
-          "Madhura Hospital",
-          "Apollo Diagnostics",
-          "Radiant Dental Care",
-          "Phoenix Mind Care"
-        ]
-      },
-      {
-        "id": 4,
-        "facility": "Entertainment Avenues",
-        "listAndTime": [
-          "Marina Mall",
-          "Vivira Mall",
-          "INOX",
-          "AGS Cinemas",
-          "OMR Food Street",
-          "Kovalam Blue flag beach",
-          "PVR Cinemas",
-          "MGM Dizzee World"
-        ]
-      }
-    ]
-  },
-  {
-    "id": 8,
     "type": "walkthrough",
-    "title": "― Walkthrough ―",
+    "title": "Video",
     "subTitle": "World Of Joy Walkthrough Video",
     "containerCol": {
       "xs": 12
     },
     "videoCol": {
       "xs": 11
-    }
+    },
+    "tabCol": {
+      "xs": 11,
+      "md": 11,
+      "xl": 7
+    },
+    "tabNames": [
+      {
+        "id": 0,
+        "name": "Elevation"
+      },
+      {
+        "id": 1,
+        "name": "2 Bhk layout"
+      },
+      {
+        "id": 2,
+        "name": "3 bhk layout"
+      },
+      {
+        "id": 3,
+        "name": "Constraction updated"
+      },
+      {
+        "id": 4,
+        "name": "location advantage"
+      },
+      {
+        "id": 5,
+        "name": "connectivity"
+      }
+    ]
   },
+  {
+    "id": 8,
+    "type": "location",
+    "title": "Location Advantages",
+    "subTitle": "Key Infrastructure Within 5 Mins",
+    "containerCol": {
+      "xs": 12
+    },
+    "subContainerCol": {
+      "xs": 12
+    },
+    "imgCol": {
+      "xs": 12,
+      "sm": 5
+    },
+    "facilitiesCol": {
+      "xs": 12,
+      "sm": 6
+    },
+    "facilities": [
+      {
+        "id": 0,
+        "facility": "BEST EDUCATIONAL INSTITUTES IN THE VICINITY",
+        "listAndTime": [
+          "South Indian Education Welfare Society School - 8 mins",
+          "National Kannada Education Society High School - 9 mins",
+          "Auxilium Convent High School - 1O mins",
+          "Sitaram Prakash High School - 12 mins",
+          "VJTI - 15 mins",
+          "Don Bosco - 15 mins",
+          "ICT - 16 mins",
+          "Dyaneshwar Vidyalaya - 16 mins"
+        ]
+      },
+      {
+        "id": 1,
+        "facility": "centrally located",
+        "listAndTime": [
+          "GTB Monorail Station - 3 mins",
+          "Eastern Freeway - 3 mins",
+          "Wadala Business District - 4 mins",
+          "Eastern Express Highway - 5 mins",
+          "Local Rail (Harbour & Western) - 5 mins",
+          "Bandra Kurla Complex- 10 mins",
+          "Sewri - 14 mins",
+          "Wadala station - 15 mins",
+          "Lower Parel - 15 mins",
+          "Fort - 20 mins"
+        ]
+      },
+      {
+        "id": 2,
+        "facility": "closer to the best health care in the city",
+        "listAndTime": [
+          "Chinmay Nursing Home - 5 mins",
+          "Smt. S.R. Mehta & Sir K. P. Cardiac Institute - 6 mins",
+          "Aditya Jyot Eye Hospital - 9 mins",
+          "BPT Hospital - 1O mins",
+          "K. J. Somaiya Hospital - 10 mins",
+          "Nowrosjee Wadia Maternity Hospital - 10 mins",
+          "Wadala TB Hospital - 12 mins",
+          "Tata memorial hospital - 23 mins"
+        ]
+      },
+      {
+        "id": 3,
+        "facility": "Road connectivity",
+        "listAndTime": [
+          "Bandra Worli Sea Link - 25 mins",
+          "Domestic & International Airport - 25 mins",
+          "CSMT (Chhatrapati Shivaji Maharaj Terminus) - 25 mins"
+        ]
+      }
+    ]
+  },
+
   {
     "id": 9,
     "type": "downloads",

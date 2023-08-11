@@ -18,7 +18,7 @@ const nextConfig = {
     NEXT_PUBLIC_PREVIEW: process.env.GTM_PREVIEW,
   },
   images: {
-    domains: ["www.jubileeresidences.com"],
+    domains: ["www.jubileeresidences.com", "siddhasky-mumbai.com"],
   },
   webpack: (config) => {
     config.module.rules.push({
