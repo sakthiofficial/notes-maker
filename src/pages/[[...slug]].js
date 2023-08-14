@@ -27,16 +27,18 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { LoadingButton } from "@mui/lab";
 import CallIcon from "@mui/icons-material/Call";
-import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
-import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
-import DomainRoundedIcon from "@mui/icons-material/DomainRounded";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 import AddIcon from "@mui/icons-material/Add";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import RemoveIcon from "@mui/icons-material/Remove";
+import path from "path";
+import read from "fs-readdir-recursive";
+import fs from "fs";
+import sizeOf from "image-size";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import PhoneIcon from "@mui/icons-material/Phone";
 import { useAddFormDataMutation } from "../reduxSlice/apiSlice";
 import layoutData from "../layout.json";
 
@@ -69,11 +71,7 @@ import towerToTower3 from "../../public/testImages1/Tower_to_tower/Tower to towe
 import towerToTower4 from "../../public/testImages1/Tower_to_tower/Tower to tower 4.jpg";
 
 import projectHighlightsImg from "../../public/testImages1/projectHighlightsImg.png";
-import urbanriseLogo from "../../public/testImages1/urbanrise_logo.png";
-import lpImgXs from "../../public/testImages1/lpImg_xs.png";
 import wojLogo from "../../public/testImages1/TWOJ_logo.png";
-import trisha from "../../public/testImages1/trisha.png";
-import trishaXs from "../../public/testImages1/trisha_xs.png";
 import locationMap from "../../public/testImages1/location_map.jpg";
 
 // siddhaSky website logos
@@ -93,14 +91,31 @@ import playingLogo from "../../public/images/siddhaAminites/playing.png";
 import stepsLogo from "../../public/images/siddhaAminites/steps.png";
 import swimmingLogo from "../../public/images/siddhaAminites/swimming.png";
 
-// siddhasky website images
+// Jewel of chennai Images.
+import allianceLogo from "../../public/images/alliance-group-logo.png";
+import urbanriseLogo from "../../public/images/urbanrise-logo.png";
+import overviewMap from "../../public/images/overviewMap.webp";
+import jewelOfChennai from "../../public/images/jewelOfChennai.png";
 
-import contactBg from "../../public/images/contact-bg.jpg";
+// amentites Logos
+import bbqLogo from "../../public/images/AmenitiesLogos/bbq.png";
+import bikeLogo from "../../public/images/AmenitiesLogos/bike.png";
+import carParking from "../../public/images/AmenitiesLogos/carParking.png";
+import coffeeLogo from "../../public/images/AmenitiesLogos/coffee.png";
+import laptopLogo from "../../public/images/AmenitiesLogos/laptop.png";
+import musicLogo from "../../public/images/AmenitiesLogos/music.png";
+import shoppingLogo from "../../public/images/AmenitiesLogos/shopping.png";
+import swimming from "../../public/images/AmenitiesLogos/swimming.png";
 
 const EMPTY_USERDATA = {
   userName: "",
   phoneNo: "",
   email: "",
+};
+
+const themeColors = {
+  blue: "#243B98",
+  pink: "#A40163",
 };
 
 const EMPTY_ISDIRTY = {
@@ -191,7 +206,13 @@ const getUtmParams = (pageQueryParams) => {
   };
 };
 
-export default function Home() {
+export default function Home({
+  lpImg,
+  lpImgXs,
+  lpImgSize,
+  lpImgXsSize,
+  pageProps,
+}) {
   const [openEnquiry, setOpenEnquiry] = useState(false);
   return (
     <>
@@ -206,16 +227,24 @@ export default function Home() {
           switch (item.type) {
             case "navBar":
               return <Navbar key={item.id} content={item} />;
-            case "overview":
+            case "bannerImg":
               return (
-                <Box
+                <Grid
+                  xs={12}
                   component="section"
                   id="OVERVIEW"
-                  sx={{ width: "100%", marginTop: "5rem" }}
+                  sx={{ marginTop: { xs: "3rem", md: "5rem" } }}
                 >
-                  <BannerImg />
+                  <BannerImg
+                    lpImg={lpImg}
+                    lpImgXs={lpImgXs}
+                    lpImgSize={lpImgSize}
+                    lpImgXsSize={lpImgXsSize}
+                    pageProps={pageProps}
+                    content={item}
+                  />
                   <Overview key={item.id} content={item} />
-                </Box>
+                </Grid>
               );
             case "priceDetails":
               return (
@@ -244,16 +273,17 @@ export default function Home() {
                   <Gallery key={item.id} content={item} />
                 </Box>
               );
-            case "walkthrough":
-              return (
-                <Box
-                  component="section"
-                  id="WalkthroughVideo"
-                  sx={{ width: "100%" }}
-                >
-                  <WalkThrough key={item.id} content={item} />
-                </Box>
-              );
+            // Here the video component
+            // case "walkthrough":
+            //   return (
+            //     <Box
+            //       component="section"
+            //       id="WalkthroughVideo"
+            //       sx={{ width: "100%" }}
+            //     >
+            //       <WalkThrough key={item.id} content={item} />
+            //     </Box>
+            //   );
             case "location":
               return (
                 <Box component="section" id="Location" sx={{ width: "100%" }}>
@@ -274,7 +304,15 @@ export default function Home() {
               return null;
           }
         })}
-        <Grid container item xs={12} justifyContent="flex-end">
+        <Grid
+          container
+          item
+          xs={12}
+          sx={{
+            justifyContent: { xs: "center", md: "flex-end" },
+            zIndex: "100",
+          }}
+        >
           <Contact setOpenEnquiry={setOpenEnquiry} />
         </Grid>
         <EnquiryFormPopup
@@ -334,7 +372,7 @@ function Navbar({ content }) {
             }}
           >
             <Image
-              src={skyLogo}
+              src={jewelOfChennai}
               alt="logo"
               style={{
                 height: "100%",
@@ -385,7 +423,7 @@ function Navbar({ content }) {
           <Grid
             container
             item
-            xs={1.5}
+            xs={2}
             alignItems="center"
             paddingLeft="0"
             sx={{
@@ -396,16 +434,13 @@ function Navbar({ content }) {
               height: "100px",
             }}
           >
-            <Image
-              fill
-              src={sidhaSejalLogo}
-              alt="logo"
-              style={{
-                height: "100%",
-                objectFit: "contain",
-              }}
-              sizes="100vw"
-            />
+            <PhoneIcon sx={{ color: themeColors?.pink }} />
+            <Typography
+              component="p"
+              sx={{ color: themeColors?.pink, marginLeft: "10px" }}
+            >
+              +91 8750911020
+            </Typography>
           </Grid>
           <Grid
             container
@@ -598,7 +633,7 @@ function LandingPage({ content }) {
     >
       <Grid item xs={12} md={6} sx={{ height: "30rem" }}>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.6214760998555!2d72.8675830742873!3d19.03639428216002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cfaf78bb0ba7%3A0x40bc1d125e65498a!2sSiddha%20Sky-%20Wadala!5e0!3m2!1sen!2sin!4v1691493333226!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.223032240893!2d80.21291247413477!3d13.148326987183532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265b49bdae937%3A0x107457c8ee60b28b!2sUrbanrise%20Jewel%20of%20Chennai!5e0!3m2!1sen!2sin!4v1691996889930!5m2!1sen!2sin"
           width="100%"
           height="100%"
           allowfullscreen=""
@@ -610,7 +645,7 @@ function LandingPage({ content }) {
         sx={{
           width: { md: "50%", xs: "100%" },
           position: "relative",
-          height: "37rem",
+          height: { xs: "35rem", md: "30rem" },
           background: "rgba(0, 0, 0, 0.5)", // Black overlay with decreased opacity
           backgroundBlendMode: "multiply",
           backgroundImage: `url(https://siddhasky-mumbai.com/images/contact-bg.jpg)`, // Replace with your image path
@@ -783,7 +818,6 @@ function LandingPage({ content }) {
                 borderRadius: "20px",
                 justifyContent: "center",
                 alignContent: "flex-start",
-                margin: "30px 30px 0 0",
                 display: { xs: "flex" },
                 paddingBottom: "50px",
               }}
@@ -989,9 +1023,8 @@ function LandingPage({ content }) {
                       lineHeight: "23px",
                     }}
                   >
-                    Site Add.: Siddha, Sardar Nagar No. 4, Sion Division, Hemant
-                    Manjrekar Road, Beside GTB Monorail Station, Wadala (East,
-                    Mumbai, Maharashtra 400037
+                    Site Add.: Urbanrise Jewel of Chennai,VS Mani Nagar,
+                    Madhavaram, Chennai, Tamil Nadu 600060
                   </Typography>
                 </Grid>
               </Grid>
@@ -1364,7 +1397,7 @@ Overview.propTypes = {
 function PriceDetails({ content, setOpenEnquiry }) {
   return (
     <>
-      <About />
+      <About paraGraph={content?.paraGraph} />
       <Grid
         container
         item
@@ -1463,7 +1496,7 @@ function PriceDetails({ content, setOpenEnquiry }) {
                     }}
                     align="center"
                   >
-                    Rera Carpet Area
+                    Floor Plan
                   </TableCell>
                   <TableCell
                     sx={{
@@ -1502,7 +1535,22 @@ function PriceDetails({ content, setOpenEnquiry }) {
                         fontSize: { xs: "14px" },
                       }}
                     >
-                      {item?.price || ""}
+                      <Button
+                        onClick={() => setOpenEnquiry(true)}
+                        sx={{
+                          color: "#000000",
+
+                          textTransform: "none",
+                          padding: "0px",
+                          borderRadius: "0px",
+                          fontSize: { xs: "16px" },
+                          ":hover": {
+                            borderBottom: "1px solid",
+                          },
+                        }}
+                      >
+                        {item?.price || ""}
+                      </Button>
                     </TableCell>
                     <TableCell align="center">
                       <Button
@@ -1536,7 +1584,7 @@ PriceDetails.propTypes = {
   content: PropTypes.object.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
 };
-function About() {
+function About({ paraGraph }) {
   return (
     <Grid container justifyContent="center" alignContent="center" xs={12}>
       <Typography
@@ -1555,7 +1603,7 @@ function About() {
           flexDirection: "column",
         }}
       >
-        Siddha Sky Life.
+        Jewel Of Chennai
         <Box
           sx={{
             backgroundColor: "#46467b",
@@ -1575,18 +1623,14 @@ function About() {
           textAlign: "center",
         }}
       >
-        Welcome to the rooftop skywalk of Siddha Sky, Wadala built 400 ft above
-        the ground. Discover the privilege of infinite with over 25+ amenities
-        on the rooftop, ready to entertain and rejuvenate you at any given time.
-        Witness the gorgeous horizon of the cityscape while sipping your
-        favorite drink in the Sky bar and feel privileged forever. Come, live
-        above the ordinary. Experience these smartly designed 2 and 3 bed
-        residences. Come and explore this iconic masterpiece that will fill your
-        life with happiness.
+        {paraGraph}
       </Typography>
     </Grid>
   );
 }
+About.propTypes = {
+  paraGraph: PropTypes.string.isRequired,
+};
 
 function ProjectHighlights({ content }) {
   return (
@@ -1734,14 +1778,15 @@ ProjectHighlights.propTypes = {
 };
 function Amenties({ content }) {
   const amentiesImg = {
-    kidLogo,
-    swimmingLogo,
-    hallLogo,
-    dramsLogo,
+    musicLogo,
+    shoppingLogo,
+    bikeLogo,
+    laptopLogo,
     playingLogo,
-    gymLogo,
-    stepsLogo,
-    jaccussiLogo,
+    bbqLogo,
+    carParking,
+    coffeeLogo,
+    swimming,
   };
   return (
     <Grid
@@ -2401,7 +2446,6 @@ const facilitiesList = (data) => {
           padding=" 0px 15px "
           backgroundColor="#f7f7f7"
           boxShadow="0 8px 8px -6px rgba(0, 0, 0, 0.3)"
-          transition="transform 0.3s ease-in-out"
         >
           <Typography
             variant="p"
@@ -2496,12 +2540,7 @@ function LocationAdvantages({ content }) {
             }}
             component="p"
           >
-            Wadala is emerging as the new hotspot for investment and development
-            because of its location. It enjoys superb proximity to business hubs
-            and infrastructural projects. The project is centrally located in
-            Wadala and is surrounded by schools, commercial places, healthcare
-            facilities, and entertainment centres. It is also accessible from
-            business hubs like BKC, Parel, and Fort.
+            {content?.paraGraph}
           </Typography>
         </Grid>
         {/* <Grid
@@ -2533,7 +2572,7 @@ function LocationAdvantages({ content }) {
           xl={content?.subContainerCol?.xl}
           sx={{
             justifyContent: "center",
-            marginTop: "50px",
+            marginTop: { xs: "0px", md: "50px" },
             alignItems: "center",
           }}
         >
@@ -2548,7 +2587,7 @@ function LocationAdvantages({ content }) {
             sx={{
               justifyContent: "center",
               height: "fit-content",
-              paddingTop: { xs: "30px", sm: 0 },
+              paddingTop: { xs: "0px", sm: 0 },
             }}
           >
             {(content?.facilities || []).map((item) => (
@@ -2630,7 +2669,6 @@ function LocationAdvantages({ content }) {
                       : "none",
                     flexDirection: "column",
                     color: "#fff",
-                    transition: "transform 0.3s ease-in-out",
                   }}
                 >
                   {facilitiesList(item?.listAndTime)}
@@ -2656,7 +2694,7 @@ function LocationAdvantages({ content }) {
           >
             <Image
               fill
-              src={locationMap}
+              src={overviewMap}
               style={{ objectFit: "cover" }}
               alt="location map"
               sizes="100vw"
@@ -2888,6 +2926,7 @@ function AboutUs() {
       xs={12}
       sx={{ backgroundColor: "#f1f1f1", padding: "50px 0px" }}
       justifyContent="center"
+      alignItems="baseline"
     >
       <Grid item xs={12}>
         <Typography
@@ -2927,8 +2966,8 @@ function AboutUs() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-          padding: "50px 0px ",
+          alignItems: "start",
+          padding: { xs: "20px 0px", md: "50px 0px " },
           borderRight: "2px solid #46467b",
         }}
       >
@@ -2937,9 +2976,23 @@ function AboutUs() {
             container
             item
             xs={4}
-            sx={{ position: "relative", height: "50px" }}
+            sx={{
+              position: "relative",
+              height: "50px",
+            }}
           >
-            <Image fill src={siddhaLogo} />
+            <Image
+              src={allianceLogo}
+              style={{
+                height: "100%",
+                width: "auto",
+                objectFit: "cover",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
           </Grid>
         </Grid>
         <Typography
@@ -2954,13 +3007,11 @@ function AboutUs() {
             color: "#333333",
           }}
         >
-          Since its inception in 1986, Siddha has been crafting residential and
-          commercial spaces with a difference, to make good living affordable in
-          4 cities across India, namely Kolkata, Mumbai, Jaipur and Bengaluru.
-          Under the leadership of Group Chairman Shri Chandra Prakash Jain and
-          Group Managing Director Shri Sanjay Jain, Siddha has won 25+
-          prestigious awards over the years. They have been the pioneers of
-          Rooftop Skywalks in India.
+          Alliance Group is South India’s Largest Real Estate Developer who has
+          delivered over 9,600+ homes. The organization has 72 million Sq.Ft.
+          both under development and planning stages, with a real estate
+          portfolio of Rs.51, 000 Crores. The Organization is backed & funded by
+          the world’s Topmost Financial Institutions.
         </Typography>
       </Grid>
       <Grid
@@ -2972,7 +3023,7 @@ function AboutUs() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          padding: "50px 0px ",
+          padding: { xs: "0px 0px", md: "50px 0px" },
         }}
       >
         <Grid item xs={12} display="flex" justifyContent="center" height="50px">
@@ -2982,7 +3033,18 @@ function AboutUs() {
             xs={4}
             sx={{ position: "relative", height: "50px" }}
           >
-            <Image fill src={sejalLogo} />
+            <Image
+              src={urbanriseLogo}
+              style={{
+                height: "100%",
+                width: "auto",
+                objectFit: "cover",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
           </Grid>
         </Grid>
         <Typography
@@ -2997,25 +3059,15 @@ function AboutUs() {
             color: "#333333",
           }}
         >
-          Sejal Realty was formed with the sole objective of changing the
-          current landscape of Indian Infrastructure by focusing on the
-          redevelopment of society and SRA projects to promote the conservation
-          of built and natural heritage structures in Mumbai, which needed to be
-          protected, nourished and maintained. With the foresight and strong
-          vision of our Chairman, Managing Director and a team of dedicated
-          professionals, the Group is poised to launch many more projects, with
-          its commitment to 'Excellence', 'Innovation' and 'Passion' with trust.
+          Founded by a visionary team of young and passionate experts from the
+          real estate industry, Urbanrise, one of the best builders in Chennai
+          and Hyderabad, is a promising real estate brand emerging across South
+          India from India’s well-acclaimed Alliance Group who has delivered
+          over 9,600+ homes. The organization has 72 million Sq.Ft. both under
+          development and planning stages, with a real estate portfolio of
+          Rs.51, 000 Crores. The Organization is backed & funded by the world’s
+          Topmost Financial Institutions.
         </Typography>
-      </Grid>
-      <Grid container xs={12} justifyContent="center">
-        <Grid
-          container
-          item
-          xs={2}
-          sx={{ position: "relative", height: "70px", margin: "5px 0px " }}
-        >
-          <Image fill src={partnerShipLogo} sx={{ objectFit: "contain" }} />
-        </Grid>
       </Grid>
     </Grid>
   );
@@ -3265,7 +3317,7 @@ function Contact({ setOpenEnquiry }) {
         bottom: 0,
         width: "100%",
         justifyContent: { xs: "space-between", md: "flex-end" },
-        alignItems: "flex-end",
+        alignItems: { xs: "center", md: "flex-end" },
         padding: "0px 10px",
       }}
     >
@@ -3278,7 +3330,7 @@ function Contact({ setOpenEnquiry }) {
         <Button
           onClick={() => window.open("tel: +91 9876543210")}
           sx={{
-            width: "95%",
+            width: "100%",
             height: { xs: "48px", sm: "70px" },
             background: "#003152",
             color: "#ffffff",
@@ -3319,7 +3371,7 @@ function Contact({ setOpenEnquiry }) {
         <Button
           onClick={() => setEnquiryEnabled(!enquiryEnabled)}
           sx={{
-            width: "95%",
+            width: "100%",
             height: { xs: "48px", sm: "70px" },
             display: { xs: "none", sm: "flex" },
             justifyContent: "space-between",
@@ -3331,6 +3383,8 @@ function Contact({ setOpenEnquiry }) {
             borderTopRightRadius: { xs: "17px", sm: "29px" },
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
+            border: "2px solid #fff",
+            borderBottom: "0px solid blue",
             padding: { xs: "0 10px", sm: "0 30px" },
             ":hover": {
               background: "#F9B800",
@@ -3360,10 +3414,11 @@ function Contact({ setOpenEnquiry }) {
             color: "#fff",
             fontWeight: "bolder",
             fontSize: "14px",
-            borderTopLeftRadius: "17px",
-            borderTopRightRadius: "17px",
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
+            borderWidth: "3px 3px 0 3px",
+            borderStyle: "solid",
+            borderColor: "#ffffff",
+            borderTopLeftRadius: { xs: "17px", sm: "29px" },
+            borderTopRightRadius: { xs: "17px", sm: "29px" },
             padding: "0 10px",
             ":hover": {
               background: "#F9B800",
@@ -3559,33 +3614,25 @@ function Footer() {
       <Grid item xs={12} sx={{ margin: "5px 0px" }}>
         <Typography
           component="p"
-          sx={{ padding: "0px 90px", color: "#fff", textAlign: "center" }}
-        >
-          The project has been registered via MahaRERA Registration No.:
-          P51900021027 | P51900021040 | P51900021044 | P51900021031 and is
-          available on the website https://maharera.mahaonline.gov.in/ under
-          registered projects.
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sx={{ textAlign: "center", margin: "5px 0px" }}>
-        <Button
-          variant="contained"
           sx={{
-            textTransform: "capitalize",
-            backgroundColor: "#81cece",
-            color: "black",
-            borderRadius: "15px",
+            padding: { md: "0px 90px", xs: "0px 2px" },
+            color: "#fff",
+            textAlign: "center",
           }}
         >
-          Disclaimer
-        </Button>
+          Disclaimer "I authorize Urbanrise Jewel of Chennai and its
+          representatives to Call, SMS, Email or WhatsApp me about their
+          products, services and offers. This consent overrides any registration
+          for DNC / NDNC."
+        </Typography>
       </Grid>
+
       <Grid xs={12}>
         <Typography
           component="p"
           sx={{ color: "#fff", textAlign: "center", margin: "5px 0px" }}
         >
-          Copyright © Siddha 2023. All rights reserved.
+          © 2023 Urbanrise Jewel of Chennai | All Rights Reserved
         </Typography>
       </Grid>
     </Grid>
@@ -3678,7 +3725,7 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
           borderRadius: { xs: "17px", sm: "24px" },
           background: "black",
           maxWidth: { xs: "md", sm: "25%" },
-          height: { md: "55%", xs: "100%" },
+          height: { md: "55%", xs: "50%" },
           width: "100%",
           "::-webkit-scrollbar": {
             display: "none",
@@ -3704,6 +3751,7 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
               fontSize: { xs: "14px", sm: "24px" },
               padding: { xs: "0 10px", sm: "0 30px" },
               fontWeight: "bolder",
+              border: "2px ",
             }}
           >
             ENQUIRE NOW
@@ -3893,47 +3941,343 @@ function EnquiryFormPopup({ openEnquiry, setOpenEnquiry }) {
     </Dialog>
   );
 }
-function BannerImg() {
+function BannerImg({
+  lpImg,
+  lpImgXs,
+  lpImgSize,
+  lpImgXsSize,
+  pageProps,
+  content,
+}) {
+  const sliderRef = useRef();
+  const sliderRefXs = useRef();
   return (
-    <>
+    <Grid
+      item
+      xs={12}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <Grid
-        container
+        item
         xs={12}
         sx={{
-          position: "relative",
-          width: "100%",
-          height: "40rem",
           display: { xs: "none", md: "flex" },
         }}
+        style={{ aspectRatio: lpImgSize.width / lpImgSize.height }}
       >
-        <Image
-          fill
-          src="https://siddhasky-mumbai.com/images/slider/banner1.jpg"
-          alt="Cover Image"
-          sizes="100vw"
-        />
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={0}
+          loop={true}
+          onSwiper={(sw) => {
+            sliderRef.current = sw;
+          }}
+          className="mySwiper"
+          style={{ width: "100%" }}
+        >
+          {(lpImg || []).map((item, index) => (
+            <SwiperSlide key={index} style={{ width: "100%" }}>
+              <Grid
+                item
+                xs={12}
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <Image
+                  fill
+                  onClick={() =>
+                    setEnquiryPopupProps(() => ({
+                      ...enquiryPopupProps,
+                      isOpen: true,
+                    }))
+                  }
+                  src={item}
+                  alt="landingPage"
+                  style={{ cursor: "pointer" }}
+                  sizes="100vw"
+                />
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: {
+                      xs: "none",
+                      md: lpImg?.length >= 2 ? "flex" : "none",
+                    },
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    onClick={() => sliderRef?.current?.slidePrev()}
+                    sx={{
+                      background: "none !important",
+                      color: "#ffffff",
+                      boxShadow: "none !important",
+                      height: "70px",
+                    }}
+                    variant="contained"
+                  >
+                    <ArrowLeftIcon
+                      sx={{
+                        fontSize: "60px",
+                        boxShadow: "0 0 20px grey",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => sliderRef?.current?.slideNext()}
+                    style={{
+                      background: "none",
+                      color: "#ffffff",
+                      boxShadow: "none",
+                      height: "70px",
+                    }}
+                    variant="contained"
+                  >
+                    <ArrowRightIcon
+                      sx={{
+                        fontSize: "60px",
+                        boxShadow: "0 0 20px grey",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Grid>
       <Grid
-        container
+        item
         xs={12}
         sx={{
-          position: "relative",
-          width: "100%",
-          height: "40rem",
           display: { xs: "flex", md: "none" },
         }}
+        style={{ aspectRatio: lpImgXsSize.width / lpImgXsSize.height }}
       >
-        <Image
-          fill
-          src="https://siddhasky-mumbai.com/images/slider/mobile1.jpg"
-          alt="Cover Image"
-          sizes="100vw"
-        />
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={0}
+          loop={true}
+          onSwiper={(sw) => {
+            sliderRefXs.current = sw;
+          }}
+          className="mySwiper"
+          style={{ width: "100%" }}
+        >
+          {(lpImgXs || []).map((item, index) => (
+            <SwiperSlide
+              key={`${index}Slider`}
+              style={{ width: "100%", height: "100%" }}
+            >
+              <Grid
+                sx={{
+                  width: "100%",
+                  position: "relative",
+                  height: "100%",
+                }}
+              >
+                <Image
+                  fill
+                  onClick={() =>
+                    pageProps.noXsForm
+                      ? window.open(
+                          `tel:${pageProps?.phoneNo || "+918750183040"}`
+                        )
+                      : setEnquiryPopupProps(() => ({
+                          ...enquiryPopupProps,
+                          isOpen: true,
+                        }))
+                  }
+                  src={item}
+                  alt="landingPage"
+                  style={{ cursor: "pointer" }}
+                  sizes="100vw"
+                />
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    display: {
+                      xs: lpImgXs?.length >= 2 ? "flex" : "none",
+                      md: "none",
+                    },
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button
+                    onClick={() => sliderRefXs?.current?.slidePrev()}
+                    sx={{
+                      background: "none !important",
+                      color: "#ffffff",
+                      boxShadow: "none !important",
+                      height: "70px",
+                    }}
+                    variant="contained"
+                  >
+                    <ArrowLeftIcon
+                      sx={{
+                        fontSize: "40px",
+                        boxShadow: "0 0 20px grey",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => sliderRefXs?.current?.slideNext()}
+                    style={{
+                      background: "none",
+                      color: "#ffffff",
+                      boxShadow: "none",
+                      height: "70px",
+                    }}
+                    variant="contained"
+                  >
+                    <ArrowRightIcon
+                      sx={{
+                        fontSize: "40px",
+                        boxShadow: "0 0 20px grey",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Grid>
-    </>
+    </Grid>
   );
 }
+BannerImg.propTypes = {
+  lpImg: PropTypes.array.isRequired,
+  lpImgXs: PropTypes.array.isRequired,
+  lpImgSize: PropTypes.object.isRequired,
+  lpImgXsSize: PropTypes.object.isRequired,
+  pageProps: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+};
 EnquiryFormPopup.propTypes = {
   openEnquiry: PropTypes.bool.isRequired,
   setOpenEnquiry: PropTypes.func.isRequired,
+};
+export async function getStaticPaths() {
+  const postsDirectory = path.join(process.cwd(), "public", "lp-images");
+  const filenames = read(postsDirectory);
+
+  const lpDirs = [
+    ...new Set(
+      filenames.map((f) => f.split(path.sep).slice(0, -1).join(path.sep))
+    ),
+  ].filter((d) => d);
+
+  const slugs = lpDirs.map((f) => f.split(path.sep));
+  const paths = [
+    { params: { slug: [] } },
+    ...slugs.map((slug) => ({
+      params: { slug },
+    })),
+  ];
+
+  // console.log("Paths: ", JSON.stringify(paths, null, 2));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async ({ params }) => {
+  let lpImg = [];
+  let lpImgXs = [];
+  let pageProps = [];
+  params.lpImg = [];
+  params.lpImgXs = [];
+
+  if (Array.isArray(params.slug) && params.slug.length) {
+    const lpDirectory = path.join(
+      process.cwd(),
+      "public/lp-images/",
+      params.slug.join("/")
+    );
+
+    const filenames = read(lpDirectory);
+
+    const lpImages = filenames.filter((d) => d);
+
+    lpImages.forEach((e) => {
+      if (e.startsWith("bannerImg_xs") || e.startsWith("galleryImg_xs")) {
+        lpImgXs = ["lp-images", ...params.slug, e];
+        lpImgXs = `/${lpImgXs.join("/")}`;
+        const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+
+        if (fs.existsSync(lpImgXsAbsPath)) {
+          const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+          params.lpImgXsSize = imgXsDimensions;
+          params.lpImgXs.push(lpImgXs);
+        }
+      } else if (e.startsWith("bannerImg") || e.startsWith("galleryImg")) {
+        lpImg = ["lp-images", ...params.slug, e];
+        lpImg = `/${lpImg.join("/")}`;
+        const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
+
+        if (fs.existsSync(lpImgAbsPath)) {
+          const imgDimensions = sizeOf(lpImgAbsPath);
+          params.lpImgSize = imgDimensions;
+          params.lpImg.push(lpImg);
+        }
+      }
+      pageProps = ["lp-images", ...params.slug, "pageProps.json"];
+    });
+  } else {
+    lpImg = ["images", "db.jpg"];
+    lpImgXs = ["images", "mb.jpg"];
+    pageProps = ["pageProps.json"];
+
+    lpImg = `/${lpImg.join("/")}`;
+    lpImgXs = `/${lpImgXs.join("/")}`;
+
+    const lpImgAbsPath = path.join(process.cwd(), "public", lpImg);
+    if (fs.existsSync(lpImgAbsPath)) {
+      const imgDimensions = sizeOf(lpImgAbsPath);
+      params.lpImgSize = imgDimensions;
+      params.lpImg.push(lpImg);
+    }
+
+    const lpImgXsAbsPath = path.join(process.cwd(), "public", lpImgXs);
+    if (fs.existsSync(lpImgXsAbsPath)) {
+      const imgXsDimensions = sizeOf(lpImgXsAbsPath);
+      params.lpImgXsSize = imgXsDimensions;
+      params.lpImgXs.push(lpImgXs);
+    }
+  }
+
+  pageProps = `/${pageProps.join("/")}`;
+
+  const pagePropsAbsPath = path.join(process.cwd(), "public", pageProps);
+  if (fs.existsSync(pagePropsAbsPath)) {
+    const pagePropsStr = fs.readFileSync(pagePropsAbsPath);
+    params.pageProps = JSON.parse(pagePropsStr);
+  }
+  // console.log("Params: ", JSON.stringify(params, null, 2));
+
+  return {
+    props: params,
+  };
 };
