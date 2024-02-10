@@ -1,8 +1,9 @@
 // components/LessonForm.js
-import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
 
-function LessonForm({ note, setNote, handleSubmitForm }) {
+import { Button, TextField } from "@mui/material";
+import { useState } from "react";
+
+export default function LessonForm({ note, setNote, handleSubmitForm }) {
   const noteFormFields = {
     topic: "topic",
     description: "description",
@@ -74,5 +75,3 @@ function LessonForm({ note, setNote, handleSubmitForm }) {
     </form>
   );
 }
-
-export default LessonForm;

@@ -1,10 +1,7 @@
 // pages/index.js
 import React from "react";
-
 import NotesMaker from "./NotesMaker";
 
-function Home() {
+export default function Home() {
   return <NotesMaker />;
 }
-
-export default Home;

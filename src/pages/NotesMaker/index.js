@@ -7,12 +7,11 @@ import {
   DialogActions,
   TextField,
 } from "@mui/material";
-import { assert } from "joi";
-import DropDown from "./component/DropDown";
-import LessonForm from "./component/LessonForm";
+import LessonForm from "../../component/LessonForm";
+import DropDown from "../../component/DropDown";
 
 const domainUrl = "http://localhost:3000/api";
-function NotesMaker() {
+export default function NotesMaker() {
   const [leassonList, setLeassonList] = useState([]);
   const [lesson, setLeasson] = useState("");
   const [note, setNote] = useState({
@@ -156,4 +155,3 @@ function PopUp({
     </Dialog>
   );
 }
-export default NotesMaker;
