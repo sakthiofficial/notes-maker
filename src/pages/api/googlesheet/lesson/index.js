@@ -1,16 +1,18 @@
 import { google } from "googleapis";
 
-const spreadsheetId = "1e09_NCJ8HQ7ovjFk_bbHv-XHDUkC2OXn-6KPRW371Y0"; // Replace with your Google Sheets spreadsheet ID
+const spreadsheetId = process.env.GOOGLE_SHEET_ID; // Replace with your Google Sheets spreadsheet ID
 
 const getAuth = async () => {
   const auth = new google.auth.GoogleAuth({
-    keyFile: "goole-sheet-credentials.json",
+    credentials: {
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    },
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
   // Create client instance for auth
   return auth;
 };
-
 const getGoogleSheet = async (client) => {
   const sheets = google.sheets({ version: "v4", auth: client });
   return sheets;
