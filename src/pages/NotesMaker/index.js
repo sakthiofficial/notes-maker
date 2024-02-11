@@ -10,7 +10,7 @@ import {
 import LessonForm from "../../component/LessonForm";
 import DropDown from "../../component/DropDown";
 
-const domainUrl = "https://notes-maker-ashen.vercel.app/api";
+const domainUrl = "https://notes-maker-dm950jcqq-sakthiofficial.vercel.app/api";
 export default function NotesMaker() {
   const [leassonList, setLeassonList] = useState([]);
   const [lesson, setLeasson] = useState("");
