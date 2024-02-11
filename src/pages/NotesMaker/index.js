@@ -10,7 +10,7 @@ import {
 import LessonForm from "../../component/LessonForm";
 import DropDown from "../../component/DropDown";
 
-const domainUrl = "https://notes-maker-a6v37zpnm-sakthiofficial.vercel.app/";
+const domainUrl = "https://notes-maker-dm950jcqq-sakthiofficial.vercel.app/api";
 export default function NotesMaker() {
   const [leassonList, setLeassonList] = useState([]);
   const [lesson, setLeasson] = useState("");
@@ -21,7 +21,7 @@ export default function NotesMaker() {
     refrenceLink: "",
   });
   const getLessons = async () => {
-    const result = await fetch(`${domainUrl}/lesson`);
+    const result = await fetch(`${domainUrl}/googlesheet/lesson`);
     return result;
   };
   useEffect(() => {
@@ -32,14 +32,16 @@ export default function NotesMaker() {
       .then((data) => {
         setLeassonList(data?.result);
         setLeasson(data?.result[0]);
-        console.log(lesson);
+      })
+      .catch((err) => {
+        console.log("Error while fetch leeson list", err);
       });
   }, []);
   const [addLesson, setAddLeasson] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleSubmitForm = useCallback(async () => {
-    const response = await fetch(`${domainUrl}/note`, {
+    const response = await fetch(`${domainUrl}/googlesheet/note`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

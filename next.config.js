@@ -18,7 +18,7 @@ const nextConfig = {
     NEXT_PUBLIC_PREVIEW: process.env.GTM_PREVIEW,
   },
   images: {
-    domains: ["www.jubileeresidences.com", "siddhasky-mumbai.com"],
+    domains: ["https://notes-maker-dm950jcqq-sakthiofficial.vercel.app/"],
   },
   webpack: (config) => {
     config.module.rules.push({

@@ -3,7 +3,12 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 
-export default function LessonForm({ note, setNote, handleSubmitForm }) {
+export default function LessonForm({
+  note,
+  setNote,
+  handleSubmitForm,
+  domainUrl,
+}) {
   const noteFormFields = {
     topic: "topic",
     description: "description",
