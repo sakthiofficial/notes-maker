@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  Grid,
 } from "@mui/material";
 import LessonForm from "../../component/LessonForm";
 import DropDown from "../../component/DropDown";
@@ -81,8 +82,11 @@ export default function NotesMaker() {
   });
   console.log(leassonList);
   return (
-    <div
-      style={{
+    <Grid
+      container
+      xs={12}
+      md={12}
+      sx={{
         display: "flex",
         justifyContent: "space-between",
         padding: "16px",
@@ -90,40 +94,39 @@ export default function NotesMaker() {
         alignItems: "baseline",
       }}
     >
-      <div
-        style={{
-          flexBasis: "30%",
-          display: "flex",
-          flexDirection: "column",
-          gap: "15px",
-        }}
-      >
-        <DropDown
-          menuList={leassonList}
-          onSelect={onLessonMenuSelect}
-          selected={lesson}
-        />
-        <Button variant="contained" onClick={handleOpenDialog}>
-          Add Lesson
-        </Button>
-        <PopUp
-          open={open}
-          onClose={handleCloseDialog}
-          title="Add Lesson"
-          value={addLesson}
-          handleOnChange={handleAddLessonChange}
-          handleCloseDialog={handleCloseDialog}
-          handleSubmit={handleNoteFormSubmit}
-        />
-      </div>
-      <div style={{ flexBasis: "60%" }}>
+      <Grid container item xs={12} md={3}>
+        <Grid
+          item
+          xs={12}
+          sx={{ display: "flex", flexDirection: "column", gap: "15px" }}
+        >
+          <DropDown
+            menuList={leassonList}
+            onSelect={onLessonMenuSelect}
+            selected={lesson}
+          />
+          <Button variant="contained" onClick={handleOpenDialog}>
+            Add Lesson
+          </Button>
+          <PopUp
+            open={open}
+            onClose={handleCloseDialog}
+            title="Add Lesson"
+            value={addLesson}
+            handleOnChange={handleAddLessonChange}
+            handleCloseDialog={handleCloseDialog}
+            handleSubmit={handleNoteFormSubmit}
+          />
+        </Grid>
+      </Grid>
+      <Grid item xs={12} md={8} sx={{}}>
         <LessonForm
           note={note}
           setNote={setNote}
           handleSubmitForm={handleSubmitForm}
         />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 function PopUp({
